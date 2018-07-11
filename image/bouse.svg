@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="62.8965"
+   height="43.669922"
+   id="svg10994"
+   version="1.1"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="bouse.svg">
+  <title
+     id="title972">bouseDeVache</title>
+  <defs
+     id="defs10996" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="-48.065445"
+     inkscape:cy="185.81524"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1366"
+     inkscape:window-height="739"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:snap-global="true"
+     showguides="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid5300"
+       originx="-1168.0526"
+       originy="-95.246279" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata10999">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>bouseDeVache</dc:title>
+        <dc:date>2018-05-29</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>V.Bayon</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>CC</dc:title>
+          </cc:Agent>
+        </dc:rights>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1173.5206,-908.76463)"
+     style="display:inline">
+    <path
+       style="opacity:1;fill:#552200;fill-opacity:1;stroke:#552200;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
+       d="m 1197.9484,909.26463 a 20.111637,13.176589 0 0 0 -20.1114,13.17578 20.111637,13.176589 0 0 0 0.5821,3.08398 25.892857,16.964285 0 0 0 -4.3985,9.44532 25.892857,16.964285 0 0 0 25.8926,16.96484 25.892857,16.964285 0 0 0 25.5586,-14.38281 20.111637,13.176589 0 0 0 10.4453,-11.53907 20.111637,13.176589 0 0 0 -20.1113,-13.17773 20.111637,13.176589 0 0 0 -3.7364,0.23828 20.111637,13.176589 0 0 0 -14.121,-3.80859 z"
+       id="bouse"
+       inkscape:connector-curvature="0"
+       inkscape:label="#path1388" />
+  </g>
+</svg>
