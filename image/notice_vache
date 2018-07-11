@@ -1,0 +1,24 @@
+Mes vaches ont plusieurs couleurs (membres, tete, pattes) pour pouvoir identifier rapidement les fifférentes parties qui sont animables.
+
+vache_cenario est une maquette qui représente les differentes images de la vache qui sera représentée à l'écran... mais pas tout-à-fait car j'ai laissé les diférrentes couleurs pour repérer ce qui va bouger.
+
+vache_position est une maquette qui montre les differentes positions souhaitées pour la vache en mouvement :
+
+vache de dos : l'idéale serait d'avoir une seule image avec les pattes arrières qui se retressisent et reviennent à leur taille de départ tour à tour pour donner l'illusion qu'elle avance. 
+Comment faire cela en SCubes ?
+
+vache de face idem que vache de dos mais cette fois avec les pates avant.
+
+vache de profile : il faudrait une seule image de vache qui s'anime avec SC : 
+  Elle doit avancer les pattes en suivant l'axe de rotation, 
+  elle doit soulever et baisser la queue,
+  elle doit ouvrir et fermer la machoir (ruminer, meugler),
+  elle doit baisser la tête pour brouter (et ouvrir et fermer la machoir). Pour baisser la tete la difficulté est que l'aimage de la vache n'est plus tout à fait la même car la tête a glissée vers le bas.
+  
+La vache de profile avec la tete tournée vers nous est une autre image de la vache... je n'ai pas encore prévue de l'animer
+
+Les pies de a vache se gonflent et se degonflent (zoom)
+
+JFS peux-tu me dire comment faire mes animation avec SC ? Merci ;)
+ 
+Je suis preneuse de suggestions et de conseils pour améliorer mes dessins et les rendres fluides à l'animation, l'idéale serait d'avoir le moins d'images possibles de ma vache et d'utiliser au maximum les pouvoirs du svg et de sugarCubes
