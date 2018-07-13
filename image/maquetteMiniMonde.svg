@@ -21,6 +21,22 @@
   <defs
      id="defs10996">
     <linearGradient
+       id="linearGradient1540"
+       inkscape:collect="always">
+      <stop
+         id="stop1534"
+         offset="0"
+         style="stop-color:#3131ff;stop-opacity:1" />
+      <stop
+         style="stop-color:#1d7d17;stop-opacity:1"
+         offset="0.51261938"
+         id="stop1536" />
+      <stop
+         id="stop1538"
+         offset="1"
+         style="stop-color:#359500;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient
        inkscape:collect="always"
        id="linearGradient1261">
       <stop
@@ -205,6 +221,15 @@
        fx="41.767212"
        fy="145.8774"
        r="7.5353217" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1540"
+       id="linearGradient1532"
+       x1="-721.46484"
+       y1="3.3427782"
+       x2="-715.61554"
+       y2="714.49017"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -213,11 +238,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="390.70258"
-     inkscape:cy="145.91122"
+     inkscape:zoom="0.70000001"
+     inkscape:cx="480.24661"
+     inkscape:cy="158.7229"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="739"
@@ -260,24 +285,15 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="fond"
-     sodipodi:insensitive="true">
+     inkscape:label="fond">
     <rect
-       style="opacity:0.95999995;fill:#217821;fill-opacity:1;stroke:none;stroke-width:4.85152674;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
+       style="opacity:0.95999995;fill:url(#linearGradient1532);fill-opacity:1;stroke:none;stroke-width:6.429986;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
        id="rect1527"
        width="1367.5349"
-       height="416.57938"
-       x="-1369.3899"
-       y="641.38751"
-       transform="matrix(-1,0,0,1,-5.4679691,-327.11599)" />
-    <rect
-       transform="translate(-5.4679691,-327.11599)"
-       style="opacity:1;fill:#7fc9dc;fill-opacity:1;stroke:none;stroke-width:7.86057854;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
-       id="rect1525"
-       width="1368.062"
-       height="318.59335"
-       x="4.8477745"
-       y="327.55524" />
+       height="731.74695"
+       x="-1363.9219"
+       y="-0.89606935"
+       transform="scale(-1,1)" />
     <path
        transform="translate(-5.4679691,-327.11599)"
        sodipodi:type="star"
@@ -301,7 +317,8 @@
      inkscape:label="herbe"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-5.4679691,-327.11599)">
+     transform="translate(-5.4679691,-327.11599)"
+     sodipodi:insensitive="true">
     <g
        id="g3937"
        transform="matrix(0.49792744,0,0,0.49792744,993.40609,543.67027)"
@@ -326,7 +343,7 @@
          cx="41.767212"
          transform="translate(257.80429,457.1349)"
          id="path3929"
-         style="fill:url(#radialGradient1263);fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+         style="fill:url(#radialGradient1263);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1" />
       <ellipse
          ry="16.577707"
          rx="4.521193"
