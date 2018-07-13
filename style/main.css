@@ -1,18 +1,4 @@
 body{
-	background-color: #FFF8DC;
-	background: linear-gradient(to top, MediumAquaMarine, MediumTurquoise);
-}
-
-#zoneDeJeu{
 	background: linear-gradient(to top, #359500 50%, #3131ff);
-}
-
-h1{
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px 0 ;
-	text-align: center;
-	color: #B22222;
-	background-color: #FFF8DC;
+	background-repeat : no-repeat;
 }
