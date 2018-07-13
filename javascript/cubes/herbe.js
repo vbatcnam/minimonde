@@ -1,6 +1,6 @@
 class Herbe extends Vegetal{
-	constructor(espece){
-		super(espece);
+	constructor(){
+		super();
 	}
 	
 	//Il faut les positionner de manière aléatoire 
@@ -14,8 +14,7 @@ class Herbe extends Vegetal{
 	}
 }
 
-//teste
-var herbes = [];
+//test
 for(var i = 0; i<5; i++){
 	new Herbe().draw(i+2, i+4);
 }
