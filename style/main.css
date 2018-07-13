@@ -4,11 +4,7 @@ body{
 }
 
 #zoneDeJeu{
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	border: 1px solid #B22222;
-	background-color: #FFF8DC;
+	background: linear-gradient(to top, #359500 50%, #3131ff);
 }
 
 h1{
