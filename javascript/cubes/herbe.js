@@ -18,8 +18,10 @@ class Herbe extends Vegetal{
 	
 	getEltSVG(){
 		let eltObject = document.getElementById(this.id);
+		console.log("eltObject dans la fonction getEltSVG :");
 		console.log(eltObject);
 		let eltSVG = eltObject.contentDocument;
+		console.log("eltSVG dans la fonction getEltSVG :");
 		console.log(eltSVG);
 		return eltSVG;
 	}
@@ -27,14 +29,16 @@ class Herbe extends Vegetal{
 	getEchelle(elt){
 		return array_getEchelle(elt);
 	}
-	
 }
 
 //test
 for(var i = 0; i<5; i++){
 	let herbe = new Herbe(i+1);
 	herbe.draw(i+2, i+4);
-	var eltSvg = herbe.getEltSVG();
-	var attributs = eltSvg;
-	herbe.getEchelle(eltSvg);
+	window.addEventListener("load", function(evt){
+		var eltSvg = herbe.getEltSVG();
+		console.log("eltSvg après return de getEltSVG");
+		console.log(eltSvg);
+		herbe.getEchelle(eltSvg);
+	})
 }
