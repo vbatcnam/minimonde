@@ -1,7 +1,6 @@
 class Ours extends Animal{
 	constructor(){
 		super();
-		this.faim = 0; //n'a pas faim
 	}
 	
 	draw(x,y, présentation){
@@ -13,6 +12,4 @@ class Ours extends Animal{
 		ours.data = image;
 		prairie.appendChild(ours);
 	}
-             
-	mange(){}
 }
