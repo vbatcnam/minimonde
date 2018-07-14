@@ -3,7 +3,7 @@ class Fleur{
 		super(num);
 		this.id = "fleur_" + this.num;
 		this.polen = 0;
-		this.nectar = O
+		this.nectar = 0;
 	}
 	
 	//produit du polène et du nectar

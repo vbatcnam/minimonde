@@ -1,6 +1,6 @@
 class Vache extends Animal{
-	constructor(espece){
-		super(espece);
+	constructor(){
+		super();
 		this.lait = 0;
 		this.bouse = 0;
 	}
