@@ -1,7 +1,12 @@
 class Fleur{
-	constructor(variete){
-		this.variete = variete;
+	constructor(num){
+		super(num);
+		this.id = "fleur_" + this.num;
+		this.polen = 0;
+		this.nectar = O
 	}
 	
-	produit(){}
+	//produit du polène et du nectar
+	produit(quoi){}
 } 
+
