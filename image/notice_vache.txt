@@ -1,26 +1,46 @@
-Mes vaches ont plusieurs couleurs (membres, tete, pattes) pour pouvoir identifier rapidement les fifférentes parties qui sont animables.
+Mes vaches ont plusieurs couleurs (membres, tête, pattes) pour pouvoir identifier rapidement les différentes parties qui sont animables.
 
-vache_cenario est une maquette qui représente les differentes images de la vache qui sera représentée à l'écran... mais pas tout-à-fait car j'ai laissé les diférrentes couleurs pour repérer ce qui va bouger.
+vache_cenario est une maquette qui représente les différentes images de la vache qui sera représentée à l'écran... mais pas tout-à-fait car j'ai laissé les différentes couleurs pour repérer ce qui va bouger.
 
-vache_position est une maquette qui montre les differentes positions souhaitées pour la vache en mouvement :
+vache_position est une maquette qui montre les différentes positions souhaitées pour la vache en mouvement :
 
-vache de dos : l'idéale serait d'avoir une seule image avec les pattes arrières qui se retressisent et reviennent à leur taille de départ tour à tour pour donner l'illusion qu'elle avance. 
+vache de dos : l'idéale serait d'avoir une seule image avec les pattes arrières qui se rétrécissent et reviennent à leur taille de départ tour à tour pour donner l'illusion qu'elle avance. 
 Comment faire cela en SCubes ?
 
-vache de face idem que vache de dos mais cette fois avec les pates avant.
+[jfs]
+Là encore en SugarCubesJS, il n'y a pas de gestion du rendu graphique donc ces aspects sont à gérer en SVG mais l'animation c'est une question de temps : comment évolue l'affichage au cours du temps et c'est là que SugarCubes intervient. Pour animer il faut dire à chaque instant qu'elle taille de patte afficher et alterner entre augmentation de la taille et diminution de la taille...
+Quelque chose du genre :
 
-vache de profile : il faudrait une seule image de vache qui s'anime avec SC : 
+SC.repeat(10
+  , SC.repeat(5
+      , affiche_patte_plus_petite
+      )
+  , SC.repeat(5
+      , affiche_patte_plus_grande
+      )
+  )
+
+affiche_patte_... sont des actions qui peuvent elles même être composées par des actions parallèles calculant le nouveau rendu de la patte...
+[/jfs]
+
+vache de face idem que vache de dos mais cette fois avec les pattes avant.
+
+Vache de profile : il faudrait une seule image de vache qui s'anime avec SC : 
   Elle doit avancer les pattes en suivant l'axe de rotation, 
   elle doit soulever et baisser la queue,
-  elle doit ouvrir et fermer la machoir (ruminer, meugler),
-  elle doit baisser la tête pour brouter (et ouvrir et fermer la machoir). Pour baisser la tete la difficulté est que l'aimage de la vache n'est plus tout à fait la même car la tête a glissée vers le bas.
-  
-La vache de profile avec la tete tournée vers nous est une autre image de la vache... je n'ai pas encore prévue de l'animer
+  elle doit ouvrir et fermer la mâchoire (ruminer, meugler),
+  elle doit baisser la tête pour brouter (et ouvrir et fermer la mâchoire). Pour baisser la tête la difficulté est que l'image de la vache n'est plus tout à fait la même car la tête a glissée vers le bas.
 
-Les pies de a vache se gonflent et se degonflent (zoom)
+[jfs] Oui rendu est à calculer en svg et SugarCubes doit ordonnancer les calculs
+
+La vache de profile avec la tête tournée vers nous est une autre image de la vache... je n'ai pas encore prévue de l'animer
+
+Les pies de a vache se gonflent et se dégonflent (zoom)
 
 La bouse de vache devient de plus en plus transparente et laisse la place à une fleur
 
-JFS peux-tu me dire comment faire mes animation avec SC ? Merci ;)
- 
-Je suis preneuse de suggestions et de conseils pour améliorer mes dessins et les rendres fluides à l'animation, l'idéale serait d'avoir le moins d'images possibles de ma vache et d'utiliser au maximum les pouvoirs du svg et de sugarCubes
+JFS peux-tu me dire comment faire mes animations avec SC ? Merci ;)
+
+[jfs] En SugarCubesJS tu va gérer l'écoulement du temps. En gros la timeline de l'animation. Les calculs de rendu graphique seront fait en SVG. SVG dispose aussi d'une gestion du temps pour les animations, mais son pouvoir expressif est moins grand que celui de SC. C'est à mon avis là que doit intervenir les programmes SC.:
+
+Je suis preneuse de suggestions et de conseils pour améliorer mes dessins et les rendre fluides à l'animation, l'idéale serait d'avoir le moins d'images possibles de ma vache et d'utiliser au maximum les pouvoirs du svg et de sugarCubes

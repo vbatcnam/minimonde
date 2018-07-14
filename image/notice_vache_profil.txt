@@ -1,1 +1,3 @@
-Il faudrait pouvoir afficher et masuquer les différents calques celon les besoins
+Il faudrait pouvoir afficher et masquer les différents calques selon les besoins
+
+[jfs] L'affichage ou le masquage doit se faire en alternant des actions atomiques qui modifient les propriétés de visibilités idoines en SVG des calques.
