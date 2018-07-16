@@ -1,11 +1,18 @@
 body{
-	background: linear-gradient(to top, #359500 50%, #3131ff);
+margin : 0;
+padding : 0;
+/* 	background: linear-gradient(to top, #359500 50%, #3131ff);
 	background-repeat : no-repeat;
+ */}
+
+#ciel{
+	width: 100vw;
+	height: 40vh;
+	background: linear-gradient(to top, #31c5ff, #55cfff);
 }
 
 #prairie{
-/* 	width: 100%;
-	height: 70%;
- */	width: 800px;
-	height: 500px;
+	width: 100vw;
+	height: 60vh;
+	background: linear-gradient(to top, #1d7d17, #359500);
 }
