@@ -1,10 +1,46 @@
+/**
+	Cycle de l'herbe :
+		elle pousse (grandit)
+		elle est mangée (disparaît)
+		elle repousse
+		....
+*/
 class Herbe extends Vegetal{
 	constructor(num){
 		super(num);
 		this.id = "herbe_" + this.num;
+		this.killMe = SC.evt("kill");
+
+		/**methode JFS pour les murs
+		this.drawer = {};
+		Object.defineProperty(this.drawer, "drawSelf"
+								, { enumerable:false
+									, value:this.draw.bind(this)
+									, writable: false
+								}
+							);*/
+	}
+
+	//Il faudra les positionner de manière aléatoire 
+	calculePosition(){
+		let x = Math.random();
+		let y = Math.random();
+		verifSiPlaceLibre(x,y);
 	}
 	
-	//Il faudra les positionner de manière aléatoire 
+	verifSiPlaceLibre(x,y){
+		if(true){
+			setPosition(x,y);
+		}else{
+			calculePosition(x,y);
+		}
+	}
+	
+	setPosition(x,y){
+		this.x = x;
+		this.y = y;
+	}
+	
 	draw(x,y){
 		var prairie = document.getElementById("prairie");
 		var zoneHerbe = document.createElement("object");
@@ -25,13 +61,21 @@ class Herbe extends Vegetal{
 		return eltSVG;
 	}
 	
-	getEchelle(elt){
-		return array_getEchelle(elt);
+	verifSiEaten(obj_all, machine){
+		//si mangée
+		if(true){
+			eaten(machine);
+		}
 	}
 	
-	verifSiEaten(obj_all, machine){
-		this.alive = false;
+	eaten(machine){
+		machine.generateEvent(this.killMe)
 	}
+	
+	renait(){
+		this.taille = 0;
+	}
+
 }
 
 //test
@@ -59,6 +103,20 @@ var iAmGrass = SC.evt("Je suis une herbe");
 //le comportement du cube qui a l'herbe
 var progHerbe = SC.par(
 	SC.generate(iAmGrass, SC.forever)//parle pour signaler qu'elle est en vie
-	, SC.actionOn(vacheMange, SC.my("me"), SC.my("eaten"), undefined, SC.forever)
+	, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
 	, SC.generate(drawMe, SC.my("me"), SC.forever)//se dessine
 );
+
+
+//les cubes d'herbe sont placés sur la prairi
+for(var c = 0; c < nbreColonnes; c++) {
+	for(var r = 0; r < nbreLigne; r++) {
+		if(tab2d_prairie[c][r] == "herbe") {
+			tab2d_prairie[c][r] = SC.cube(
+					new Herbe(c,r)
+					, SC.kill( SC.my("killMe"), progHerbe )
+			);
+		}
+		//start and kill when ...
+	}
+}
