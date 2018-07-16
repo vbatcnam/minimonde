@@ -5,8 +5,8 @@
 
 //grille de la prairie 
 var tab2d_prairie = [];
-var nbreLigne = 7;
-var nbreColonnes = 23 ; 
+var nbreLigne = 7; //calculée selon la hauteur du viewport
+var nbreColonnes = 23 ; //calculée selon la largeur du viewport
 
 
 for(var c = 0; c < nbreColonnes; c++) {
