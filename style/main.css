@@ -12,6 +12,7 @@ padding : 0;
 }
 
 #prairie{
+	position: relative;
 	width: 100vw;
 	height: 60vh;
 	background: linear-gradient(to top, #1d7d17, #359500);
