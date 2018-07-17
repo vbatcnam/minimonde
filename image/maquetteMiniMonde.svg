@@ -26,7 +26,11 @@
       <stop
          id="stop1534"
          offset="0"
-         style="stop-color:#3131ff;stop-opacity:1" />
+         style="stop-color:#55cfff;stop-opacity:1" />
+      <stop
+         style="stop-color:#248783;stop-opacity:1"
+         offset="0.44804966"
+         id="stop996" />
       <stop
          style="stop-color:#1d7d17;stop-opacity:1"
          offset="0.51261938"
@@ -238,9 +242,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70000001"
-     inkscape:cx="480.24661"
-     inkscape:cy="158.7229"
+     inkscape:zoom="0.35000001"
+     inkscape:cx="988.40926"
+     inkscape:cy="159.53258"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -295,13 +299,25 @@
        y="-0.89606935"
        transform="scale(-1,1)" />
     <path
-       transform="translate(-5.4679691,-327.11599)"
+       style="opacity:0.95999995;fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:1.90568304;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
+       id="path998"
+       sodipodi:type="arc"
+       sodipodi:cx="682.85712"
+       sodipodi:cy="-336.53165"
+       sodipodi:rx="685.71429"
+       sodipodi:ry="280"
+       sodipodi:start="0"
+       sodipodi:end="3.1559974"
+       sodipodi:open="true"
+       d="M 1368.5714,-336.53165 A 685.71429,280 0 0 1 1022.8589,-93.37511 685.71429,280 0 0 1 334.31307,-95.400137 685.71429,280 0 0 1 -2.7860372,-340.56484"
+       transform="scale(1,-1)" />
+    <path
        sodipodi:type="star"
        style="opacity:0.95999995;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:0.92884189;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:1.51419175;stroke-opacity:1"
        id="path1253"
        sodipodi:sides="21"
-       sodipodi:cx="87.727448"
-       sodipodi:cy="406.15613"
+       sodipodi:cx="233.68805"
+       sodipodi:cy="129.04014"
        sodipodi:r1="55.389835"
        sodipodi:r2="27.69492"
        sodipodi:arg1="0.89340989"
@@ -309,9 +325,19 @@
        inkscape:flatsided="false"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m 122.44351,449.31663 -20.76828,-19.2342 6.50416,27.54944 -14.176218,-24.50124 -1.905149,28.24263 -6.324538,-27.59123 -10.145171,26.42634 2.089102,-28.22962 -17.483749,22.26195 10.317115,-26.35968 -23.268819,16.11948 17.628407,-22.14757 -26.986353,8.54474 23.373338,-15.96756 -28.30603,0.21075 27.041446,-8.36874 -27.110594,-8.14196 28.306803,-0.0263 -23.506261,-15.77122 27.056975,8.3184 -17.813294,-21.99914 23.403016,15.92402 -10.537537,-26.27234 17.669597,22.11473 -2.325475,-28.21114 10.366158,26.34044 6.093216,-27.64324 2.141638,28.22568 13.970497,-24.61911 -6.27317,27.60295 20.60644,-19.40748 -14.13059,24.52758 25.41141,-12.47141 -20.73244,19.27283 27.95847,-4.4272 -25.49212,12.3056 28.02129,4.0104 -27.98672,4.24495 25.5943,12.09165 -27.99457,-4.19286 20.89314,19.09849 -25.51498,-12.25812 z"
+       d="m 268.40411,172.20065 -20.76827,-19.2342 6.50415,27.54944 -14.17622,-24.50124 -1.90515,28.24263 -6.32453,-27.59123 -10.14517,26.42634 2.0891,-28.22962 -17.48375,22.26195 10.31711,-26.35969 -23.26882,16.11949 17.62841,-22.14757 -26.98635,8.54473 23.37334,-15.96755 -28.30603,0.21075 27.04144,-8.36875 -27.11059,-8.14196 28.3068,-0.0263 -23.50626,-15.77122 27.05698,8.3184 -17.8133,-21.999142 23.40302,15.924022 -10.53754,-26.272342 17.6696,22.114722 -2.32548,-28.211128 10.36616,26.340438 6.09322,-27.643239 2.14164,28.225679 13.97049,-24.619115 -6.27317,27.602955 20.60644,-19.407484 -14.13059,24.527584 25.41141,-12.47141 -20.73243,19.27282 27.95846,-4.42719 -25.49212,12.3056 28.02129,4.01039 -27.98671,4.24496 25.59429,12.09165 -27.99456,-4.19287 20.89313,19.0985 -25.51497,-12.25812 z"
        inkscape:transform-center-x="0.83952713"
        inkscape:transform-center-y="-4.4844493" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.66666603px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       x="587.14282"
+       y="50.564827"
+       id="text1002"><tspan
+         sodipodi:role="line"
+         id="tspan1000"
+         x="587.14282"
+         y="50.564827">trajectoire du solei</tspan></text>
   </g>
   <g
      inkscape:label="herbe"

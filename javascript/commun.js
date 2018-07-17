@@ -2,10 +2,25 @@
 //les dessins svg
 //-------------------------------------
 
-//mise à l'echelle pour faciliter les translate
+
+function calculeTailleZone(pourcentageDuViewPort) {
+	let pourcent = pourcentageDuViewPort /100;
+	let w =  Math.floor(window.innerWidth * pourcent);
+	let h =  Math.floor(window.innerHeight * pourcent);
+	return {'w': w, 'h': h};
+}
+
+console.log("taille prairie");
+console.log(calculeTailleZone(60));
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+}
+
+//mise à l’échelle pour faciliter les translate
 function array_getEchelle(elt){
 	let s_transform = elt.getAttribute('transform');
-	// console.log("s_transform = " + s_transform);
+	console.log("s_transform = " + s_transform);
 	let array_stringMorceaux = s_transform.match(/\s*translate\s*\(\s*(-?\d+)\s*,\s*(-?\d+)\s*\)\s*scale\s*\(\s*(-?\d+)\s*\)/);
 	console.log({
 		'translate':{
