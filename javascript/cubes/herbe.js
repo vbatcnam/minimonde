@@ -10,8 +10,9 @@ class Herbe extends Vegetal{
 		super(num, x, y);
 		this.id = "herbe_" + this.num;
 		this.killMe = SC.evt("kill");
-		
-	//Positionner l'here de manière aléatoire à un endroit libre de la prairie
+	}
+	
+	//Positionner l'herbe de manière aléatoire à un endroit libre de la prairie
 	calculePosition(){
 		let x = Math.random();
 		let y = Math.random();
@@ -73,24 +74,24 @@ class Herbe extends Vegetal{
 
 //test
 //==================
-var n = 1;
-for(var c = 0; c < nbreColonnes; c++) {
-	for(var r = 0; r < nbreLigne; r++) {
-		if(tab2d_prairie[c][r] == "herbe") {
-			let herbe = new Herbe(n,c,r);
-			herbe.draw(herbe.x,herbe.y)
-			tab2d_prairie[c][r] = herbe;
-			n++;
-		}
-	}
-}
-for(var c = 0; c < nbreColonnes; c++) {
-	for(var r = 0; r < nbreLigne; r++) {
-		console.log(tab2d_prairie[c][r]);
-		console.log(tab2d_prairie[c][r].x);
-		console.log(tab2d_prairie[c][r].y);
-	}
-}
+// var n = 1;
+// for(var c = 0; c < nbreColonnes; c++) {
+	// for(var r = 0; r < nbreLigne; r++) {
+		// if(tab2d_prairie[c][r] == "herbe") {
+			// let herbe = new Herbe(n,c,r);
+			// herbe.draw(herbe.x,herbe.y)
+			// tab2d_prairie[c][r] = herbe;
+			// n++;
+		// }
+	// }
+// }
+// for(var c = 0; c < nbreColonnes; c++) {
+	// for(var r = 0; r < nbreLigne; r++) {
+		// console.log(tab2d_prairie[c][r]);
+		// console.log(tab2d_prairie[c][r].x);
+		// console.log(tab2d_prairie[c][r].y);
+	// }
+// }
 
 //================================================================
 //							le cube 
@@ -98,13 +99,16 @@ for(var c = 0; c < nbreColonnes; c++) {
 
 //Événements de l'herbe
 //----------------------
-var iAmGrass = SC.evt("Je suis une herbe");
+var eatMe;
+if(this.taille = 3){ 
+	eatMe = SC.evt("mange moi");
+}
 
 //le comportement du cube qui a l'herbe
 var progHerbe = SC.par(
-	SC.generate(iAmGrass, SC.forever)//parle pour signaler qu'elle est en vie
+	SC.generate(eatMe, SC.forever)//Si elle est adulte
 	//, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
-	, SC.generate(drawMe, SC.my("me"), SC.forever)//se dessine
+	, SC.generate(drawMe, SC.my("drawer"), SC.forever)//se dessine
 );
 
 
@@ -120,6 +124,5 @@ for(var c = 0; c < nbreColonnes; c++) {
 			);
 			numHerbe++;
 		}
-		
 	}
 }
