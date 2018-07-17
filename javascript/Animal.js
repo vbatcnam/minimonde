@@ -2,18 +2,17 @@ class Animal{
 	constructor(){
 		this.faim = 0; //n'a pas faim (100 a très faim)
 		this.drawer = {};
-	}
 	
+		Object.defineProperty(this.drawer, "drawSelf"
+			, { enumerable:false
+				, value:this.draw.bind(this)
+				, writable: false
+			}
+		);
+	}
+
 	mange(calorie){
 		this.faim -= calorie;
-	}
-	
-	Object.defineProperty(this.drawer, "drawSelf"
-						, { enumerable:false
-							, value:this.draw.bind(this)
-							, writable: false
-						}
-					);
 	}
 
 }

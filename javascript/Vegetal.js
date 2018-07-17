@@ -3,20 +3,19 @@ class Vegetal{
 		this.num = num;
 		this.x = x;
 		this.y = y;
-		this.taille = 0; //Naissance (De 0 à 5 étapes)
+		this.taille = 1; //bébé
 		this.drawer = {};
+		
+		Object.defineProperty(this.drawer, "drawSelf"
+			, { enumerable:false
+				, value:this.draw.bind(this)
+				, writable: false
+			}
+		);
 	}
-	
+
 	grandi(){
 		this.taille += 1;
-	}
-	
-	Object.defineProperty(this.drawer, "drawSelf"
-						, { enumerable:false
-							, value:this.draw.bind(this)
-							, writable: false
-						}
-					);
 	}
 }
 /**
