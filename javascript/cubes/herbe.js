@@ -6,54 +6,12 @@
 		....
 */
 class Herbe extends Vegetal{
-	constructor(num, x, y){
-		super(num, x, y);
-		this.id = "herbe_" + this.num;
+	constructor(espece, num, x, y, img){
+		super(espece, num, x, y, img);
 		this.killMe = SC.evt("kill");
 	}
 	
 	//Positionner l'herbe de manière aléatoire à un endroit libre de la prairie
-	calculePosition(){
-		let x = Math.random();
-		let y = Math.random();
-		verifSiPlaceLibre(x,y);
-	}
-	
-	setPosition(x,y){
-		this.x = x;
-		this.y = y;
-	}
-	verifSiPlaceLibre(x,y){
-		if(true){
-			setPosition(x,y);
-		}else{
-			calculePosition(x,y);
-		}
-	}
-	
-	//afficher l'herbe
-	draw(x,y){
-		var prairie = document.getElementById("prairie");
-		var zoneHerbe = document.createElement("object");
-		zoneHerbe.id = this.id;
-		zoneHerbe.className = "herbe";
-		zoneHerbe.type = "image/svg+xml";
-		zoneHerbe.data = "image/herbe.svg";
-		zoneHerbe.style.position = "absolute";
-		zoneHerbe.style.left = '' + (x*45) + 'px';
-		zoneHerbe.style.top = '' + (y*40) + 'px';
-		prairie.appendChild(zoneHerbe);
-	}
-	
-	getEltSVG(){
-		let eltObject = document.getElementById(this.id);
-		console.log("eltObject dans la fonction getEltSVG :");
-		console.log(eltObject);
-		let eltSVG = eltObject.contentDocument;
-		console.log("eltSVG dans la fonction getEltSVG :");
-		console.log(eltSVG);
-		return eltSVG;
-	}
 	
 	verifSiEaten(obj_all, machine){
 		//si mangée

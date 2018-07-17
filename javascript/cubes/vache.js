@@ -4,23 +4,26 @@ class Vache extends Animal{
 		this.lait = 0;
 		this.bouse = 0;
 	}
-	
-	draw(x,y, présentation){
-		var image = "image/vache_" + présentation + ".svg";
-		var prairie = document.getElementById("prairie");
-		var vache = document.createElement("object");
-		vache.id = "vache";
-		vache.type = "image/svg+xml";
-		vache.data = image;
-		prairie.appendChild(vache);
+
+	mange(calorie){
+		this.faim -= calorie;
+		this.age += 1;
+		this.bouse += 1;
+		this.lait += 1;
 	}
 
+	// produit(){
+		// this.lait -= 1;
+	// }
+	
+	// elimine(){
+		// this.bouse -= 1;
+	// }
 	produit(quoi){
-	
+		this[quoi] -= 1;
 	}
-	
-	elimine(){}
+
 }
 
 //test
-new Vache().draw(10,10, "face");
+new Vache().draw(10,10, "prairie", "face");

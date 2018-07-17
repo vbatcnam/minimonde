@@ -1,5 +1,12 @@
 class Animal{
-	constructor(){
+	constructor(espece, num, x, y, img){
+		this.espece = espece;
+		this.num = num;
+		this.id = this.espece + "_" + this.num;
+		this.x = x;
+		this.y = y;
+		this.img = img;
+		this.age = 0; 
 		this.faim = 0; //n'a pas faim (100 a très faim)
 		this.drawer = {};
 	
@@ -11,8 +18,18 @@ class Animal{
 		);
 	}
 
-	mange(calorie){
-		this.faim -= calorie;
+	// les animaux volants se déplace dans la zone de jeu, les non volants dans la zone prairie
+	draw(x, y, zone, attitude){
+		var prairie = document.getElementById("prairie");//non volant
+		var zoneAnimal = document.createElement("object");
+		zoneAnimal.id = this.id;
+		zoneAnimal.className = this.espece;
+		zoneAnimal.type = "image/svg+xml";
+		zoneAnimal.data = "image/" + this.espece + "_" + attitude + ".svg";
+		zoneAnimal.style.position = "absolute";
+		zoneAnimal.style.left = '' + (x*45) + 'px';
+		zoneAnimal.style.top = '' + (y*40) + 'px';
+		zone.appendChild(zoneAnimal);
 	}
 
 }
