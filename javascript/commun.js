@@ -1,17 +1,13 @@
 'use strict';
+//Le viewPort
+
+var viewPort = {'w':window.innerWidth, 'h':window.innerHeight};
+console.log("largeur viewPort");
+console.log(viewPort.w);
+console.log("hauteur viewPort");
+console.log(viewPort.h);
 //les dessins svg
 //-------------------------------------
-
-
-function calculeTailleZone(pourcentageDuViewPort) {
-	let pourcent = pourcentageDuViewPort /100;
-	let w =  Math.floor(window.innerWidth * pourcent);
-	let h =  Math.floor(window.innerHeight * pourcent);
-	return {'w': w, 'h': h};
-}
-
-console.log("taille prairie");
-console.log(calculeTailleZone(60));
 
 function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
@@ -38,7 +34,27 @@ function array_getEchelle(elt){
 	};
 }
 
+//calculer position sur l'écran
+function calculePosition(zone){
+	// let x = Math.random();
+	// let y = Math.random();
+	let x = x * zone.w;
+	let y = y * zone.h;
+	verifSiPlaceLibre(x,y);
+}
 
+function verifSiPlaceLibre(x,y){
+	if(true){
+		setPosition(x,y);
+	}else{
+		calculePosition(x,y);
+	}
+}
+
+function setPosition(objet, x,y){
+	objet.x = x;
+	objet.y = y;
+}
 
 //les événements des cubes
 //-------------------------------------
