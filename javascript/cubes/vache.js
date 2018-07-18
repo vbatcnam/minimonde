@@ -1,6 +1,6 @@
 class Vache extends Animal{
-	constructor(){
-		super();
+	constructor(espece, num, x, y){
+		super(espece, num, x, y);
 		this.lait = 0;
 		this.bouse = 0;
 	}
@@ -26,4 +26,11 @@ class Vache extends Animal{
 }
 
 //test
-new Vache().draw(10,10, "prairie", "face");
+new Vache("vache", 1).draw(10,10, "prairie", "face");// ne marche pas
+
+//================================================================
+//							le cube 
+//================================================================
+
+//Événements de l'herbe
+//----------------------
