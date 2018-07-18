@@ -2,6 +2,14 @@
 	Pour simplifier dans un premier temps, je fais une grille.
 	Par la suite, les herbes seront plantées aléatoirement sur la prairie
 */
+class Prairie extends Zone{
+	constructor(nom, w, h){
+		super(nom, w, h);
+	}
+}
+
+var hauteurPrairie = Math.floor(viewPort.h * 0.60);//60% du viewport
+var prairie = new Prairie('prairie', viewPort.w, hauteurPrairie);
 
 //grille de la prairie 
 var tab2d_prairie = [];
