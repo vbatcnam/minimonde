@@ -6,8 +6,8 @@
 		....
 */
 class Herbe extends Vegetal{
-	constructor(espece, num, x, y, img){
-		super(espece, num, x, y, img);
+	constructor(espece, num){
+		super(espece, num);
 		this.killMe = SC.evt("kill");
 	}
 	
@@ -76,8 +76,11 @@ var numHerbe = 1;
 for(var c = 0; c < nbreColonnes; c++) {
 	for(var r = 0; r < nbreLigne; r++) {
 		if(tab2d_prairie[c][r] == "herbe") {
+			let herbe = new Herbe('herbe', numHerbe);
+			herbe.x = c;// il faudra calculer de manière aléatoire
+			herbe.y = r;// il faudra calculer de manière aléatoire
 			tab2d_prairie[c][r] = SC.cube(
-					new Herbe(numHerbe,c,r)
+					herbe
 					, SC.kill( SC.my("killMe"), progHerbe )
 			);
 			numHerbe++;
