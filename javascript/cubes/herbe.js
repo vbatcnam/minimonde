@@ -4,14 +4,13 @@
 		elle est mangée (disparaît)
 		elle repousse
 		....
+	IL faudra positionner l'herbe de manière aléatoire à un endroit libre de la prairie
 */
 class Herbe extends Vegetal{
 	constructor(espece, num){
 		super(espece, num);
 		this.killMe = SC.evt("kill");
 	}
-	
-	//Positionner l'herbe de manière aléatoire à un endroit libre de la prairie
 	
 	verifSiEaten(obj_all, machine){
 		//si mangée
@@ -25,9 +24,8 @@ class Herbe extends Vegetal{
 	}
 	
 	renait(){
-		this.taille = 0;
+		this.taille = 1; //this.taille est défini dans Vegetal
 	}
-
 }
 
 //test
@@ -58,13 +56,13 @@ class Herbe extends Vegetal{
 //Événements de l'herbe
 //----------------------
 var eatMe;
-if(this.taille = 3){ 
+if(this.taille == 3){ 
 	eatMe = SC.evt("mange moi");
 }
 
 //le comportement du cube qui a l'herbe
 var progHerbe = SC.par(
-	SC.generate(eatMe, SC.forever)//Si elle est adulte
+	SC.generate(eatMe, SC.my("me"), SC.forever)//Si elle est adulte
 	//, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
 	, SC.generate(drawMe, SC.my("drawer"), SC.forever)//se dessine
 );
