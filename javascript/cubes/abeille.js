@@ -3,5 +3,5 @@ class Abeille extends Animal{
 		super(espece)
 	}
 	
-	produit(){}
+	//produit(){}
 }

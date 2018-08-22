@@ -6,7 +6,7 @@ class Fleur{
 		this.nectar = 0;
 	}
 	
-	//produit du polène et du nectar
-	produit(quoi){}
+	//produit du pollen et du nectar
+	//produit(quoi){}
 } 
 

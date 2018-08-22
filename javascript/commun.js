@@ -1,19 +1,26 @@
 'use strict';
-//Le viewPort
 
+// les fonctions communes
+//-------------------------------------
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+}
+
+//Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
+//-------------------------------------
 var viewPort = {'w':window.innerWidth, 'h':window.innerHeight};
 console.log("largeur viewPort");
 console.log(viewPort.w);
 console.log("hauteur viewPort");
 console.log(viewPort.h);
+
 //les dessins svg
 //-------------------------------------
 
-function getRandomInt(max) {
-	return Math.floor(Math.random() * Math.floor(max));
-}
-
 //mise à l’échelle pour faciliter les translate
+/**
+	La plupart des SVG dessinés avec Inkscape contiennent des translate. Il faut donc en tenir compte.
+*/
 function array_getEchelle(elt){
 	let s_transform = elt.getAttribute('transform');
 	console.log("s_transform = " + s_transform);
@@ -34,7 +41,7 @@ function array_getEchelle(elt){
 	};
 }
 
-//calculer position sur l'écran
+//calculer position des objets sur l'écran
 function calculePosition(zone){
 	// let x = Math.random();
 	// let y = Math.random();
@@ -51,6 +58,7 @@ function verifSiPlaceLibre(x,y){
 	}
 }
 
+//definir la position de l'objet
 function setPosition(objet, x,y){
 	objet.x = x;
 	objet.y = y;
