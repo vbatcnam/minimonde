@@ -5,7 +5,7 @@ class Vegetal{
 		this.id = this.espece + "_" + this.num;
 		this.taille = 1; //bébé
 		this.drawer = {};
-		
+		this.me = this;
 		Object.defineProperty(this.drawer, "drawSelf"
 			, { enumerable:false
 				, value:this.draw.bind(this)
