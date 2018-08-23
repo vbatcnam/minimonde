@@ -1,4 +1,5 @@
 /**
+	S’occupe de gérer l'herbe, les fleurs, les bouses...
 	Pour simplifier dans un premier temps, je fais une grille.
 	Par la suite, les herbes seront plantées aléatoirement sur la prairie
 */
@@ -30,6 +31,24 @@ class Prairie extends Zone{
 				console.log(tab2d_prairie[c][r]);
 			}
 		}
+		
+		//les cubes d'herbe sont placés sur la prairie
+		var numHerbe = 1;
+
+		for(var c = 0; c < nbreColonnes; c++) {
+			for(var r = 0; r < nbreLigne; r++) {
+				if(tab2d_prairie[c][r] == "herbe") {
+					let herbe = new Herbe('herbe', numHerbe);
+					herbe.x = c;// il faudra calculer de manière aléatoire
+					herbe.y = r;// il faudra calculer de manière aléatoire
+					tab2d_prairie[c][r] = SC.cube(
+							herbe
+							, SC.kill( SC.my("killMe"), progHerbe )
+					);
+					numHerbe++;
+				}
+			}
+		}		
 	}
 }
 
