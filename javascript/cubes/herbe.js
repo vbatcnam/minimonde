@@ -26,6 +26,7 @@ class Herbe extends Vegetal{
 	renait(){
 		this.taille = 1; //this.taille est défini dans Vegetal
 	}
+	
 }
 
 //test
@@ -55,18 +56,14 @@ class Herbe extends Vegetal{
 
 //Événements de l'herbe
 //----------------------
-var eatMe;
-if(this.taille == 3){ 
-	eatMe = SC.evt("mange moi");
-}
+var eatMe = SC.evt("je suis commestible");
 
 //le comportement du cube qui a l'herbe
 var progHerbe = SC.par(
-	SC.generate(eatMe, SC.my("me"), SC.forever)//Si elle est adulte
-	//, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
-	, SC.generate(drawMe, SC.my("drawer"), SC.forever)//se dessine
+SC.generate(eatMe, SC.my("me"), SC.forever)//La vache vérifie si elle est adulte avant de la manger
+//, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
+, SC.generate(drawMe, SC.my("drawer"), SC.forever)//se dessine
 );
-
 
 //les cubes d'herbe sont placés sur la prairie
 var numHerbe = 1;

@@ -67,6 +67,5 @@ function setPosition(objet, x,y){
 //les événements des cubes
 //-------------------------------------
 
-//	SC.evt("ce qui sera affiché lors du débug");
+//	SC.evt("ce qui sera affiché lors du debug");
 var drawMe = SC.evt("dessine-moi");//globale car diffusion broadcast (parle à tout le monde) Tous les objets disent cette phrase
-
