@@ -8,12 +8,26 @@ function getRandomInt(max) {
 
 //Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
 //-------------------------------------
-var viewPort = {'w':window.innerWidth, 'h':window.innerHeight};
-console.log("largeur viewPort");
-console.log(viewPort.w);
-console.log("hauteur viewPort");
-console.log(viewPort.h);
+var viewPort = {'w':innerWidth, 'h':innerHeight};
+console.log("Taille du iewPort");
+console.log("largeur : " + viewPort.w + " px, hauteur : " + viewPort.h);
+console.log("========================================================");
 
+// Afficher les infos de l'objet Windows
+console.log("avail ");
+console.log("largeur : " + screen.availWidth + " px, hauteur : " + screen.availHeight);
+console.log("========================================================");
+
+console.log("taille de l'écran");
+console.log("largeur : " + screen.width + " px, hauteur : " + screen.height);
+console.log("========================================================");
+
+console.log("devicePixelRatio : " + devicePixelRatio);
+console.log("========================================================");
+
+console.log("navigateur : " + navigator.userAgent);
+console.log("========================================================");
+ 
 //les dessins svg
 //-------------------------------------
 
