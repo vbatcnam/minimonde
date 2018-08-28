@@ -4,4 +4,10 @@ class Zone{
 		this.w = w;
 		this.h = h;
 	}
+	
+	fabriqueSurface(wMaxImage, hMaxImage){
+		var nbreLignes = this.h/hMaxImage;
+		var nbreColonnes = this.w/wMaxImage;
+		this.surface = [nbreLignes][nColonnes];
+	}
 }
