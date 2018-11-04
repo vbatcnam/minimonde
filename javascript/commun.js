@@ -14,7 +14,7 @@ console.log("largeur : " + viewPort.w + " px, hauteur : " + viewPort.h);
 console.log("========================================================");
 
 // Afficher les infos de l'objet Windows
-console.log("avail ");
+console.log("largeur disponible de l'ecran ");
 console.log("largeur : " + screen.availWidth + " px, hauteur : " + screen.availHeight);
 console.log("========================================================");
 
@@ -80,6 +80,4 @@ function setPosition(objet, x,y){
 
 //les événements des cubes
 //-------------------------------------
-
-//	SC.evt("ce qui sera affiché lors du debug");
 var drawMe = SC.evt("dessine-moi");//globale car diffusion broadcast (parle à tout le monde) Tous les objets disent cette phrase

@@ -5,9 +5,11 @@ class Zone{
 		this.h = h;
 	}
 	
-	fabriqueSurface(wMaxImage, hMaxImage){
-		var nbreLignes = this.h/hMaxImage;
-		var nbreColonnes = this.w/wMaxImage;
-		this.surface = [nbreLignes][nColonnes];
-	}
+	// fabriqueSurface(wMaxImage, hMaxImage){
+		// var nbreLignes = this.h/hMaxImage;
+		// var nbreColonnes = this.w/wMaxImage;
+		// this.surface = new array();
+		// console.log("taille de la zone");
+		// console.log(zone.surface);
+	// }
 }

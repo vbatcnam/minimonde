@@ -9,12 +9,11 @@ class Nature{
 		let position = this.donnePositionPlaceLibre(zone.surface);
 		objetAfaireNaitre.x = position.x;
 		objetAfaireNaitre.y = position.y;
-		console.log("taille de la zone");
-		console.log(zone.surface);
 	}
 	
 	donnePositionPlaceLibre(surfaceZone){
 		//parcourir la surface de la zone
+		//elle peut écouter les evts des cubes déjà sur cette zone.
 		
 		return {x:0, y:0};
 		//return false si aucune place n'est libre
