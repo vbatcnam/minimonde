@@ -1,6 +1,7 @@
 //pot de miel
-class Miel{
+class Miel extends SCCube{
 	constructor(){
+		super();
 		this.image = '';
 	}
 } 

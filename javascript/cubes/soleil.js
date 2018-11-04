@@ -3,8 +3,9 @@
 	Il rougit un peu lorsqu'il se couche
 	Il grandit sur l'horizon puis rétrécit dans le ciel
 */
-class Soleil{
+class Soleil extends SCCube{
 	constructor(){
+		super();
 		this.id = "soleil";
 		
 		/**methode JFS pour les murs

@@ -1,11 +1,13 @@
-class Vegetal{
+class Vegetal extends SCCube{
 	constructor(espece, num){
+		super();
 		this.espece = espece;
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
 		this.taille = 1; //bébé
+		this.x = 0; 
+		this.y = 0; 
 		this.drawer = {};
-		this.me = this;
 		Object.defineProperty(this.drawer, "drawSelf"
 			, { enumerable:false
 				, value:this.draw.bind(this)
@@ -14,6 +16,20 @@ class Vegetal{
 		);
 	}
 
+	dessineToiEn2D(){
+		let prairie = document.getElementById("prairie");
+		let zoneVegetal = document.createElement("object");
+		zoneVegetal.id = this.id;
+		zoneVegetal.className = this.espece;
+		zoneVegetal.type = "image/svg+xml";
+		zoneVegetal.data = "image/" + this.espece + ".svg";
+		zoneVegetal.style.position = "absolute";
+		zoneVegetal.style.left = x + 'px';
+		zoneVegetal.style.top = y + 'px';
+		prairie.appendChild(zoneVegetal);
+	}
+	
+	dessineToiEn3D(){}
 	
 	draw(x,y){
 		let prairie = document.getElementById("prairie");

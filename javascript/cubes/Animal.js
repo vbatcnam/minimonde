@@ -1,5 +1,6 @@
-class Animal{
+class Animal extends SCCube{
 	constructor(espece, num){
+		super();
 		this.espece = espece;
 		this.num = num;
 		this.id = this.espece + "_" + this.num;

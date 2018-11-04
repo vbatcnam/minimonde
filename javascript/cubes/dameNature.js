@@ -1,9 +1,11 @@
 /**
-	Elle s’occupe de créer les plantes.
+	Elle s’occupe de créer les plantes, les animaux...
 	Elle regarde si il y a de la place dans la prairie et fait naître une herbe ou une fleur
 */
-class Nature{
-	constructor(){}
+class Nature extends SCCube{
+	constructor(){
+		super();
+	}
 	
 	faitNaitre(zone, objetAfaireNaitre){
 		let position = this.donnePositionPlaceLibre(zone.surface);
@@ -21,10 +23,11 @@ class Nature{
 }
 
 var dameNature = new Nature();
-
+//test
+var numHerbe = 1;
 //les cubes d'herbe sont placés sur la prairie
 dameNature.faitNaitre(prairie, new Herbe('herbe', numHerbe));
-var numHerbe = 1;
+
 // for(var c = 0; c < nbreColonnes; c++) {
 	// for(var r = 0; r < nbreLigne; r++) {
 		// if(tab2d_prairie[c][r] == "herbe") {
