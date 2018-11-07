@@ -1,11 +1,13 @@
 'use strict'
 /** 
-	syntaxe simplifiée de sugarCubes.js 
+	Petite bibliothèque qui facilite l'utilisation de sugarCubes
+	
 */
 SC.titreInfoEmise = SC.evt;
 
-//Fabrique un événement par char (
-const g_AllSCevents = {}
+const g_AllSCevents = {}//Fabrique un événement par char
+
+//Renvoie un événement chaque fois que on l’appelle avec le même char
 function SCEVT(ps_nom) {
 	if(g_AllSCevents[ps_nom] === undefined) {
 		g_AllSCevents[ps_nom] = SC.evt(ps_nom)
@@ -25,7 +27,7 @@ function parseInstr(ps_texte, pArrayS_nomInstr){
 	return false
 }
 
-//permet de créer un cube en même temps que l'objet.
+//Permet de créer un cube en même temps que l'objet.
 class SCCube extends SC.cube().constructor {
 	constructor(...pArray_args) {
 		super(null, null)
@@ -124,5 +126,6 @@ class SCCube extends SC.cube().constructor {
 	}
 }
 
+//Crée un monde dans lequel sera mis tous les objets
 var monde = SC.machine(30);
 monde.addActor = monde.addProgram;
