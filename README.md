@@ -1,9 +1,9 @@
 # minimonde
 Mini monde simple pour tester la programmation avec sugarCubes.
 
-Cette branche est écrite en utilisant une librairie qui permet de coder plus du SugarCubes et du JavaScript.
+Cette branche est écrite en utilisant une librairie qui permet de coder plus facilement du SugarCubes avec JavaScript.
 
-Dans la branche principale, j'avais créé des objets JS puis j'avais créé des cubes SC dans lesquels je mettait mes objets JS.
+Avec SugarCubes je devais créer des objets JS puis des cubes SC dans lesquels je mettait mes objets JS.
 Ici, on crée un objet SCCube qui s’occupe de tout.
 
 # La librairie syntaxeSimplifieeSC
@@ -18,9 +18,9 @@ var monde = SC.machine(30);
 monde.addActor = monde.addProgram;
 ````
 
-monde m'est plus parlant que machine car je ne sais pas bien ce qu'on entend par machine. 
+*monde* m'est plus parlant que *machine* car je ne sais pas bien ce qu'on entend par machine. 
 
-Du coup, addActor me parait plus intuitif : J'ajoute les acteurs de mon monde.
+Du coup, *addActor* me parait plus intuitif : J'ajoute les acteurs de mon monde.
 
 ## création des objets
 Maintenant, pour créer mes objets, j'utilise la syntaxe suivante :
