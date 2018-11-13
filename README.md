@@ -22,7 +22,9 @@ monde m'est plus parlant que machine car je ne sais pas bien ce qu'on entend par
 
 Du coup, addActor me parait plus intuitif : J'ajoute les acteurs de mon monde.
 
+## création des objets
 Maintenant, pour créer mes objets, j'utilise la syntaxe suivante :
+
 ````javascript
 class MaClasse extends SCCube{
 	constructor(p1, pn){
@@ -30,5 +32,14 @@ class MaClasse extends SCCube{
 		this.1 = p1;
 		this.n = pn;
 	}
+````
 
+## Action sur les événement.
+Pour appeler les fonctions de SugarCubes, j'utilise les syntaxes suivante 
+
+````javascript
+	$actionForever_nomEvenement(){} // si l'action est forever
+	$on_nomEvenement_fonctionADeclancher(){}
+	$onNo_briqueExiste_afficheFin(){}
+	$publicConst_drawMe() {return this}
 ````
