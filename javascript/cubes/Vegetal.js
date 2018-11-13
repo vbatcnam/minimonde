@@ -14,9 +14,11 @@ class Vegetal extends SCCube{
 				, writable: false
 			}
 		);
+		console.log("Je suis un végétal " + this.espece);
 	}
 
-	dessineToiEn2D(){
+	$on_dessineToiEn2D_draw(){
+		console.log("Je me dessine")
 		let prairie = document.getElementById("prairie");
 		let zoneVegetal = document.createElement("object");
 		zoneVegetal.id = this.id;

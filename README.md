@@ -38,8 +38,8 @@ class MaClasse extends SCCube{
 Pour appeler les fonctions de SugarCubes, j'utilise les syntaxes suivante 
 
 ````javascript
-	$actionForever_nomEvenement(){} // si l'action est forever
-	$on_nomEvenement_fonctionADeclancher(){}
-	$onNo_briqueExiste_afficheFin(){}
-	$publicConst_drawMe() {return this}
+	$actionForever_descriptionAction(){} // si l'action est forever
+	$on_nomEvenement_descriptionAction(){}
+	$onNo_nomEvenement_descriptionAction(){}
+	$publicConst_nomEvenement() {return valAEnvoyer} //permet de faire un SC.generate()
 ````
