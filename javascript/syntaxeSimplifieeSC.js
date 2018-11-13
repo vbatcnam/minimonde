@@ -1,13 +1,11 @@
 'use strict'
 /** 
-	Petite bibliothèque qui facilite l'utilisation de sugarCubes
-	
+	syntaxe simplifiée de sugarCubes.js 
 */
 SC.titreInfoEmise = SC.evt;
 
-const g_AllSCevents = {}//Fabrique un événement par char
-
-//Renvoie un événement chaque fois que on l’appelle avec le même char
+//Fabrique un événement par char (
+const g_AllSCevents = {}
 function SCEVT(ps_nom) {
 	if(g_AllSCevents[ps_nom] === undefined) {
 		g_AllSCevents[ps_nom] = SC.evt(ps_nom)
@@ -27,7 +25,15 @@ function parseInstr(ps_texte, pArrayS_nomInstr){
 	return false
 }
 
-//Permet de créer un cube en même temps que l'objet.
+function getPropertyUntilSCCube(pSCCube_proto) {
+	if (pSCCube_proto.constructor !== undefined && pSCCube_proto.constructor !== SCCube) {
+		return Object.getOwnPropertyNames(pSCCube_proto).concat( getPropertyUntilSCCube(pSCCube_proto.__proto__) )
+	} else {
+		return []
+	}
+}
+
+//permet de créer un cube en même temps que l'objet.
 class SCCube extends SC.cube().constructor {
 	constructor(...pArray_args) {
 		super(null, null)
@@ -35,7 +41,7 @@ class SCCube extends SC.cube().constructor {
 		this.o = this
 		this.evtKillInstance = SC.evt('kill instance')
 		
-		const lArray_methodes = Object.getOwnPropertyNames(this.__proto__)
+		const lArray_methodes = getPropertyUntilSCCube(this.__proto__)
 		
 		const lArray_prog = []
 		for(let ls_nomMeth of lArray_methodes) {
@@ -124,8 +130,36 @@ class SCCube extends SC.cube().constructor {
 			SC.par(...lArray_prog)
 		)
 	}
+	defineProperty(p_initVal, pArrayS_evt, pFunc) { // function pFunc(p_val, ...pArray_valEnvoyees)
+		const symb = Symbol()
+		this[symb] = p_initVal;
+		if(typeof pFunc === 'string' || pFunc instanceof String) {
+			pFunc = this[pFunc].bind(this)
+		}
+		const lCell = SC.cell({
+			target: this,
+			field: symb,
+			sideEffect: (val, evts)=>{
+				const lArray_evts = pArrayS_evt.map(ps_evt=>evts[SCEVT(ps_evt)])
+				const l_ret = pFunc(val, ...lArray_evts)
+				return l_ret
+			},
+			eventList: pArrayS_evt.map(SCEVT)
+		})
+		lCell.valeur = ()=>lCell.val()
+		return lCell
+	}
 }
 
-//Crée un monde dans lequel sera mis tous les objets
+SC.idem = (val, pArray_valEnvoyees)=>val
+SC.count = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+1, 0)
+SC.somme = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+curr, 0)
+SC.min = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>Math.min(acc,curr), Infinity)
+
+SC.reactProperty = function(p_cell, pn_times) {
+	if(undefined === pn_times) pn_times = 1
+	return SC.repeat(pn_times, p_cell)
+}
+
 var monde = SC.machine(30);
 monde.addActor = monde.addProgram;

@@ -19,13 +19,6 @@ class Soleil extends SCCube{
 	}
 	
 	draw(x,y){
-		var ciel = document.getElementById("ciel");
-		var zoneSoleil = document.createElement("object");
-		zoneSoleil.id = this.id;
-		zoneSoleil.className = "soleil";
-		zoneSoleil.type = "image/svg+xml";
-		zoneSoleil.data = "image/soleil.svg";
-		ciel.appendChild(zoneSoleil);
 	}
 	
 	getEltSVG(){

@@ -6,11 +6,6 @@ class Zone extends SCCube{
 		this.h = h;
 	}
 	
-	// fabriqueSurface(wMaxImage, hMaxImage){
-		// var nbreLignes = this.h/hMaxImage;
-		// var nbreColonnes = this.w/wMaxImage;
-		// this.surface = new array();
-		// console.log("taille de la zone");
-		// console.log(zone.surface);
-	// }
+	$on_dessineToiEnLayer0_draw(){}
+
 }

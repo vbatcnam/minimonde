@@ -7,44 +7,22 @@ class Vegetal extends SCCube{
 		this.taille = 1; //bébé
 		this.x = 0; 
 		this.y = 0; 
-		this.drawer = {};
-		Object.defineProperty(this.drawer, "drawSelf"
-			, { enumerable:false
-				, value:this.draw.bind(this)
-				, writable: false
-			}
-		);
 		console.log("Je suis un végétal " + this.espece);
 	}
 
-	$on_dessineToiEn2D_draw(){
-		console.log("Je me dessine")
-		let prairie = document.getElementById("prairie");
-		let zoneVegetal = document.createElement("object");
-		zoneVegetal.id = this.id;
-		zoneVegetal.className = this.espece;
-		zoneVegetal.type = "image/svg+xml";
-		zoneVegetal.data = "image/" + this.espece + ".svg";
-		zoneVegetal.style.position = "absolute";
-		zoneVegetal.style.left = x + 'px';
-		zoneVegetal.style.top = y + 'px';
-		prairie.appendChild(zoneVegetal);
+	$on_dessineToiEnLayer1_draw(){
+		let prairie = document.getElementById("champCamera");
+		// let herbe = 
+		// if(!zoneVegetal){
+			// zoneVegetal.data = "image/" + this.espece + ".svg";
+			// zoneVegetal.style.position = "absolute";
+			// zoneVegetal.style.left = this.x + 'px';
+			// zoneVegetal.style.top = this.y + 'px';
+			// prairie.appendChild(zoneVegetal);
+		// }
 	}
 	
-	dessineToiEn3D(){}
-	
-	draw(x,y){
-		let prairie = document.getElementById("prairie");
-		let zoneVegetal = document.createElement("object");
-		zoneVegetal.id = this.id;
-		zoneVegetal.className = this.espece;
-		zoneVegetal.type = "image/svg+xml";
-		zoneVegetal.data = "image/" + this.espece + ".svg";
-		zoneVegetal.style.position = "absolute";
-		zoneVegetal.style.left = x + 'px';
-		zoneVegetal.style.top = y + 'px';
-		prairie.appendChild(zoneVegetal);
-	}
+	$on_dessineToiEn3D_draw(){}
 	
 	grandi(){
 		if(this.taille < 5)
