@@ -10,7 +10,7 @@ class Vegetal extends SCCube{
 		console.log("Je suis un végétal " + this.espece);
 	}
 
-	$on_dessineToiEnLayer1_draw(){
+	$on_dessineToiEnLayer1(){
 		let prairie = document.getElementById("champCamera");
 		// let herbe = 
 		// if(!zoneVegetal){
@@ -22,7 +22,7 @@ class Vegetal extends SCCube{
 		// }
 	}
 	
-	$on_dessineToiEn3D_draw(){}
+	$on_dessineToiEn3D(){}
 	
 	grandi(){
 		if(this.taille < 5)

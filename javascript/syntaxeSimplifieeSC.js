@@ -100,7 +100,7 @@ class SCCube extends SC.cube().constructor {
 						))
 					}
 				}else if(instr == '$on_'){//uniquement avec undefined, SC.forever
-					const ls_nomEvt = ls_nomMeth.match(/_[A-Za-z0-9]+(?=_)/g)[0].substring(1)
+					const ls_nomEvt = ls_nomMeth.match(/_[A-Za-z0-9]+(?=_|$)/g)[0].substring(1)
 					pushWithKill(SC.actionOn(
 						SCEVT(ls_nomEvt),
 						(pArray_allEvt, pMachine)=>{
@@ -111,7 +111,7 @@ class SCCube extends SC.cube().constructor {
 						SC.forever
 					))
 				}else if(instr == '$onNo_'){//uniquement avec SC.NO_ACTION, SC.forever
-					const ls_nomEvt = ls_nomMeth.match(/_[A-Za-z0-9]+(?=_)/g)[0].substring(1)
+					const ls_nomEvt = ls_nomMeth.match(/_[A-Za-z0-9]+(?=_|$)/g)[0].substring(1)
 					pushWithKill(SC.actionOn(
 						SCEVT(ls_nomEvt),
 						SC.NO_ACTION,

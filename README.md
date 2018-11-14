@@ -39,7 +39,7 @@ Pour appeler les fonctions de SugarCubes, j'utilise les syntaxes suivante
 
 ````javascript
 	$actionForever_descriptionAction(){} // si l'action est forever
-	$on_nomEvenement_descriptionAction(){}
-	$onNo_nomEvenement_descriptionAction(){}
+	$on_nomEvenement[_descriptionAction](){}
+	$onNo_nomEvenement[_descriptionAction](){}
 	$publicConst_nomEvenement() {return valAEnvoyer} //permet de faire un SC.generate()
 ````

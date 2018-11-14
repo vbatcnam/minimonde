@@ -1,3 +1,10 @@
+/**
+	Ce sont des zones physiques indépendament de la camera :
+		Le ciel
+		La prairie
+		...
+**/
+
 class Zone extends SCCube{
 	constructor(nom, w, h){
 		super();
