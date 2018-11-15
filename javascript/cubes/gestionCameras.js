@@ -1,41 +1,55 @@
-/** S'occupe de tout la visu (2D ou 3D) **/
+/** S'occupe de tout la visu (2D ou 3D) 
+	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
+**/
 
 class Camera2D extends SCCube{
 	constructor(){
 		super();
 		this.createSvgElement();
-		document.getElementById('champCamera').appendChild(this.svgElement);
-		this.tab_layers = [];
-		this.remplirTabDeLayers();
+		this.createLayer();
+		this.createDivInfoJeu();
+		this.fond = document.getElementById('arrierePlan');
+		this.mettreFondArrierePlan(this.fond);
 	}
 	
 	createSvgElement(){
-		this.svgElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		this.svgElement = newVectorElement('svg');
 		this.svgElement.id = 'svgPrincipal';
 		this.svgElement.setAttribute("width", innerWidth);
 		this.svgElement.setAttribute("height", innerHeight);
-
+		document.getElementById('champCamera').appendChild(this.svgElement);
 	}
 	
-	remplirTabDeLayers(){
-		for (var i = 0; i<5; i++){
-			this.tab_layers[i] = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-			this.tab_layers[i].id = 'layer_'+i;
-			this.svgElement.appendChild(this.tab_layers[i]);
+	createLayer(){
+		let listeLayers = ['arrierePlan', 'avantPlan'];
+	/**
+		"arrierePlan" recevra le fond (le ciel et la prairie),
+		"avantPlan" recevra les objets (animaux, vegetaux...),
+	*/
+		for (var i = 0; i<listeLayers.length ; i++){
+			let layer = newVectorElement('g');
+			layer.id = listeLayers[i];
+			this.svgElement.appendChild(layer);
 		}
 	}
+
+	mettreFondArrierePlan(layer_fond){
+		let fond = newVectorElement('rect');
+	}
 	
-	//Le fond
-	$publicConst_dessineToiEnLayer0() {return null}// en cours d'écriture
-	//Les herbes
-	$publicConst_dessineToiEnLayer1() {return null}// en cours d'écriture
-	//Les crottes
-	$publicConst_dessineToiEnLayer2() {return null}// en cours d'écriture
-	//Les vaches
-	$publicConst_dessineToiEnLayer3() {return null}// en cours d'écriture
-	//Les abeilles
-	$publicConst_dessineToiEnLayer4() {return null}// en cours d'écriture
+	createDivInfoJeu(){
+	/**
+		"infoJeu" recevra des messages au joueur 
+			vous avez gagné, 
+			attention vos vaches sont malheureuses,
+			la boite à outil du joueur, 
+			menu 
+			....
+	*/
+		//A implementer
+	}
 }
+
 
 class Camera3D extends SCCube{
 	constructor(){super();}

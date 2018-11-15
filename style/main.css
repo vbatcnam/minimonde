@@ -5,6 +5,10 @@ padding : 0;
 	background-repeat : no-repeat;
  */}
 
+#arrierePlan{
+	background-color: #31c5ff;
+}
+
 #ciel{
 	width: 100vw;
 	height: 40vh;
