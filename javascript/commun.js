@@ -6,6 +6,7 @@ function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
 }
 
+//Le svg
 function newVectorElement(elt){
 	return document.createElementNS('http://www.w3.org/2000/svg', elt);
 }

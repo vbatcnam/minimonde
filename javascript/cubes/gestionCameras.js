@@ -6,6 +6,7 @@ class Camera2D extends SCCube{
 	constructor(){
 		super();
 		this.createSvgElement();
+		this.createDefElement();
 		this.createLayer();
 		this.createDivInfoJeu();
 		this.fond = document.getElementById('arrierePlan');
@@ -14,7 +15,6 @@ class Camera2D extends SCCube{
 	
 	createSvgElement(){
 		this.svgElement = newVectorElement('svg');
-		this.svgElement.id = 'svgPrincipal';
 		this.svgElement.setAttribute("width", innerWidth);
 		this.svgElement.setAttribute("height", innerHeight);
 		document.getElementById('champCamera').appendChild(this.svgElement);
@@ -27,14 +27,30 @@ class Camera2D extends SCCube{
 		"avantPlan" recevra les objets (animaux, vegetaux...),
 	*/
 		for (var i = 0; i<listeLayers.length ; i++){
-			let layer = newVectorElement('g');
-			layer.id = listeLayers[i];
-			this.svgElement.appendChild(layer);
+			this[listeLayers[i]] = newVectorElement('g');
+			this[listeLayers[i]].id = listeLayers[i];//pour débogage
+			this.svgElement.appendChild(this[listeLayers[i]]);
 		}
 	}
 
 	mettreFondArrierePlan(layer_fond){
 		let fond = newVectorElement('rect');
+		fond.setAttribute('x',0);
+		fond.setAttribute('y',0);
+		fond.setAttribute('width',innerWidth);
+		fond.setAttribute("height", innerHeight);
+		fond.setAttribute("fill", 'url(#gradiantFond)');
+	}
+	
+	createDefElement(){
+		this.defElement = newVectorElement('defs');
+		this.svgElement.appendChild(this.defElement);
+	}
+	
+	createGradiantFond(){
+		let gradiant = newVectorElement('linearGradient');
+		gradiant.id = 'gradiantFond';
+		this.svgElement.appendChild(gradiant);
 	}
 	
 	createDivInfoJeu(){
