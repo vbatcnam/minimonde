@@ -34,12 +34,14 @@ class Camera2D extends SCCube{
 	}
 
 	mettreFondArrierePlan(layer_fond){
+		this.createGradiantFond();
 		let fond = newVectorElement('rect');
 		fond.setAttribute('x',0);
 		fond.setAttribute('y',0);
 		fond.setAttribute('width',innerWidth);
 		fond.setAttribute("height", innerHeight);
 		fond.setAttribute("fill", 'url(#gradiantFond)');
+		this.arrierePlan.appendChild(fond)
 	}
 	
 	createDefElement(){
@@ -50,7 +52,41 @@ class Camera2D extends SCCube{
 	createGradiantFond(){
 		let gradiant = newVectorElement('linearGradient');
 		gradiant.id = 'gradiantFond';
-		this.svgElement.appendChild(gradiant);
+		gradiant.setAttribute('gradientUnits',"objectBoundingBox");
+		gradiant.setAttribute('x1',0);
+		gradiant.setAttribute('x2',0);
+		gradiant.setAttribute('y1',0);
+		gradiant.setAttribute('y2',1);
+		this.defElement.appendChild(gradiant);
+		
+		let ciel = newVectorElement('stop');
+		ciel.id = 'ciel';
+		ciel.setAttribute('offset',0);
+		// ciel.setAttribute('style','stop-color:#55cfff;stop-opacity:1');
+		ciel.setAttribute('style','stop-color:#6ff;stop-opacity:1');
+		gradiant.appendChild(ciel);
+		
+		let horizon = newVectorElement('stop');
+		horizon.id = 'horizon';
+		horizon.setAttribute('offset',0.3);
+		// horizon.setAttribute('style','stop-color:#1d7d17;stop-opacity:1');
+		horizon.setAttribute('style','stop-color:#6cc;stop-opacity:1');
+		gradiant.appendChild(horizon);
+		
+		let horizon2 = newVectorElement('stop');
+		horizon2.id = 'horizon';
+		horizon2.setAttribute('offset',0.3);
+		// horizon2.setAttribute('style','stop-color:#1d7d17;stop-opacity:1');
+		horizon2.setAttribute('style','stop-color:#395;stop-opacity:1');
+		gradiant.appendChild(horizon2);
+		
+		
+		let prairie = newVectorElement('stop');
+		prairie.id = 'prairie';
+		prairie.setAttribute('offset',1);
+		// prairie.setAttribute('style','stop-color:#359500;stop-opacity:1');
+		prairie.setAttribute('style','stop-color:#390;stop-opacity:1');
+		gradiant.appendChild(prairie);
 	}
 	
 	createDivInfoJeu(){
