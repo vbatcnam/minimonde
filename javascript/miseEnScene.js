@@ -4,6 +4,7 @@
 
 monde.addActor(cubePrairie);
 monde.addActor(new Camera2D());
+monde.addActor(new Soleil());
 monde.addActor(new Herbe('herbe', 1));
 
 

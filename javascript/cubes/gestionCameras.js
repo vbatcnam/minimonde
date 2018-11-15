@@ -100,6 +100,19 @@ class Camera2D extends SCCube{
 	*/
 		//A implementer
 	}
+	
+	//réactions
+	$on_monApparence_draw(array_infosRecues){
+		for( let info of array_infosRecues){
+			//teste si dejà dessiné
+			if(!document.body.contains(info.dessin)){
+				if(info.repere == 'ecran'){
+					this.arrierePlan.appendChild(info.dessin);
+				}
+			}
+
+		}
+	}
 }
 
 

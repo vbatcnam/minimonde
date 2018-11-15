@@ -42,4 +42,5 @@ Pour appeler les fonctions de SugarCubes, j'utilise les syntaxes suivante
 	$on_nomEvenement[_descriptionAction](){}
 	$onNo_nomEvenement[_descriptionAction](){}
 	$publicConst_nomEvenement() {return valAEnvoyer} //permet de faire un SC.generate()
+	$publicVar_nomEvenement() {return valAEnvoyer} //permet de faire un SC.generate()//calcule à chaque instant
 ````
