@@ -63,21 +63,21 @@ class Camera2D extends SCCube{
 		ciel.id = 'ciel';
 		ciel.setAttribute('offset',0);
 		// ciel.setAttribute('style','stop-color:#55cfff;stop-opacity:1');
-		ciel.setAttribute('style','stop-color:#6ff;stop-opacity:1');
+		ciel.setAttribute('style','stop-color:#9cf;stop-opacity:1');
 		gradiant.appendChild(ciel);
 		
 		let horizon = newVectorElement('stop');
 		horizon.id = 'horizon';
 		horizon.setAttribute('offset',0.3);
 		// horizon.setAttribute('style','stop-color:#1d7d17;stop-opacity:1');
-		horizon.setAttribute('style','stop-color:#6cc;stop-opacity:1');
+		horizon.setAttribute('style','stop-color:#69c;stop-opacity:1');
 		gradiant.appendChild(horizon);
 		
 		let horizon2 = newVectorElement('stop');
 		horizon2.id = 'horizon';
 		horizon2.setAttribute('offset',0.3);
 		// horizon2.setAttribute('style','stop-color:#1d7d17;stop-opacity:1');
-		horizon2.setAttribute('style','stop-color:#395;stop-opacity:1');
+		horizon2.setAttribute('style','stop-color:#595;stop-opacity:1');
 		gradiant.appendChild(horizon2);
 		
 		
@@ -85,7 +85,7 @@ class Camera2D extends SCCube{
 		prairie.id = 'prairie';
 		prairie.setAttribute('offset',1);
 		// prairie.setAttribute('style','stop-color:#359500;stop-opacity:1');
-		prairie.setAttribute('style','stop-color:#390;stop-opacity:1');
+		prairie.setAttribute('style','stop-color:#590;stop-opacity:1');
 		gradiant.appendChild(prairie);
 	}
 	
