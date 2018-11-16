@@ -5,20 +5,17 @@
 class Camera2D extends SCCube{
 	constructor(){
 		super();
-		this.createSvgElement();
-		this.createDefElement();
+		this.svgElement = createSvgElement(
+			document.getElementById('champCamera')
+			, innerWidth
+			, innerHeight);
+		this.defsElement = createBalise(this.svgElement, 'defs', '');
 		this.createLayer();
 		this.createDivInfoJeu();
 		this.fond = document.getElementById('arrierePlan');
 		this.mettreFondArrierePlan(this.fond);
 	}
 	
-	createSvgElement(){
-		this.svgElement = newVectorElement('svg');
-		this.svgElement.setAttribute("width", innerWidth);
-		this.svgElement.setAttribute("height", innerHeight);
-		document.getElementById('champCamera').appendChild(this.svgElement);
-	}
 	
 	createLayer(){
 		let listeLayers = ['arrierePlan', 'avantPlan'];
@@ -42,11 +39,6 @@ class Camera2D extends SCCube{
 		fond.setAttribute("height", innerHeight);
 		fond.setAttribute("fill", 'url(#gradiantFond)');
 		this.arrierePlan.appendChild(fond)
-	}
-	
-	createDefElement(){
-		this.defElement = newVectorElement('defs');
-		this.svgElement.appendChild(this.defElement);
 	}
 	
 	createGradiantFond(){
