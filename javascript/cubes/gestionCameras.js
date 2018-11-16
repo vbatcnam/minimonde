@@ -51,7 +51,6 @@ class Camera2D extends SCCube{
 	}
 	
 	createDivInfoJeu(){
-	
 		//A implementer
 	}
 	
@@ -68,7 +67,6 @@ class Camera2D extends SCCube{
 		}
 	}
 }
-
 
 class Camera3D extends SCCube{
 	constructor(){super();}

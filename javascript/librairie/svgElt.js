@@ -26,7 +26,7 @@ function createLayer(elt_parent, tab_idLayers ){
 	return tab_layers;
 }
 
-//g, defs,
+//g, defs...
 function createBalise(elt_parent, s_balise, id){
 		let balise = newVectorElement(s_balise);
 		if(id)
