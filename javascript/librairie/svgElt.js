@@ -5,9 +5,10 @@ function newVectorElement(elt){
 }
 
 /** les balises */
-function createSvgElement(elt_parent, w, h ){
+function createSvgElement(elt_parent, w, h, id ){
 	svgElement = newVectorElement('svg');
-	svgElement.id = 'idDuSVG';
+	if(id)
+		svgElement.id = id;
 	svgElement.setAttribute("width", w);
 	svgElement.setAttribute("height", h);
 	elt_parent.appendChild(svgElement);
@@ -28,7 +29,8 @@ function createLayer(elt_parent, tab_idLayers ){
 //g, defs,
 function createBalise(elt_parent, s_balise, id){
 		let balise = newVectorElement(s_balise);
-		balise.id = id;
+		if(id)
+			balise.id = id;
 		elt_parent.appendChild(balise);
 		return balise;
 }
@@ -40,9 +42,11 @@ function createRect(elt_parent, x, y, w, h, fill, stroke){
 		rect.setAttribute('y',y);
 		rect.setAttribute('width',w);
 		rect.setAttribute("height", h);
-		rect.setAttribute("fill", fill);
-		rect.setAttribute("stroke", stroke);
-		elt_parent.appendChild(fond);
+		if(fill)
+			rect.setAttribute("fill", fill);
+		if(stroke)
+			rect.setAttribute("stroke", stroke);
+		elt_parent.appendChild(rect);
 		return rect;
 }
 
