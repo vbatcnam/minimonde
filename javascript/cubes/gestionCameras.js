@@ -5,19 +5,19 @@
 class Camera2D extends SCCube{
 	constructor(){
 		super();
-		this.svgElement = createSvgElement(
+		this.svgElement = SVG.svgElement(
 			document.getElementById('champCamera')
 			, innerWidth
 			, innerHeight);
 		//recevra tous les defs
-		this.defsElement = createBalise(this.svgElement, 'defs');
+		this.defsElement = SVG.balise(this.svgElement, 'defs');
 
 		//recevra le fond (le ciel et la prairie)
-		this.arrierePlan = createBalise(this.svgElement, 'g', 'arrierePlan');
+		this.arrierePlan = SVG.balise(this.svgElement, 'g', 'arrierePlan');
 		this.drawFondArrierePlan(this.arrierePlan);
 		
 		//recevra les objets (animaux, vegetaux...)
-		this.avantPlan = createBalise(this.svgElement, 'g', 'avantPlan');
+		this.avantPlan = SVG.balise(this.svgElement, 'g', 'avantPlan');
 		
 		/**
 		"infoJeu" recevra des messages au joueur 
@@ -35,7 +35,7 @@ class Camera2D extends SCCube{
 	drawFondArrierePlan(layer_fond){
 		this.CreatGradiantFond(); 
 		//dessiner le fond
-		let fond = createRect(
+		let fond = SVG.rect(
 			arrierePlan, 0, 0, 
 			innerWidth, innerHeight, 
 			'url(#gradiantFond)', '');
@@ -43,11 +43,11 @@ class Camera2D extends SCCube{
 
 	CreatGradiantFond(){
 		//couleur du fond
-		this.gradiantFond = createGradiant(this.defsElement, 'gradiantFond', 0, 0, 0, 1);
-		let ciel = createStop(gradiantFond, 'ciel', 0, 'stop-color:#9cf;stop-opacity:1');
-		let horizon_part1 = createStop(gradiantFond, 'horizon_part1', 0.3, 'stop-color:#69c;stop-opacity:1');
-		let horizon_part2 = createStop(gradiantFond, 'horizon_part2', 0.3, 'stop-color:#595;stop-opacity:1');
-		let prairie = createStop(gradiantFond, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
+		this.gradiantFond = SVG.gradiant(this.defsElement, 'gradiantFond', 0, 0, 0, 1);
+		let ciel = SVG.stop(gradiantFond, 'ciel', 0, 'stop-color:#9cf;stop-opacity:1');
+		let horizon_part1 = SVG.stop(gradiantFond, 'horizon_part1', 0.3, 'stop-color:#69c;stop-opacity:1');
+		let horizon_part2 = SVG.stop(gradiantFond, 'horizon_part2', 0.3, 'stop-color:#595;stop-opacity:1');
+		let prairie = SVG.stop(gradiantFond, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
 	}
 	
 	createDivInfoJeu(){

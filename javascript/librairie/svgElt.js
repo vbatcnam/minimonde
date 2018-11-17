@@ -1,75 +1,76 @@
 /** Librairie pour simplifier la génération des éléments SVG*/
+SVG ={
+	vectorElement: function(elt){
+		return document.createElementNS('http://www.w3.org/2000/svg', elt);
+	},
 
-function newVectorElement(elt){
-	return document.createElementNS('http://www.w3.org/2000/svg', elt);
-}
-
-/** les balises */
-function createSvgElement(elt_parent, w, h, id ){
-	svgElement = newVectorElement('svg');
-	if(id)
-		svgElement.id = id;
-	svgElement.setAttribute("width", w);
-	svgElement.setAttribute("height", h);
-	elt_parent.appendChild(svgElement);
-	return svgElement;
-}
-
-function createLayer(elt_parent, tab_idLayers ){
-	let tab_layers = [];
-	for (var i = 0; i<tab_idLayers.length ; i++){
-		let layer = newVectorElement('g');
-		layer.id = tab_idLayers[i];
-		elt_parent.appendChild(layer);
-		tab_layers[i]= layer;
-	}
-	return tab_layers;
-}
-
-//g, defs...
-function createBalise(elt_parent, s_balise, id){
-		let balise = newVectorElement(s_balise);
+	/** les balises */
+	svgElement: function(elt_parent, w, h, id ){
+		let svg = this.vectorElement('svg');
 		if(id)
-			balise.id = id;
-		elt_parent.appendChild(balise);
-		return balise;
-}
+			svgElement.id = id;
+		svg.setAttribute("width", w);
+		svg.setAttribute("height", h);
+		elt_parent.appendChild(svg);
+		return svg;
+	},
 
-/** les formes */
-function createRect(elt_parent, x, y, w, h, fill, stroke){
-	let rect = newVectorElement('rect');
-		rect.setAttribute('x',x);
-		rect.setAttribute('y',y);
-		rect.setAttribute('width',w);
-		rect.setAttribute("height", h);
-		if(fill)
-			rect.setAttribute("fill", fill);
-		if(stroke)
-			rect.setAttribute("stroke", stroke);
-		elt_parent.appendChild(rect);
-		return rect;
-}
+	layersMultiple: function(elt_parent, tab_idLayers ){
+		let tab_layers = [];
+		for (var i = 0; i<tab_idLayers.length ; i++){
+			let layer = this.vectorElement('g');
+			layer.id = tab_idLayers[i];
+			elt_parent.appendChild(layer);
+			tab_layers[i]= layer;
+		}
+		return tab_layers;
+	},
 
-function createCercle(){}
+	//g, defs...
+	balise: function(elt_parent, s_balise, id){
+			let balise = this.vectorElement(s_balise);
+			if(id)
+				balise.id = id;
+			elt_parent.appendChild(balise);
+			return balise;
+	},
 
-/** les gradiants */
-function createGradiant(elt_def, id, x1, x2, y1, y2){
-	let gradiant = newVectorElement('linearGradient');
-	gradiant.id = id;
-	gradiant.setAttribute('gradientUnits',"objectBoundingBox");
-	gradiant.setAttribute('x1',x1);
-	gradiant.setAttribute('x2',x2);
-	gradiant.setAttribute('y1',y1);
-	gradiant.setAttribute('y2',y2);
-	elt_def.appendChild(gradiant);
-	return gradiant;
-}
+	/** les formes */
+	rect: function(elt_parent, x, y, w, h, fill, stroke){
+		let rect = this.vectorElement('rect');
+			rect.setAttribute('x',x);
+			rect.setAttribute('y',y);
+			rect.setAttribute('width',w);
+			rect.setAttribute("height", h);
+			if(fill)
+				rect.setAttribute("fill", fill);
+			if(stroke)
+				rect.setAttribute("stroke", stroke);
+			elt_parent.appendChild(rect);
+			return rect;
+	},
 
-function createStop(elt_gradiant, id, offset, style){
-	let stop = newVectorElement('stop');
-	stop.id = id;
-	stop.setAttribute('offset', offset);
-	stop.setAttribute('style', style);
-	elt_gradiant.appendChild(stop);
-	return stop;
+	cercle: function(){},
+
+	/** les gradiants */
+	gradiant: function(elt_def, id, x1, x2, y1, y2){
+		let gradiant = this.vectorElement('linearGradient');
+		gradiant.id = id;
+		gradiant.setAttribute('gradientUnits',"objectBoundingBox");
+		gradiant.setAttribute('x1',x1);
+		gradiant.setAttribute('x2',x2);
+		gradiant.setAttribute('y1',y1);
+		gradiant.setAttribute('y2',y2);
+		elt_def.appendChild(gradiant);
+		return gradiant;
+	},
+
+	stop: function(elt_gradiant, id, offset, style){
+		let stop = this.vectorElement('stop');
+		stop.id = id;
+		stop.setAttribute('offset', offset);
+		stop.setAttribute('style', style);
+		elt_gradiant.appendChild(stop);
+		return stop;
+	}
 }
