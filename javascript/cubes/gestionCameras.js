@@ -54,6 +54,7 @@ class Camera2D extends SCCube{
 		//A implementer
 	}
 	
+	/*Ne marche plus car array_infosRecues est maintenant un string et non plus un objet*/
 	//réactions
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){

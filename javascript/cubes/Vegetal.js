@@ -7,7 +7,7 @@ class Vegetal extends SCCube{
 		this.taille = 1; //bébé
 		this.x = 0; 
 		this.y = 0; 
-		this.illustration = fabriqueIllustration();
+		this.fabriqueIllustration();
 		console.log("Je suis un végétal " + this.espece);
 	}
 
