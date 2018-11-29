@@ -1,7 +1,28 @@
 /** Librairie pour simplifier la génération des éléments SVG*/
 var SVG ={
+
+	// comme innerHTML mais ajoute à la fin au lieu de tout effacer
+	innerSVG: function(elt_parent, string_dessin){
+		var arrayStringDessin = string_dessin.split(' ');
+		arrayStringDessin.splice(1, 0, 'xmlns="http://www.w3.org/2000/svg"');
+
+		var newStringDessin = arrayStringDessin.join(' ');
+		var dessinSvg = new DOMParser().parseFromString(
+			newStringDessin,
+			'application/xml'
+		);
+		
+		elt_parent.appendChild(
+			document.importNode(dessinSvg.documentElement, true) 
+		);
+	},
+	
+	xmlns: function(){
+		return 'http://www.w3.org/2000/svg';
+	},
+	
 	vectorElement: function(elt){
-		return document.createElementNS('http://www.w3.org/2000/svg', elt);
+		return document.createElementNS(this.xmlns, elt);
 	},
 
 	/** les balises */

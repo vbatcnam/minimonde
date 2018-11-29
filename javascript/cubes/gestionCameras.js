@@ -1,4 +1,4 @@
-/** S'occupe de tout la visu (2D ou 3D) 
+/** S'occupe de toute la visu (2D ou 3D) 
 	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
 **/
 
@@ -34,7 +34,7 @@ class Camera2D extends SCCube{
 
 	drawFondArrierePlan(layer_fond){
 		this.CreatGradiantFond(); 
-		//dessiner le fond
+		//dessiner le fond (ciel et prairie)
 		let fond = SVG.rect(
 			arrierePlan, 0, 0, 
 			innerWidth, innerHeight, 
@@ -57,13 +57,12 @@ class Camera2D extends SCCube{
 	//réactions
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){
-			//teste si dejà dessiné
+			//teste si déjà dessiné
 			if(!document.body.contains(info.dessin)){
 				if(info.repere == 'ecran'){
-					this.arrierePlan.appendChild(info.dessin);
+					SVG.innerSVG(this.arrierePlan, info.dessin)
 				}
 			}
-
 		}
 	}
 }
