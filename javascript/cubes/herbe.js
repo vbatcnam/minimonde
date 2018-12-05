@@ -14,15 +14,24 @@ class Herbe extends Vegetal{
 	
 	fabriqueIllustration(){
 		this.illustration =  `
-			<g  id= ${this.id} class="herbe">
+			<g  id="${this.id}" class="herbe">
 				<path d="m0 17.45 c6.0714-1.7307 17.976 2.1647 20.535 12.443 1.0873-19.537 8.9355-25.363 16.001-29.773-9.514 8.4555-14.393 15.42-13.091 32.636 4.3676-9.6715 13.121-13.107 21.317-8.3569-12.153-3.6682-19.183 8.0998-20.646 15.603h-3.4729c-1.9372-6.7905-1.4909-19.675-20.642-22.552z" style="fill:#003a00;stroke-width:1.7444"/>
 				<path d="m44.9997 17.33 c-6.0714-1.7307-17.976 2.1647-20.535 12.443-1.0873-19.537-8.9355-25.363-16.001-29.773 9.514 8.4555 14.393 15.42 13.091 32.636-4.3676-9.6715-13.121-13.107-21.317-8.3569 12.153-3.6682 19.183 8.0998 20.646 15.603h3.4729c1.9372-6.7905 1.4909-19.675 20.642-22.552z" style="fill:#009d00;stroke-width:1.7444"/>
 			</g>`
 	}
 	
+	/** "repere" sert à savoir comment sera transformé le faux 3D en 2D 
+			"ecran" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
+			"reel" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
+		*/
 	$publicVar_monApparence(){
 		return {//les infos envoyées
-			repere:'reel', x:this.x, y:this.y, z:0, dessin:this.illustration
+			repere:'reel',
+			id:this.id,
+			x:this.x,
+			y:this.y,
+			z:0,
+			dessin:this.illustration
 		}
 	}
 	

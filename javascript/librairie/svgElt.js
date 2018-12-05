@@ -17,9 +17,7 @@ var SVG ={
 		);
 	},
 	
-	xmlns: function(){
-		return 'http://www.w3.org/2000/svg';
-	},
+	xmlns: 'http://www.w3.org/2000/svg',
 	
 	vectorElement: function(elt){
 		return document.createElementNS(this.xmlns, elt);

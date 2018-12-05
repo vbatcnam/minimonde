@@ -54,12 +54,13 @@ class Camera2D extends SCCube{
 		//A implementer
 	}
 	
-	/*Ne marche plus car array_infosRecues est maintenant un string et non plus un objet*/
 	//réactions
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){
 			//teste si déjà dessiné
-			if(!document.body.contains(info.dessin)){
+			if(document.getElementById(info.id)) {
+				
+			} else {
 				if(info.repere == 'ecran'){
 					SVG.innerSVG(this.arrierePlan, info.dessin)
 				}
