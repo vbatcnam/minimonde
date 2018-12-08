@@ -12,6 +12,10 @@ class Camera2D extends SCCube{
 		//recevra tous les defs
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
 		
+		//affichage du ciel et de la prairie
+		this.CreateCiel();
+		this.CreatePrairie();
+		
 		/**
 		"infoJeu" recevra des messages au joueur 
 			vous avez gagné, 
@@ -37,6 +41,7 @@ class Camera2D extends SCCube{
 			this.svgElement, 0, 0, 
 			innerWidth, innerHeight, 
 			'url(#gradiantCiel)', '');
+		ciel.setAttribute("id", "ciel");
 	}
 	
 	CreatePrairie(){
@@ -47,9 +52,10 @@ class Camera2D extends SCCube{
 		
 		// la prairie
 		let prairie = SVG.rect(
-			this.svgElement, 0, 0, 
+			this.svgElement, 0, 100, 
 			innerWidth, innerHeight, 
-			'url(#gradiantCiel)', '');
+			'url(#gradiantPrairie)', '');
+		prairie.setAttribute("id", "prairie");
 	}
 	
 	createDivInfoJeu(){
@@ -64,7 +70,7 @@ class Camera2D extends SCCube{
 				
 			} else {
 				if(info.repere == 'ecran'){
-					SVG.innerSVG(this.arrierePlan, info.dessin)
+					SVG.innerSVG(this.svgElement, info.dessin)
 				}
 			}
 		}
