@@ -11,13 +11,6 @@ class Camera2D extends SCCube{
 			, innerHeight);
 		//recevra tous les defs
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
-
-		//recevra le fond (le ciel et la prairie)
-		this.arrierePlan = SVG.balise(this.svgElement, 'g', 'arrierePlan');
-		this.drawFondArrierePlan(this.arrierePlan);
-		
-		//recevra les objets (animaux, vegetaux...)
-		this.avantPlan = SVG.balise(this.svgElement, 'g', 'avantPlan');
 		
 		/**
 		"infoJeu" recevra des messages au joueur 
@@ -32,40 +25,31 @@ class Camera2D extends SCCube{
 		
 	}
 
-	drawFondArrierePlan(layer_fond){
-		this.CreatGradiantFond(); 
-		//dessiner le fond (ciel et prairie)
-		let fond = SVG.rect(
-			arrierePlan, 0, 0, 
-			innerWidth, innerHeight, 
-			'url(#gradiantFond)', '');
-	}
 
 	CreateCiel(){
 		//dégradé du ciel
-		this.ciel = SVG.gradiant(this.defsElement, 'ciel', 0, 0, 0, 1);
-		let ciel_part1 = SVG.stop(gradiantFond, 'ciel_part1', 0, 'stop-color:#9cf;stop-opacity:1');
-		let ciel_part2 = SVG.stop(gradiantFond, 'ciel_part2', 1, 'stop-color:#69c;stop-opacity:1');
+		this.fondCiel = SVG.gradiant(this.defsElement, 'gradiantCiel', 0, 0, 0, 1);
+		let fondCiel_part1 = SVG.stop(gradiantCiel, 'fondCiel_part1', 0, 'stop-color:#9cf;stop-opacity:1');
+		let fondCiel_part2 = SVG.stop(gradiantCiel, 'fondCiel_part2', 1, 'stop-color:#69c;stop-opacity:1');
 		
 		// le ciel
-		
-
+		let ciel = SVG.rect(
+			this.svgElement, 0, 0, 
+			innerWidth, innerHeight, 
+			'url(#gradiantCiel)', '');
 	}
 	
 	CreatePrairie(){
 		//dégradé de la prairie
-		this.prairie = SVG.gradiant(this.defsElement, 'priairie', 0, 0, 0, 1);
-		let prairie_part1 =SVG.stop(gradiantFond, 'horizon_part2', 0, 'stop-color:#595;stop-opacity:1');
-		let prairie_part2 = SVG.stop(gradiantFond, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
-	}
-	
-	CreatGradiantFond(){
-		//couleur du fond
-		this.gradiantFond = SVG.gradiant(this.defsElement, 'gradiantFond', 0, 0, 0, 1);
-		let ciel = SVG.stop(gradiantFond, 'ciel', 0, 'stop-color:#9cf;stop-opacity:1');
-		let horizon_part1 = SVG.stop(gradiantFond, 'horizon_part1', 0.3, 'stop-color:#69c;stop-opacity:1');
-		let horizon_part2 = SVG.stop(gradiantFond, 'horizon_part2', 0.3, 'stop-color:#595;stop-opacity:1');
-		let prairie = SVG.stop(gradiantFond, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
+		this.prairie = SVG.gradiant(this.defsElement, 'gradiantPrairie', 0, 0, 0, 1);
+		let prairie_part1 =SVG.stop(gradiantPrairie, 'horizon_part2', 0, 'stop-color:#595;stop-opacity:1');
+		let prairie_part2 = SVG.stop(gradiantPrairie, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
+		
+		// la prairie
+		let prairie = SVG.rect(
+			this.svgElement, 0, 0, 
+			innerWidth, innerHeight, 
+			'url(#gradiantCiel)', '');
 	}
 	
 	createDivInfoJeu(){
