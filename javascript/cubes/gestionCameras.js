@@ -41,6 +41,24 @@ class Camera2D extends SCCube{
 			'url(#gradiantFond)', '');
 	}
 
+	CreateCiel(){
+		//dégradé du ciel
+		this.ciel = SVG.gradiant(this.defsElement, 'ciel', 0, 0, 0, 1);
+		let ciel_part1 = SVG.stop(gradiantFond, 'ciel_part1', 0, 'stop-color:#9cf;stop-opacity:1');
+		let ciel_part2 = SVG.stop(gradiantFond, 'ciel_part2', 1, 'stop-color:#69c;stop-opacity:1');
+		
+		// le ciel
+		
+
+	}
+	
+	CreatePrairie(){
+		//dégradé de la prairie
+		this.prairie = SVG.gradiant(this.defsElement, 'priairie', 0, 0, 0, 1);
+		let prairie_part1 =SVG.stop(gradiantFond, 'horizon_part2', 0, 'stop-color:#595;stop-opacity:1');
+		let prairie_part2 = SVG.stop(gradiantFond, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
+	}
+	
 	CreatGradiantFond(){
 		//couleur du fond
 		this.gradiantFond = SVG.gradiant(this.defsElement, 'gradiantFond', 0, 0, 0, 1);
