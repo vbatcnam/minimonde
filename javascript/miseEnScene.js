@@ -1,7 +1,9 @@
+'use strict';
+
 /**
 	C'est le fichier centrale qui ajoute tous tous les cubes au monde.
 */
-
+monde.addActor = monde.addProgram;
 monde.addActor(cubePrairie);
 monde.addActor(new Camera2D());
 monde.addActor(new Soleil());

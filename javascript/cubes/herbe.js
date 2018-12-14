@@ -1,3 +1,5 @@
+'use strict';
+
 /**
 	Cycle de l'herbe :
 		elle pousse (grandit)

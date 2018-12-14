@@ -1,3 +1,5 @@
+'use strict';
+
 /** S'occupe de toute la visu (2D ou 3D) 
 	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
 **/

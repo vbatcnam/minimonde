@@ -1,3 +1,5 @@
+'use strict';
+
 /** Librairie pour simplifier la génération des éléments SVG*/
 var SVG ={
 

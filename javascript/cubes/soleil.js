@@ -1,3 +1,5 @@
+'use strict';
+
 /**
 	le soleil a un axe de déplacement dans le ciel
 	Il rougit un peu lorsqu'il se couche

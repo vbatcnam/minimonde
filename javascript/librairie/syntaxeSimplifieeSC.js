@@ -1,4 +1,5 @@
 'use strict'
+
 /** 
 	SyntaxeSimplifieeSC.js
 	Bibliothèque surcouche facilitation sugarCubes.js 
@@ -165,6 +166,3 @@ SC.reactProperty = function(p_cell, pn_times) {
 	if(undefined === pn_times) pn_times = 1
 	return SC.repeat(pn_times, p_cell)
 }
-
-var monde = SC.machine(30);
-monde.addActor = monde.addProgram;

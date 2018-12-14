@@ -1,3 +1,5 @@
+'use strict';
+
 class Vegetal extends SCCube{
 	constructor(espece, num){
 		super();
