@@ -22,11 +22,11 @@ class Horloge extends SCCube{
 	}
 	
 	getTimeHeure(){
-		return getTimeMinute()/60; // retourne parfois chiffre à virgule
+		return this.getTimeMinute()/60; // retourne parfois chiffre à virgule
 	}
 	
 	getNbreJours(){
-		return getTimeHeure()/24; // retourne parfois chiffre à virgule
+		return this.getTimeHeure()/24; // retourne parfois chiffre à virgule
 	}
 }
 
