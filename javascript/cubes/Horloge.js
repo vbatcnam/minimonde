@@ -6,12 +6,28 @@ var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps
 
 /***
 	Temps du monde : 1 heure du miniMonde correspond à 1 mn temps IRL
+	1 mn miniMonde = 1 seconde IRL
 	Le soleil fait un tour complet tous les 57600 tics 
-	1 jour = 1440 secondes 
+	1 jour du jeu = 1440 secondes IRL (24 mn)
 */
 class Horloge extends SCCube{
 	constructor(){
 		super();
 	}
+	
+	getTimeMinute(){
+		const timeIRL_MS = monde.delay * monde.instantNumber; //nbre de MS depuis que le jeu est lancé.
+		const timeJeu_Mn = timeIRL_MS/1000;
+		return timeJeu_Mn; // retourne parfois chiffre à virgule
+	}
+	
+	getTimeHeure(){
+		return getTimeMinute()/60; // retourne parfois chiffre à virgule
+	}
+	
+	getNbreJours(){
+		return getTimeHeure()/24; // retourne parfois chiffre à virgule
+	}
 }
 
+var horloge = new Horloge();
