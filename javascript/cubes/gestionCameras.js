@@ -3,6 +3,7 @@
 /** S'occupe de toute la visu (2D ou 3D) 
 	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
 **/
+const hauteurCiel = innerHeight * 0.3;
 
 class Camera2D extends SCCube{
 	constructor(){
@@ -41,7 +42,7 @@ class Camera2D extends SCCube{
 		// le ciel
 		let ciel = SVG.rect(
 			this.svgElement, 0, 0, 
-			innerWidth, innerHeight, 
+			innerWidth, hauteurCiel, 
 			'url(#gradiantCiel)', '');
 		ciel.setAttribute("id", "ciel");
 	}
@@ -54,8 +55,8 @@ class Camera2D extends SCCube{
 		
 		// la prairie
 		let prairie = SVG.rect(
-			this.svgElement, 0, 100, 
-			innerWidth, innerHeight, 
+			this.svgElement, 0, hauteurCiel, 
+			innerWidth, innerHeight-hauteurCiel, 
 			'url(#gradiantPrairie)', '');
 		prairie.setAttribute("id", "prairie");
 	}
@@ -71,12 +72,19 @@ class Camera2D extends SCCube{
 			if(document.getElementById(info.id)) {
 				
 			} else {
-				if(info.repere == 'ecran'){
+				if(info.repere == 'ecran'){ //info.x et info.y vont de 0 à 1
 					SVG.innerSVG(this.svgElement, info.dessin)
+					this.traduitPositionPourEcran(info.x, info.y);
 				}
 			}
 		}
 	}
+	
+	traduitPositionPourEcran(x, y){
+		const xEcran = x * innerWidth;
+		const yEcran = y * hauteurCiel ;
+	}
+	
 }
 
 class Camera3D extends SCCube{

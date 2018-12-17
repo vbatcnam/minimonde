@@ -41,9 +41,16 @@ class Soleil extends SCCube{
 	
 	//fonction bouge selon sa trajectoire d'est en ouest
 	$actionForever_bouge(){
-		var angleRad = this.calculeAngleRad();
-		this.xCiel = Math.sin(angleRad);
-		this.yCiel = Math.cos(angleRad);
+	/**
+		xCiel va de 0 à 1 de gauche à droite
+		yCiel va de 0 à 1 de haut en bas
+	*/
+		const angleRad = this.calculeAngleRad();
+		const xCercle = Math.sin(angleRad)// entre 1 et -1
+		const yCercle = Math.cos(angleRad)// entre -1 et 1
+		//on convertir pour avoir entre 0 et 1
+		this.xCiel = 1-(xCercle+1)/2;
+		this.yCiel = (yCercle+1)/2;
 	}
 	
 	calculeAngleRad()
