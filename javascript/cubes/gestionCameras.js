@@ -68,14 +68,17 @@ class Camera2D extends SCCube{
 	//réactions
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){
-			//teste si déjà dessiné
-			if(document.getElementById(info.id)) {
-				
-			} else {
+			let elementDessin = document.getElementById(info.id);
+			let positionSurEcran = this.traduitPositionPourEcran(info.x, info.y);
+			//Si pas encore dessiné
+			if(!elementDessin) {
 				if(info.repere == 'ecran'){ //info.x et info.y vont de 0 à 1
-					SVG.innerSVG(this.svgElement, info.dessin)
-					this.traduitPositionPourEcran(info.x, info.y);
+					elementDessin = SVG.innerSVG(this.svgElement, info.dessin);
 				}
+			}
+			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
+			if(elementDessin){
+				elementDessin.setAttribute('transform', `translate(${positionSurEcran.x},${positionSurEcran.y})`);
 			}
 		}
 	}
@@ -83,6 +86,7 @@ class Camera2D extends SCCube{
 	traduitPositionPourEcran(x, y){
 		const xEcran = x * innerWidth;
 		const yEcran = y * hauteurCiel ;
+		return {x: xEcran, y: yEcran};
 	}
 	
 }
