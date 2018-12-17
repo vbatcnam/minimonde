@@ -13,10 +13,9 @@ var SVG ={
 			newStringDessin,
 			'application/xml'
 		);
-		
-		elt_parent.appendChild(
-			document.importNode(dessinSvg.documentElement, true) 
-		);
+		var elt = document.importNode(dessinSvg.documentElement, true);
+		elt_parent.appendChild(elt);
+		return elt;
 	},
 	
 	xmlns: 'http://www.w3.org/2000/svg',
