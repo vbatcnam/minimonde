@@ -85,6 +85,7 @@ var SVG ={
 		return gradiant;
 	},
 
+
 	stop: function(elt_gradiant, id, offset, style){
 		let stop = this.vectorElement('stop');
 		stop.id = id;

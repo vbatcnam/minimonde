@@ -1,58 +1,34 @@
+'use strict';
+
 /**
-	S’occupe de gérer l'herbe, les fleurs, les bouses...
-	Pour simplifier dans un premier temps, je fais une grille.
-	Par la suite, les herbes seront plantées aléatoirement sur la prairie
+	C'est le fond de la prairie (un carré vert) qui sera redimensionné par la camera
 */
-class Prairie extends Zone{
-	constructor(nom, w, h){
-		super(nom, w, h);
-	}
-	
-	afficheLesEltsDeLaPrairie(){
-		//grille de la prairie 
-		console.log ("nbre lignes"); 
-		console.log (this.surface.length); 
-		let nbreLignes = 7 ;
-		//calculée selon la largeur du viewport et la taille de l'image
-		let nbreColonnes = 23 ;
-		for(var c = 0; c < nbreColonnes; c++) {
-			tab2d_prairie[c] = [];
-			for(var r = 0; r < nbreLignes; r++) {
-				if(r%2 == 0 && c%2 == 0){
-					tab2d_prairie[c][r] = 'herbe';// ici poussera une herbe
+
+class Prairie extends SCCube{
+	constructor(){
+		super();
+		this.xAstral = 0; //quelque part à l'est
+		this.yAstral = 0;
+		this.zAstral = 0;
+		this.illustration = `<rect id= "prairie" x="0" y="1" width="1" height="1"  fill="url(#gradiantPrairie)"/>`;
+		this.coloriage = {
+			id:'gradiantPrairie',
+			x1:0,
+			x2:0, 
+			y1:0, 
+			y2:1,
+			listeStop:[
+				{
+					id:'horizon_part2',
+					offset:0,
+					style:'stop-color:#595;stop-opacity:1'
+				},
+				{
+					id:'horizon_part2',
+					offset:1,
+					style:'stop-color:#590;stop-opacity:1'
 				}
-				else{
-					tab2d_prairie[c][r] = 'fleur';// ici poussera une fleur
-				}
-			}
-		}
-		for(var c = 0; c < nbreColonnes; c++) {
-			for(var r = 0; r < nbreLignes; r++) {
-				console.log(tab2d_prairie[c][r]);
-			}
+			]
 		}
 	}
 }
-
-//Je crée la prairie
-var hauteurPrairie = Math.floor(viewPort.h * 0.60);//60% du viewport
-var prairie = new Prairie('prairie', viewPort.w, hauteurPrairie);
-//wMaxImage taille minimal acceptable pour voir l'objet
-// trouver la taille du pixel de l'appareil du joueur
-//prairie.fabriqueSurface(wMaxImage, hMaxImage);
-
-//================================================================
-//							le cube 
-//================================================================
-
-// le comportement du cube de la zone de jeu
-var progPrairie = SC.actionOn(
-        drawMe
-        , SC.my("afficheLesEltsDeLaPrairie")
-        , undefined
-        , SC.forever
-);
-
-//on met l'objet dans un cube
-//la prairie
-var cubePrairie = SC.cube( prairie, progPrairie);

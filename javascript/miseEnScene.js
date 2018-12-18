@@ -2,10 +2,29 @@
 
 /**
 	C'est le fichier centrale qui ajoute tous tous les cubes au monde.
+	
+	Les systèmes de coordonnées de MiniMonde
+	========================================
+
+	- Système ASTRAL de cordonnées :
+		Dans ce système si le X et Y reste le même et que le Z augmente, 
+		on se retrouvera au même endroit sur l'écran :
+			un objet cache un autre.
+		xAstral va de 0 à 1 de gauche à droite
+		yAstral va de 0 à 2 de haut en bas
+
+	- Système TERRESTRE de cordonnées :
+		Dans ce système si le X et Y reste le même et que le Z augmente,
+		on se retrouve plus bas sur l'écran :
+			Ce qui est plus près de nous est plus bas sur l'écran.
+
+	- Système PIXEL (de l'écran) de cordonnées.
+	
 */
 monde.addActor = monde.addProgram;
-monde.addActor(cubePrairie);
 monde.addActor(new Camera2D());
+monde.addActor(new Ciel());
+monde.addActor(new Prairie());
 monde.addActor(new Soleil());
 monde.addActor(new Herbe('herbe', 1));
 

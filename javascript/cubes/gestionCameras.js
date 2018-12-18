@@ -2,7 +2,18 @@
 
 /** S'occupe de toute la visu (2D ou 3D) 
 	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
-**/
+	
+	z des differents elements :
+	============================
+	Le ciel -100,
+	le soleil -80, 
+	la lune -60, 
+	les nuages de -40 à -20, 
+	la prairie 0,
+	les objets et animaux volants de 1 à 100,
+	les objets sur la prairie de 1 à 100,
+*/
+
 const hauteurCiel = innerHeight * 0.3;
 
 class Camera2D extends SCCube{
@@ -16,8 +27,6 @@ class Camera2D extends SCCube{
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
 		
 		//affichage du ciel et de la prairie
-		this.CreateCiel();
-		this.CreatePrairie();
 		
 		/**
 		"infoJeu" recevra des messages au joueur 
@@ -32,34 +41,6 @@ class Camera2D extends SCCube{
 		
 	}
 
-
-	CreateCiel(){
-		//dégradé du ciel
-		this.fondCiel = SVG.gradiant(this.defsElement, 'gradiantCiel', 0, 0, 0, 1);
-		let fondCiel_part1 = SVG.stop(gradiantCiel, 'fondCiel_part1', 0, 'stop-color:#9cf;stop-opacity:1');
-		let fondCiel_part2 = SVG.stop(gradiantCiel, 'fondCiel_part2', 1, 'stop-color:#69c;stop-opacity:1');
-		
-		// le ciel
-		let ciel = SVG.rect(
-			this.svgElement, 0, 0, 
-			innerWidth, hauteurCiel, 
-			'url(#gradiantCiel)', '');
-		ciel.setAttribute("id", "ciel");
-	}
-	
-	CreatePrairie(){
-		//dégradé de la prairie
-		this.prairie = SVG.gradiant(this.defsElement, 'gradiantPrairie', 0, 0, 0, 1);
-		let prairie_part1 =SVG.stop(gradiantPrairie, 'horizon_part2', 0, 'stop-color:#595;stop-opacity:1');
-		let prairie_part2 = SVG.stop(gradiantPrairie, 'prairie', 1, 'stop-color:#590;stop-opacity:1');
-		
-		// la prairie
-		let prairie = SVG.rect(
-			this.svgElement, 0, hauteurCiel, 
-			innerWidth, innerHeight-hauteurCiel, 
-			'url(#gradiantPrairie)', '');
-		prairie.setAttribute("id", "prairie");
-	}
 	
 	createDivInfoJeu(){
 		//A implementer
