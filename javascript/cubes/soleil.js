@@ -31,12 +31,13 @@ class Soleil extends SCCube{
 		*/
 	$publicVar_monApparence(){
 		return {//les infos envoyées
-			repere:'ecran',
+			repere:'astral',
 			id:this.id,
 			x:this.xAstral,
 			y:this.yAstral,
 			z:this.zAstral,
-			dessin:this.illustration
+			dessin:this.illustration,
+			coloriage: this.coloriage
 		}
 	}
 	

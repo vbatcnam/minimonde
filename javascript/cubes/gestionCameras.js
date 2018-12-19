@@ -14,7 +14,20 @@
 	les objets sur la prairie de 1 à 100,
 */
 
-const hauteurCiel = innerHeight * 0.3;
+var scaleObjetsDeLaScene = {
+	ciel: {width: innerWidth, height: innerHeight * 0.3},
+	soleil:{width: 0.5, height: 0.5},
+	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
+	// herbe:{width: 0.5, height: 0.5},//provisoire
+	// fleur{width: 0.5, height: 0.5},//provisoire
+	// vache:{width: 0.5, height: 0.5},//provisoire
+	// bouse:{width: 0.5, height: 0.5},//provisoire
+	// ours:{width: 0.5, height: 0.5},//provisoire
+	// abeille:{width: 0.5, height: 0.5},//provisoire
+	// lait:{width: 0.5, height: 0.5},//provisoire
+	// miel:{width: 0.5, height: 0.5}//provisoire
+};
+
 
 class Camera2D extends SCCube{
 	constructor(){
@@ -26,8 +39,6 @@ class Camera2D extends SCCube{
 		//recevra tous les defs
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
 		
-		//affichage du ciel et de la prairie
-		
 		/**
 		"infoJeu" recevra des messages au joueur 
 			vous avez gagné, 
@@ -37,8 +48,6 @@ class Camera2D extends SCCube{
 			....
 	*/
 		this.infoJeu = 'div' //div ou autre à créer
-		
-		
 	}
 
 	
@@ -53,20 +62,51 @@ class Camera2D extends SCCube{
 			let positionSurEcran = this.traduitPositionPourEcran(info.x, info.y);
 			//Si pas encore dessiné
 			if(!elementDessin) {
-				if(info.repere == 'ecran'){ //info.x et info.y vont de 0 à 1
+				if(info.repere == 'astral'){ //info.x et info.y vont de 0 à 1
 					elementDessin = SVG.innerSVG(this.svgElement, info.dessin);
+					
+					//coloriage
+					if(info.coloriage.listeStop){//recherche de gradients
+						elementDessin.setAttribute('fill','url(#'+info.coloriage.id +')');
+						//création du gradiant
+						this.createGradiant(info.coloriage);
+					}else{
+						elementDessin.setAttribute('fill',info.coloriage.fill);
+					}
 				}
 			}
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
 			if(elementDessin){
-				elementDessin.setAttribute('transform', `translate(${positionSurEcran.x},${positionSurEcran.y})`);
+				//On redimensionne le dessin
+				//translate
+				elementDessin.setAttribute(
+					'transform', 
+					`scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
+					` translate(${positionSurEcran.x},${positionSurEcran.y})`
+				);
 			}
+		}
+	}
+	
+	createGradiant(obj_coloriage){
+		//dégradé du ciel
+		let gradiant = SVG.gradiant(this.defsElement, 
+									obj_coloriage.id, 
+									obj_coloriage.x1, 
+									obj_coloriage.x2, 
+									obj_coloriage.y1, 
+									obj_coloriage.y2);
+		for(var stop of obj_coloriage.listeStop){
+			SVG.stop(gradiant,
+						stop.id, 
+						stop.offset,
+						stop.style);
 		}
 	}
 	
 	traduitPositionPourEcran(x, y){
 		const xEcran = x * innerWidth;
-		const yEcran = y * hauteurCiel ;
+		const yEcran = y * scaleObjetsDeLaScene.ciel.height ;
 		return {x: xEcran, y: yEcran};
 	}
 	

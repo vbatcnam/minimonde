@@ -32,4 +32,17 @@ class Prairie extends SCCube{
 			]
 		}
 	}
+
+	$publicVar_monApparence(){
+		return {//les infos envoyées
+			repere:'astral',
+			id:this.id,
+			x:this.xAstral,
+			y:this.yAstral,
+			z:this.zAstral,
+			dessin:this.illustration,
+			coloriage: this.coloriage
+		}
+	}
+
 }
