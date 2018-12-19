@@ -7,10 +7,11 @@
 class Prairie extends SCCube{
 	constructor(){
 		super();
+		this.id="prairie";
 		this.xAstral = 0; //quelque part à l'est
 		this.yAstral = 0;
 		this.zAstral = 0;
-		this.illustration = `<rect id= "prairie" x="0" y="1" width="1" height="1"  fill="url(#gradiantPrairie)"/>`;
+		this.illustration = `<rect id="${this.id}" x="0" y="1" width="1" height="1"/>`;
 		this.coloriage = {
 			id:'gradiantPrairie',
 			x1:0,

@@ -8,10 +8,11 @@
 class Ciel extends SCCube{
 	constructor(){
 		super();
+		this.id = "ciel";
 		this.xAstral = 0; 
 		this.yAstral = 0;
 		this.zAstral = -100;//arrière plan
-		this.illustration = `<rect id= "ciel" x="0" y="0" width="1" height="1"  fill="url(#gradiantCiel)"/>`;
+		this.illustration = `<rect id="${this.id}" x="0" y="0" width="1" height="1" />`;
 		this.coloriage = {
 			id:'gradiantCiel',
 			x1:0,
