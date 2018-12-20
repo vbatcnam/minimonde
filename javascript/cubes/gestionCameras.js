@@ -15,17 +15,18 @@
 */
 
 var scaleObjetsDeLaScene = {
-	ciel: {width: innerWidth, height: innerHeight * 0.3},
-	soleil:{width: 0.5, height: 0.5},
-	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
-	// herbe:{width: 0.5, height: 0.5},//provisoire
-	// fleur{width: 0.5, height: 0.5},//provisoire
-	// vache:{width: 0.5, height: 0.5},//provisoire
-	// bouse:{width: 0.5, height: 0.5},//provisoire
-	// ours:{width: 0.5, height: 0.5},//provisoire
-	// abeille:{width: 0.5, height: 0.5},//provisoire
-	// lait:{width: 0.5, height: 0.5},//provisoire
-	// miel:{width: 0.5, height: 0.5}//provisoire
+	ciel: {width: innerWidth, height: innerHeight * 0.3, transformOrigine : 'top left'},
+	// soleil:{width: 0.5, height: 0.5, transformOrigine : 'center'},
+	soleil:{width: 1, height: 1, transformOrigine : 'center'},
+	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3),transformOrigine : 'top left'},
+	// herbe:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// fleur{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// vache:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// bouse:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// ours:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// abeille:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// lait:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
+	// miel:{width: 0.5, height: 0.5, transformOrigine : 'center'}//provisoire
 };
 
 
@@ -80,9 +81,16 @@ class Camera2D extends SCCube{
 				//On redimensionne le dessin
 				//translate
 				elementDessin.setAttribute(
+					'style',
+					'transform-origin:'+
+					scaleObjetsDeLaScene[elementDessin.id].transformOrigine
+				);
+				elementDessin.setAttribute(
 					'transform', 
-					`scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
-					` translate(${positionSurEcran.x},${positionSurEcran.y})`
+					// `scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
+					// ` translate(${positionSurEcran.x},${positionSurEcran.y})`
+					`translate(${positionSurEcran.x},${positionSurEcran.y})` +
+					` scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})`
 				);
 			}
 		}
@@ -106,7 +114,7 @@ class Camera2D extends SCCube{
 	
 	traduitPositionPourEcran(x, y){
 		const xEcran = x * innerWidth;
-		const yEcran = y * scaleObjetsDeLaScene.ciel.height ;
+		const yEcran = y * scaleObjetsDeLaScene.ciel.height;
 		return {x: xEcran, y: yEcran};
 	}
 	
