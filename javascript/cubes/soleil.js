@@ -45,7 +45,7 @@ class Soleil extends SCCube{
 	$actionForever_bouge(){
 	/**
 		xAstral va de 0 à 1 de gauche à droite
-		yAstral va de 0 à 1 de haut en bas
+		yAstral va de 0 à 1 de haut en bas de la zone (préciser quelle zone)
 	*/
 		const angleRad = this.calculeAngleRad();
 		const xCercle = Math.sin(angleRad)// entre 1 et -1
