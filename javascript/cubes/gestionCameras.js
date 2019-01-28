@@ -3,7 +3,7 @@
 /** S'occupe de toute la visu (2D ou 3D) 
 	Créer une fausse perspective : les objets diminuent de taille lorsqu'il s’éloignent et grossissent lorsqu'ils s'approchent
 	
-	z des differents elements :
+	z des différents éléments :
 	============================
 	Le ciel -100,
 	le soleil -80, 
@@ -16,8 +16,8 @@
 
 var scaleObjetsDeLaScene = {
 	ciel: {width: innerWidth, height: innerHeight * 0.3, transformOrigine : 'top left'},
-	// soleil:{width: 0.5, height: 0.5, transformOrigine : 'center'},
-	soleil:{width: 1, height: 1, transformOrigine : 'center'},
+	soleil:{width: 0.5, height: 0.5, transformOrigine : 'center'},
+	// soleil:{width: 1, height: 1, transformOrigine : 'center'},
 	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3),transformOrigine : 'top left'},
 	// herbe:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
 	// fleur{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
@@ -86,11 +86,14 @@ class Camera2D extends SCCube{
 					scaleObjetsDeLaScene[elementDessin.id].transformOrigine
 				);
 				elementDessin.setAttribute(
+					//le soleil est bien centré mais la prairie a disparue
 					'transform', 
-					// `scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
-					// ` translate(${positionSurEcran.x},${positionSurEcran.y})`
-					`translate(${positionSurEcran.x},${positionSurEcran.y})` +
-					` scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})`
+					`scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
+					` translate(${positionSurEcran.x},${positionSurEcran.y})`
+					
+					//la prairie est là mais le soleil est mal centré.
+					// `translate(${positionSurEcran.x},${positionSurEcran.y})` +
+					// ` scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})`
 				);
 			}
 		}

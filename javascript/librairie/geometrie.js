@@ -2,3 +2,9 @@
 /**
 	Librairie de géométrie
 */
+
+/*
+	Repositionnement des objets
+	
+*/
+
