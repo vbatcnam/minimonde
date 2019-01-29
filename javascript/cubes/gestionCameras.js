@@ -85,15 +85,13 @@ class Camera2D extends SCCube{
 					'transform-origin:'+
 					scaleObjetsDeLaScene[elementDessin.id].transformOrigine
 				);
+				let scale = scaleObjetsDeLaScene[elementDessin.id].width;
+				let translate = calculeTranslate(scale, positionSurEcran.x, positionSurEcran.y);
 				elementDessin.setAttribute(
 					//le soleil est bien centré mais la prairie a disparue
 					'transform', 
-					`scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})` +
-					` translate(${positionSurEcran.x},${positionSurEcran.y})`
-					
-					//la prairie est là mais le soleil est mal centré.
-					// `translate(${positionSurEcran.x},${positionSurEcran.y})` +
-					// ` scale(${scaleObjetsDeLaScene[elementDessin.id].width},${scaleObjetsDeLaScene[elementDessin.id].height})`
+					`scale(${scale})` +
+					` translate(${translate.x},${translate.y})`
 				);
 			}
 		}
