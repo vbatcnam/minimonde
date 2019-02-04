@@ -1,28 +1,4 @@
 body{
-margin : 0;
-padding : 0;
-/* 	background: linear-gradient(to top, #359500 50%, #3131ff);
-	background-repeat : no-repeat;
- */}
-
-/* #arrierePlan{
-	background-color: #31c5ff;
+	margin : 0;
+	padding : 0;
 }
-
-#ciel{
-	width: 100vw;
-	height: 40vh;
-	background: linear-gradient(to top, #31c5ff, #55cfff);
-}
-
-#prairie{
-	position: relative;
-	width: 100vw;
-	height: 60vh;
-	background: linear-gradient(to top, #1d7d17, #359500);
-}
- */
-/* #soleil{
-	transform: scale(0.5); /*1/3 de la hauteur du ciel*/
-/*}
- */
