@@ -22,7 +22,7 @@
 	
 */
 monde.addActor = monde.addProgram;
-monde.addActor(new Camera2D());
+monde.addActor(new Camera());
 monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());

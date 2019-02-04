@@ -30,7 +30,7 @@ var scaleObjetsDeLaScene = {
 };
 
 
-class Camera2D extends SCCube{
+class Camera extends SCCube{
 	constructor(){
 		super();
 		this.svgElement = SVG.svgElement(
@@ -113,10 +113,3 @@ class Camera2D extends SCCube{
 	}
 	
 }
-
-class Camera3D extends SCCube{
-	constructor(){super();}
-	$publicConst_dessineToiEn3D() {return null}// en cours d'écriture
-}
-
-
