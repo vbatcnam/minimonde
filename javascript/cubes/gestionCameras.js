@@ -79,19 +79,12 @@ class Camera2D extends SCCube{
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
 			if(elementDessin){
 				//On redimensionne le dessin
-				//translate
-				elementDessin.setAttribute(
-					'style',
-					'transform-origin:'+
-					scaleObjetsDeLaScene[elementDessin.id].transformOrigine
-				);
 				let scale = scaleObjetsDeLaScene[elementDessin.id].width;
-				let translate = calculeTranslate(scale, positionSurEcran.x, positionSurEcran.y);
+				//On le positionne sur l'écran
 				elementDessin.setAttribute(
-					//le soleil est bien centré mais la prairie a disparue
 					'transform', 
-					`scale(${scale})` +
-					` translate(${translate.x},${translate.y})`
+					`translate(${positionSurEcran.x},${positionSurEcran.y})` +
+					` scale(${scale})`
 				);
 			}
 		}
