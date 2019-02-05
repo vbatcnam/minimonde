@@ -15,18 +15,17 @@
 */
 
 var scaleObjetsDeLaScene = {
-	ciel: {width: innerWidth, height: innerHeight * 0.3, transformOrigine : 'top left'},
-	soleil:{width: 0.5, height: 0.5, transformOrigine : 'center'},
-	// soleil:{width: 1, height: 1, transformOrigine : 'center'},
-	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3),transformOrigine : 'top left'},
-	// herbe:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// fleur{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// vache:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// bouse:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// ours:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// abeille:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// lait:{width: 0.5, height: 0.5, transformOrigine : 'center'},//provisoire
-	// miel:{width: 0.5, height: 0.5, transformOrigine : 'center'}//provisoire
+	ciel: {width: innerWidth, height: innerHeight * 0.3},
+	soleil:{width: 0.5, height: 0.5},
+	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
+	herbe:{width: 0.5, height: 0.5}//,
+	// fleur{width: 0.5, height: 0.5},//provisoire
+	// vache:{width: 0.5, height: 0.5},//provisoire
+	// bouse:{width: 0.5, height: 0.5},//provisoire
+	// ours:{width: 0.5, height: 0.5},//provisoire
+	// abeille:{width: 0.5, height: 0.5},//provisoire
+	// lait:{width: 0.5, height: 0.5},//provisoire
+	// miel:{width: 0.5, height: 0.5}//provisoire
 };
 
 
@@ -60,12 +59,11 @@ class Camera extends SCCube{
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){
 			let elementDessin = document.getElementById(info.id);
-			let positionSurEcran = this.traduitPositionPourEcran(info.x, info.y);
+			let positionSurEcran = this.traduitPositionPourEcran(info.repere,info.x, info.y, info.z);
 			//Si pas encore dessiné
 			if(!elementDessin) {
+				elementDessin = SVG.innerSVG(this.svgElement, info.dessin);
 				if(info.repere == 'astral'){ //info.x et info.y vont de 0 à 1
-					elementDessin = SVG.innerSVG(this.svgElement, info.dessin);
-					
 					//coloriage
 					if(info.coloriage.listeStop){//recherche de gradients
 						elementDessin.setAttribute('fill','url(#'+info.coloriage.id +')');
@@ -74,6 +72,9 @@ class Camera extends SCCube{
 					}else{
 						elementDessin.setAttribute('fill',info.coloriage.fill);
 					}
+				}
+				else if(info.repere == 'terrestre'){
+				
 				}
 			}
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
@@ -106,10 +107,15 @@ class Camera extends SCCube{
 		}
 	}
 	
-	traduitPositionPourEcran(x, y){
-		const xEcran = x * innerWidth;
-		const yEcran = y * scaleObjetsDeLaScene.ciel.height;
-		return {x: xEcran, y: yEcran};
+	traduitPositionPourEcran(repere, x, y, z){
+		if(repere=="astral"){
+			const xEcran = x * innerWidth;
+			const yEcran = y * scaleObjetsDeLaScene.ciel.height;
+			return {x: xEcran, y: yEcran};
+		}
+		else if(repere=="terrestre"){
+			const xEcran = 'A finir';//A FINIR
+		}
 	}
 	
 }

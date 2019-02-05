@@ -17,6 +17,9 @@
 		Dans ce système si le X et Y reste le même et que le Z augmente,
 		on se retrouve plus bas sur l'écran :
 			Ce qui est plus près de nous est plus bas sur l'écran.
+		xTerrestre va de -- à ++
+		yTerrestre va de 
+		zTerrestre va de 0 (observateur hors écran) à 1(écran) et ++ (jusqu'à l'horizon)
 
 	- Système PIXEL (de l'écran) de cordonnées.
 	
