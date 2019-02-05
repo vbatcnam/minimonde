@@ -1,31 +1,33 @@
 'use strict';
 
 class Vegetal extends SCCube{
-	constructor(espece, num){
+	constructor(espece, num, x, z){
 		super();
 		this.espece = espece; // herbe, fleur, arbre...
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
 		this.taille = 1; //bébé
-		this.x = 0; 
-		this.y = 0; 
-		this.fabriqueIllustration();
+		this.xTerrestre = x; 
+		this.yTerrestre = 0; // sur le sol
+		this.zTerrestre = z; 
 		console.log("Je suis un végétal " + this.espece);
 	}
 
-	$on_dessineToiEnLayer1(){
-		let prairie = document.getElementById("champCamera");
-		// let herbe = 
-		// if(!zoneVegetal){
-			// zoneVegetal.data = "image/" + this.espece + ".svg";
-			// zoneVegetal.style.position = "absolute";
-			// zoneVegetal.style.left = this.x + 'px';
-			// zoneVegetal.style.top = this.y + 'px';
-			// prairie.appendChild(zoneVegetal);
-		// }
+	/** "repere" sert à savoir comment sera transformé le faux 3D en 2D 
+			"ecran" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
+			"reel" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
+		*/
+	$publicVar_monApparence(){
+		return {//les infos envoyées
+			repere:'terrestre',
+			id:this.id,
+			x:this.xTerrestre,
+			y:this.yTerrestre,
+			z:this.zTerrestre,
+			dessin:this.illustration,
+		}
 	}
 	
-	$on_dessineToiEn3D(){}
 	
 	grandi(){
 		if(this.taille < 5)

@@ -27,8 +27,8 @@ class Soleil extends SCCube{
 	}
 	
 	/** "repere" sert à savoir comment sera transformé le faux 3D en 2D 
-			"ecran" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
-			"reel" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
+			"astral" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
+			"terrestre" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
 		*/
 	$publicVar_monApparence(){
 		return {//les infos envoyées
