@@ -75,7 +75,7 @@ class Camera extends SCCube{
 				}
 				else if(info.repere == 'terrestre'){
 					/*
-						Une vitre infinie se trouve en z=1
+						Une vitre infinie se trouve en z=1 (entre la caméra et le paysage)
 						On va calculer sur cette vitre où l'objet est vu.
 						les coordonnées seront xVitre et yVitre
 					*/

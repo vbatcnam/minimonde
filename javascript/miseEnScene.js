@@ -5,7 +5,6 @@
 	
 	Les systèmes de coordonnées de MiniMonde
 	========================================
-
 	- Système ASTRAL de cordonnées :
 		Dans ce système si le X et Y reste le même et que le Z augmente, 
 		on se retrouvera au même endroit sur l'écran :
@@ -18,16 +17,16 @@
 
 	- Système TERRESTRE de cordonnées :
 		xTerrestre va de 
-			-- (à gauche de l'observateur)
+			-- (à gauche de l'observateur caméra)
 			0 (au niveau de l'observateur) 
 			++ (à droite de l'observateur) 
 		yTerrestre va de 
 			0 (au sol)
-			1 (yeux de l'observateur) 
+			1 (yeux de l'observateur caméra) 
 			++ (au dessus des yeux de l'observateur)
 		zTerrestre va de 
-			0 (observateur hors écran) 
-			1 (écran) 
+			0 (observateur derrière la vitre infinie) 
+			1 (la vitre infinie) 
 			++ (jusqu'à l'horizon)
 
 	- Système PIXEL (de l'écran) de cordonnées.
