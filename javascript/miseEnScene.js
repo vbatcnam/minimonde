@@ -12,14 +12,23 @@
 			un objet cache un autre.
 		xAstral va de 0 à 1 de gauche à droite
 		yAstral va de 0 à 2 de haut en bas
+		zAstral va de 
+			0 (la prairie)
+			++ (derrière la prairie)
 
 	- Système TERRESTRE de cordonnées :
-		Dans ce système si le X et Y reste le même et que le Z augmente,
-		on se retrouve plus bas sur l'écran :
-			Ce qui est plus près de nous est plus bas sur l'écran.
-		xTerrestre va de -- à ++
+		xTerrestre va de 
+			-- (à gauche de l'observateur)
+			0 (au niveau de l'observateur) 
+			++ (à droite de l'observateur) 
 		yTerrestre va de 
-		zTerrestre va de 0 (observateur hors écran) à 1(écran) et ++ (jusqu'à l'horizon)
+			0 (au sol)
+			1 (yeux de l'observateur) 
+			++ (au dessus des yeux de l'observateur)
+		zTerrestre va de 
+			0 (observateur hors écran) 
+			1 (écran) 
+			++ (jusqu'à l'horizon)
 
 	- Système PIXEL (de l'écran) de cordonnées.
 	
