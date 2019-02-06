@@ -59,7 +59,7 @@ class Camera extends SCCube{
 	$on_monApparence_draw(array_infosRecues){
 		for( let info of array_infosRecues){
 			let elementDessin = document.getElementById(info.id);
-			let positionSurEcran = this.traduitPositionPourEcran(info.repere,info.x, info.y, info.z);
+			const positionSurEcran = this.traduitPositionPourEcran(info.repere,info.x, info.y, info.z);
 			//Si pas encore dessiné
 			if(!elementDessin) {
 				elementDessin = SVG.innerSVG(this.svgElement, info.dessin);
@@ -74,7 +74,26 @@ class Camera extends SCCube{
 					}
 				}
 				else if(info.repere == 'terrestre'){
-				
+					/*
+						Une vitre infinie se trouve en z=1
+						On va calculer sur cette vitre où l'objet est vu.
+						les coordonnées seront xVitre et yVitre
+					*/
+					const xVitre = info.x/info.z;
+					const yVitre = (info.y-1)/info.z;
+					
+					//On met tout ça en coordonnée écran
+					/*
+						On doit délimiter une portion de la vitre infinie en haut et en bas en fonction de la hauteur de l'écran
+						Le y=1 de la vitre = 0.7 de hauteur de l'écran (horizon)
+						Il reste 0.3 de hauteur de l'écran
+							On coupe la vitre en bas en y=O 
+							On coupe la vitre en haut en y = 10/7.
+						Il faudra adapter cette portion de vitre à notre écran.
+						Il faudra faire correspondre la hauteur du viewport à 10/7
+						
+						On doit délimiter la vitre sur les côtés en fonction de la largeur de l'écran.
+					*/
 				}
 			}
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
