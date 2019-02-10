@@ -18,7 +18,7 @@ var scaleObjetsDeLaScene = {
 	ciel: {width: innerWidth, height: innerHeight * 0.3},
 	soleil:{width: 0.5, height: 0.5},
 	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
-	herbe:{width: 0.5, height: 0.5}//,
+	herbe:{width: 2, height: 2}//,
 	// fleur{width: 0.5, height: 0.5},//provisoire
 	// vache:{width: 0.5, height: 0.5},//provisoire
 	// bouse:{width: 0.5, height: 0.5},//provisoire
@@ -74,8 +74,6 @@ class Camera extends SCCube{
 						elementDessin.setAttribute('fill',info.coloriage.fill);
 					}
 				}
-				else if(info.repere == 'terrestre'){
-				}
 			}
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
 			if(elementDessin){
@@ -83,6 +81,9 @@ class Camera extends SCCube{
 				let scale = (scaleObjetsDeLaScene[elementDessin.id]) 
 					? scaleObjetsDeLaScene[elementDessin.id].width 
 					: scaleObjetsDeLaScene[elementDessin.getAttribute('class')].width ;
+				if(info.repere == 'terrestre'){
+					scale = scale / info.z;
+				}
 				//On le positionne sur l'écran
 				elementDessin.setAttribute(
 					'transform', 
@@ -123,7 +124,6 @@ class Camera extends SCCube{
 			//Pour info : zVitre vaut 1
 			const xVitre = x/z;
 			const yVitre = (y-1)/z+1 ;
-			console.log(yVitre);
 			
 			//On met tout ça en coordonnée écran
 			/*

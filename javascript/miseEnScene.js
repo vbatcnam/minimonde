@@ -37,7 +37,11 @@ monde.addActor(new Camera());
 monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
-monde.addActor(new Herbe(1,0,3));
+for(var i=1; i<=10; i++){
+	for(var j=0; j<=10; j++){
+		monde.addActor(new Herbe(i+','+j,j,i+1));
+	}
+}
 
 
 /**			Brouillon
