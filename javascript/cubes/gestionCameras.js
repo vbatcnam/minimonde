@@ -56,8 +56,16 @@ class Camera extends SCCube{
 		//A implementer
 	}
 	
+	
 	//réactions
 	$on_monApparence_draw(array_infosRecues){
+		//trier le tableau par z
+		array_infosRecues.sort(function(a,b){
+			if(a.repere < b.repere) return -1;
+			else if(a.repere > b.repere) return 1;
+			else return b.z - a.z;
+		});
+		
 		for( let info of array_infosRecues){
 			let elementDessin = document.getElementById(info.id);
 			const positionSurEcran = this.traduitPositionPourEcran(info.repere,info.x, info.y, info.z);
