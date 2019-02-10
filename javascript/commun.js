@@ -9,12 +9,12 @@ function getRandomInt(max) {
 //Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
 //-------------------------------------
 var viewPort = {'w':innerWidth, 'h':innerHeight};
-console.log("Taille du iewPort");
+console.log("Taille du viewPort");
 console.log("largeur : " + viewPort.w + " px, hauteur : " + viewPort.h);
 console.log("========================================================");
 
 // Afficher les infos de l'objet Windows
-console.log("largeur disponible de l'ecran ");
+console.log("Taille disponible de l'ecran ");
 console.log("largeur : " + screen.availWidth + " px, hauteur : " + screen.availHeight);
 console.log("========================================================");
 

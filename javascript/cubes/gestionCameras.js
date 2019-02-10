@@ -38,7 +38,8 @@ class Camera extends SCCube{
 			, innerHeight);
 		//recevra tous les defs
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
-		
+		this.largeur = innerWidth;
+		this.hauteur = innerHeight;
 		/**
 		"infoJeu" recevra des messages au joueur 
 			vous avez gagné, 
@@ -79,7 +80,9 @@ class Camera extends SCCube{
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
 			if(elementDessin){
 				//On redimensionne le dessin
-				let scale = scaleObjetsDeLaScene[elementDessin.id].width;
+				let scale = (scaleObjetsDeLaScene[elementDessin.id]) 
+					? scaleObjetsDeLaScene[elementDessin.id].width 
+					: scaleObjetsDeLaScene[elementDessin.getAttribute('class')].width ;
 				//On le positionne sur l'écran
 				elementDessin.setAttribute(
 					'transform', 
@@ -107,9 +110,10 @@ class Camera extends SCCube{
 	}
 	
 	traduitPositionPourEcran(repere, x, y, z){
+		let xEcran, yEcran;
 		if(repere=="astral"){
-			const xEcran = x * innerWidth;
-			const yEcran = y * scaleObjetsDeLaScene.ciel.height;
+			xEcran = x * this.largeur;
+			yEcran = y * scaleObjetsDeLaScene.ciel.height;
 		} else if(repere=="terrestre"){
 			/*
 				Une vitre infinie se trouve en z=1 (entre la caméra et le paysage)
@@ -117,8 +121,9 @@ class Camera extends SCCube{
 				les coordonnées seront xVitre et yVitre
 			*/
 			//Pour info : zVitre vaut 1
-			const xVitre = info.x/info.z;
-			const yVitre = (info.y-1)/info.z;
+			const xVitre = x/z;
+			const yVitre = (y-1)/z+1 ;
+			console.log(yVitre);
 			
 			//On met tout ça en coordonnée écran
 			/*
@@ -133,7 +138,7 @@ class Camera extends SCCube{
 			const hauteurPortionVitre = 10/7;
 			
 			//On doit délimiter la vitre sur les côtés en fonction de la largeur de l'écran.
-			const largeurPortionVitre = innerWidth * hauteurVitre / innerHeight;
+			const largeurPortionVitre = this.largeur * hauteurPortionVitre / this.hauteur;
 			/*
 				On coupe la vitre :
 					à gauche en 
@@ -141,8 +146,8 @@ class Camera extends SCCube{
 					à droite
 						x = 1/2*largeurPortionVitre
 			*/
-			const xEcran = (xVitre/largeurPortionVitre + 0.5)*innerWidth;
-			const yEcran = (1-0.7*yVitre)*innerHeight;
+			xEcran = (xVitre/largeurPortionVitre + 0.5)*this.largeur;
+			yEcran = (1-0.7*yVitre)*this.hauteur;
 		}
 		return {x: xEcran, y: yEcran};
 	}

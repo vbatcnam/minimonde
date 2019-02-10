@@ -37,7 +37,7 @@ monde.addActor(new Camera());
 monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
-monde.addActor(new Herbe('herbe', 1));
+monde.addActor(new Herbe(1,0,3));
 
 
 /**			Brouillon
