@@ -18,6 +18,7 @@ class Horloge extends SCCube{
 	getTimeMinute(){
 		const timeIRL_MS = monde.delay * monde.instantNumber; //nbre de MS depuis que le jeu est lancé.
 		const timeJeu_Mn = timeIRL_MS/1000;
+		// const timeJeu_Mn = timeIRL_MS/100;
 		return timeJeu_Mn; // retourne parfois chiffre à virgule
 	}
 	
