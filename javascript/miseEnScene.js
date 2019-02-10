@@ -38,8 +38,8 @@ monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
 for(var i=1; i<=10; i++){
-	for(var j=0; j<=10; j++){
-		monde.addActor(new Herbe(i+','+j,j,i+1));
+	for(var j=-10; j<=10; j++){
+		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
 
