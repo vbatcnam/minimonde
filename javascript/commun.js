@@ -30,6 +30,9 @@ console.log("========================================================");
  
 //les dessins svg
 //-------------------------------------
+/**
+	Dessiner les dessins dans inkscape en évitant de laisser les translate qu'il fabrique par défaut pour ne pas à avoir à utiliser les fonctions ci-dessous.
+*/
 
 //mise à l’échelle pour faciliter les translate
 /**
@@ -55,6 +58,10 @@ function array_getEchelle(elt){
 	};
 }
 
+/**
+	Fonctions non encore utilisées : Vérifier avec Claude si utiles.
+*/
+
 //calculer position des objets sur l'écran
 function calculePosition(zone){
 	// let x = Math.random();
@@ -78,6 +85,9 @@ function setPosition(objet, x,y){
 	objet.y = y;
 }
 
+/**
+	A retirer quand plus utiliser (code retravaillé et nettoyé)
+*/
 //les événements des cubes
 //-------------------------------------
 var drawMe = SC.evt("dessine-moi");//globale car diffusion broadcast (parle à tout le monde) Tous les objets disent cette phrase

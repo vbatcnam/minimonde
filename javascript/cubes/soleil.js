@@ -63,6 +63,14 @@ class Soleil extends SCCube{
 		return portionTour * 2 * Math.PI; //retourne l'angle en radiant
 	}
 	
+	//devient rouge au coucher et jaune au lever
+	$actionForever_changeDeCouleur(){
+	
+	}
+
+/**
+	Est-ce encore utilisé ?.
+*/
 	getEltSVG(){
 		let eltObject = document.getElementById(this.id);
 		console.log("eltObject dans la fonction getEltSVG :");
@@ -72,10 +80,4 @@ class Soleil extends SCCube{
 		console.log(eltSVG);
 		return eltSVG;
 	}
-	
-	getEchelle(elt){
-		return array_getEchelle(elt);
-	}
 }
-
-
