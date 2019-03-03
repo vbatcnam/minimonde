@@ -1,5 +1,0 @@
-l'idéale serait de pouvoir générer une page svg avec les herbes, les fleurs... avec plusieurs calques et d'animer le tout 
-
-faire une simulation de perspective. le ciel reste en haut de l’écran et les objets du sol diminuent et grossissent selon leur éloignement.
-
-[jfs] : c'est parfaitement possible : SugarCubesJS ne s'occupe pas directement de l'affichage et est donc de ce point de vue totalement ouvert.
