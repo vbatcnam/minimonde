@@ -1,6 +1,8 @@
 /**
 	vache et taureaux
 	gestation 280 jours
+	
+	En mode broutage dessin broute. Qunand elle a plus faim elle releve la tête
 */
 class Vache extends Animal{
 	constructor(num, x, y, z){
@@ -9,12 +11,13 @@ class Vache extends Animal{
 		this.taille = 85; // cm (adulte 130 cm )
 		this.lait = 0;
 		this.bouse = 0;
-		this.illustration =  vacheProfil;
+		this.illustration =  `	<g id="vache"> ${vacheCorpProfil + teteBroute} </g>`;
 	}
 
-	mange(calorie){
-		this.faim -= calorie;
-		this.age += 1;
+	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
+	$actionForever_broute(){
+		this.faim -= 1;
+		this.taille += 1;
 		this.bouse += 1;
 		this.lait += 1;
 	}
