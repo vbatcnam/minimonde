@@ -45,4 +45,4 @@ for(var i=1; i<=10; i++){
 }
 monde.addActor(new Vache(1, 0,0,5));
 monde.addActor(new Vache(2, 4,0,10));
-monde.addActor(new Vache(3, -4,0,2));
+monde.addActor(new Vache(3, -2,0,2));
