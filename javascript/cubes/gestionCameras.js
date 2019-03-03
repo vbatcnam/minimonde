@@ -18,9 +18,9 @@ var scaleObjetsDeLaScene = {
 	ciel: {width: innerWidth, height: innerHeight * 0.3},
 	soleil:{width: 0.5, height: 0.5},
 	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
-	herbe:{width: 2, height: 2}//,
+	herbe:{width: 2, height: 2},
 	// fleur{width: 0.5, height: 0.5},//provisoire
-	// vache:{width: 0.5, height: 0.5},//provisoire
+	vache:{width: 1.5, height: 1.5},//provisoire
 	// bouse:{width: 0.5, height: 0.5},//provisoire
 	// ours:{width: 0.5, height: 0.5},//provisoire
 	// abeille:{width: 0.5, height: 0.5},//provisoire

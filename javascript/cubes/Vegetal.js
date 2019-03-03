@@ -10,7 +10,6 @@ class Vegetal extends SCCube{
 		this.xTerrestre = x; 
 		this.yTerrestre = 0; // sur le sol
 		this.zTerrestre = z; 
-		console.log("Je suis un végétal " + this.espece);
 	}
 
 	/** "repere" sert à savoir comment sera transformé le faux 3D en 2D 

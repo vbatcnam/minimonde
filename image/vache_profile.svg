@@ -13,7 +13,7 @@
    height="624.02386"
    id="svg10994"
    version="1.1"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="vache_profile.svg">
   <title
      id="title1139">vache</title>
@@ -41,13 +41,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="491.63088"
-     inkscape:cy="400.85524"
+     inkscape:cx="523.91138"
+     inkscape:cy="343.71238"
      inkscape:document-units="px"
      inkscape:current-layer="layer9"
      showgrid="true"
      inkscape:window-width="1366"
-     inkscape:window-height="739"
+     inkscape:window-height="689"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -175,7 +175,8 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="pattesGauche"
-     sodipodi:insensitive="true">
+     sodipodi:insensitive="true"
+     style="display:inline">
     <g
        transform="translate(-472.84239,-367.74508)"
        style="display:inline"
