@@ -6,6 +6,8 @@ function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
 }
 
+/**
+
 //Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
 //-------------------------------------
 var viewPort = {'w':innerWidth, 'h':innerHeight};
@@ -27,7 +29,8 @@ console.log("========================================================");
 
 console.log("navigateur : " + navigator.userAgent);
 console.log("========================================================");
- 
+*/
+
 //les dessins svg
 //-------------------------------------
 /**

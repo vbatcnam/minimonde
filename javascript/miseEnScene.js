@@ -38,11 +38,16 @@ monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
 //les herbes
-for(var i=1; i<=10; i++){
-	for(var j=-10; j<=10; j++){
+// for(var i=1; i<=10; i++){
+	// for(var j=-10; j<=10; j++){
+		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
+	// }
+// }
+for(var i=1; i<=2; i++){
+	for(var j=-2; j<=2; j++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
-monde.addActor(new Vache(1, 0,0,5));
-monde.addActor(new Vache(2, 4,0,10));
-monde.addActor(new Vache(3, -2,0,2));
+monde.addActor(new Vache(1, 20,0,5));
+// monde.addActor(new Vache(2, 4,0,10));
+// monde.addActor(new Vache(3, -2,0,2));

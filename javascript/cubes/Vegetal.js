@@ -20,6 +20,7 @@ class Vegetal extends SCCube{
 		return {//les infos envoyées
 			repere:'terrestre',
 			id:this.id,
+			espece:this.espece,
 			x:this.xTerrestre,
 			y:this.yTerrestre,
 			z:this.zTerrestre,

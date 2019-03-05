@@ -25,9 +25,6 @@ class Animal extends SCCube{
 		}
 	}
 	
-	//anime l'animal, augmente la fatigue et la faim, diminue le poids
-	$actionForever_bouge(){}
-
 	//diminue la fatigue, augmente la faim
 	$actionForever_dort(){}
 	//augmente la taille, l'age
