@@ -93,8 +93,10 @@ class Camera extends SCCube{
 					scale = scale / info.z;
 				}
 				//On le positionne sur l'écran
-				if(info.dessinChange){
-					
+				if(info.changement){
+					const oldElt = elementDessin.getElementsByClassName(info.changement.oldClass)[0];
+					const nouveau = info.changement;
+					const replacedNode = elementDessin.replaceChild(newChild, old);
 				}
 				elementDessin.setAttribute(
 					'transform', 

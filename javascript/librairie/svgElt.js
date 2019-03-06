@@ -18,6 +18,11 @@ var SVG ={
 		return elt;
 	},
 	
+	replace(elt_parent, s_nouv, elt_ancien){
+		const newChild = 
+		const replacedNode = elt_parent.replaceChild(newChild, elt_ancien);
+	}
+	
 	xmlns: 'http://www.w3.org/2000/svg',
 	
 	vectorElement: function(elt){

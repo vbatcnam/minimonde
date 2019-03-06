@@ -40,12 +40,10 @@ class Vache extends Animal{
 		this.nbreDePas = Math.round(distance/this.pas);
 
 	}
-	setIllustration(eltAncien, eltNouveau){
-		
-	}
+	
 	//anime l'animal, augmente la fatigue et la faim, diminue le poids
 	$actionForever_bouge(){
-		this.dessinChange = false;
+		this.changement = undefined;
 		//avance d'un pas en direction de l'herbe à manger
 		if(this.nbreDePas > 0){
 			this.xTerrestre += (this.destination.x - this.xTerrestre)/this.nbreDePas;
@@ -59,7 +57,7 @@ class Vache extends Animal{
 	broute(){
 		//si vache de profil
 		this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
-		this.dessinChange = true;
+		this.changement = { oldClass:"teteProfil" , nouveau:teteBroute};
 		// var animer = document.getElementById("boucheBroute");
 		
 		//si vache de face
