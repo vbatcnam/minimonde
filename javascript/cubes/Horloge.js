@@ -1,12 +1,12 @@
 'use strict';
 
 //On démarre le monde
-// var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. 
+var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. 
 
 /*** POUR TEST */
-var monde = SC.machine();
-setTimeout(monde.react.bind(monde),25);
-setTimeout(monde.react.bind(monde),50);
+// var monde = SC.machine();
+// setTimeout(monde.react.bind(monde),25);
+// setTimeout(monde.react.bind(monde),50);
 
 
 

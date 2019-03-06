@@ -11,10 +11,12 @@ class Vache extends Animal{
 		this.taille = 85; // cm (adulte 130 cm )
 		this.lait = 0;
 		this.bouse = 0;
+		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
+		this.nbreDePas = 0;
 		this.destination = {};
 		this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
-		 // this.illustration =  `	<g id="vache"> ${vacheFace} </g>`;
-		// this.illustration =  `	<g id="vache"> ${vacheDos} </g>`;
+		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
+		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
 	}
 
 	//Écoute les herbes autour d'elle et trouve la plus proche
@@ -29,12 +31,21 @@ class Vache extends Animal{
 				}
 			}
 		}
+		this.setNbreDePas();
 	}
 	
+	setNbreDePas(){
+		let distance = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, this.destination.x, this.destination.z);
+		this.nbreDePas = Math.round(distance/this.pas);
+
+	}
 	//anime l'animal, augmente la fatigue et la faim, diminue le poids
 	$actionForever_bouge(){
-		this.xTerrestre = this.destination.x;
-		this.zTerrestre = this.destination.z;
+		//avance d'un pas en direction de l'herbe à manger
+		if(this.nbreDePas > 0){
+			this.xTerrestre += (this.destination.x - this.xTerrestre)/this.nbreDePas;
+			this.zTerrestre += (this.destination.z- this.zTerrestre)/this.nbreDePas;
+		}
 	}
 
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
@@ -43,11 +54,11 @@ class Vache extends Animal{
 		
 		
 		//si vache de profil
-		// this.illustration = `<g id="vache"> ${vacheCorpProfil + teteBroute} </g>`;
+		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
 		// var animer = document.getElementById("boucheBroute");
 		
 		//si vache de face
-		//this.illustration =  `	<g id="vache"> ${vacheFace} </g>`;
+		//this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		//var translater = document.getElementById("tete");
 		
 		// this.faim -= 1;
@@ -58,7 +69,7 @@ class Vache extends Animal{
 
 	//anime la mâchoire, son meuh
 	// $actionForever_meugle(){
-		// this.illustration = `<g id="vache"> ${vacheCorpProfil + teteMeuh} </g>`;
+		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteMeuh} </g>`;
 		// var animer = document.getElementById("boucheMeuh");
 	// }
 
