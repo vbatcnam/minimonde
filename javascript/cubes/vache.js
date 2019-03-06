@@ -14,19 +14,20 @@ class Vache extends Animal{
 		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
 		this.nbreDePas = 0;
 		this.destination = {};
-		this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
+		this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
 		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
 	}
 
+	//objet{idTete}
 	//Écoute les herbes autour d'elle et trouve la plus proche
 	$on_monApparence(pArray_apparences){
-		let distance = 0;
+		let distanceMinimaleActuelle = Infinity;
 		for(let apparence of pArray_apparences){
 			if(apparence.espece == "herbe"){
-				let temp = distance;
-				distance = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
-				if(distance < temp){
+				let distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
+				if(distanceCourante < distanceMinimaleActuelle){
+					distanceMinimaleActuelle = distanceCourante;
 					this.destination.x = apparence.x; this.destination.z = apparence.z;
 				}
 			}
@@ -39,32 +40,36 @@ class Vache extends Animal{
 		this.nbreDePas = Math.round(distance/this.pas);
 
 	}
+	setIllustration(eltAncien, eltNouveau){
+		
+	}
 	//anime l'animal, augmente la fatigue et la faim, diminue le poids
 	$actionForever_bouge(){
+		this.dessinChange = false;
 		//avance d'un pas en direction de l'herbe à manger
 		if(this.nbreDePas > 0){
 			this.xTerrestre += (this.destination.x - this.xTerrestre)/this.nbreDePas;
 			this.zTerrestre += (this.destination.z- this.zTerrestre)/this.nbreDePas;
+		}else{
+			this.broute();
 		}
 	}
 
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
-	$actionForever_broute(){
-		//recherche l'herbe à manger la plus proche
-		
-		
+	broute(){
 		//si vache de profil
-		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
+		this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
+		this.dessinChange = true;
 		// var animer = document.getElementById("boucheBroute");
 		
 		//si vache de face
 		//this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		//var translater = document.getElementById("tete");
 		
-		// this.faim -= 1;
-		// this.taille += 1;
-		// this.bouse += 1;
-		// this.lait += 1;
+		this.faim -= 1;
+		this.taille += 1;
+		this.bouse += 1;
+		this.lait += 1;
 }
 
 	//anime la mâchoire, son meuh

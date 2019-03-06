@@ -43,11 +43,14 @@ monde.addActor(new Soleil());
 		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	// }
 // }
+
+/*** POUR LE TEST*/
 for(var i=1; i<=2; i++){
 	for(var j=-2; j<=2; j++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
-monde.addActor(new Vache(1, 20,0,5));
-// monde.addActor(new Vache(2, 4,0,10));
+
+monde.addActor(new Vache(1, 6,0,5));
+monde.addActor(new Vache(2, 4,0,10));
 // monde.addActor(new Vache(3, -2,0,2));

@@ -22,6 +22,7 @@ class Animal extends SCCube{
 			y:this.yTerrestre,
 			z:this.zTerrestre,
 			dessin:this.illustration,
+			dessinChange : this.dessinChange
 		}
 	}
 	

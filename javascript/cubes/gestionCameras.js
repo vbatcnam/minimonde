@@ -93,6 +93,9 @@ class Camera extends SCCube{
 					scale = scale / info.z;
 				}
 				//On le positionne sur l'écran
+				if(info.dessinChange){
+					
+				}
 				elementDessin.setAttribute(
 					'transform', 
 					`translate(${positionSurEcran.x},${positionSurEcran.y})` +
