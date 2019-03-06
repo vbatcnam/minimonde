@@ -15,7 +15,6 @@ class Animal extends SCCube{
 	
 	// les animaux volants se déplacent dans la zone de jeu, les non volants dans la zone prairie
 	$publicVar_monApparence(){
-		console.log("x de la vache : " + this.xTerrestre )
 		return {//les infos envoyées
 			repere:'terrestre',
 			id:this.id,

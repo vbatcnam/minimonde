@@ -22,27 +22,19 @@ class Vache extends Animal{
 		let distance = 0;
 		for(let apparence of pArray_apparences){
 			if(apparence.espece == "herbe"){
-				console.log('position de la vache : ' + this.xTerrestre);
-				console.log('position de herbe : ' + apparence.x);
 				let temp = distance;
-				console.log('tempo : ' + temp);
-				//distance = Math.abs(this.xTerrestre - apparence.x);
 				distance = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
-				console.log('distance : ' + distance);
 				if(distance < temp){
 					this.destination.x = apparence.x; this.destination.z = apparence.z;
-					console.log("nouvelle destination" + this.destination.x);
 				}
 			}
 		}
-		console.log("Deplacer la vache en" + this.destination.x);
 	}
 	
 	//anime l'animal, augmente la fatigue et la faim, diminue le poids
 	$actionForever_bouge(){
 		this.xTerrestre = this.destination.x;
 		this.zTerrestre = this.destination.z;
-		console.log("la vache est en" + this.xTerrestre);
 	}
 
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
