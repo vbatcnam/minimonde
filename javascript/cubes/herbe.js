@@ -8,10 +8,17 @@
 		....
 	IL faudra positionner l'herbe de manière aléatoire à un endroit libre de la prairie
 */
-class Herbe extends Vegetal{
+class Herbe extends SCCube{
 	constructor(num, x, z){
-		super("herbe", num, x, z);
+		super();
+		this.espece = "herbe";
+		this.num = num;
+		this.id = this.espece + "_" + this.num;
+		this.xTerrestre = x; 
+		this.yTerrestre = 0; // sur le sol
+		this.zTerrestre = z; 
 		this.taille = 3; //bébé 1 adulte = 3
+		this.mangeable = true;
 		this.illustration =   `
 			<g  id="${this.id}" class="herbe">
 				<path d="m-22.449-2.6183c6.0894-1.7358 18.029 2.1712 20.596 12.48 1.0905-19.595 8.9621-25.438 16.049-29.862-9.5423 8.4806-14.435 15.466-13.13 32.733 4.3806-9.7003 13.16-13.146 21.381-8.3818-12.189-3.6791-19.24 8.1239-20.708 15.649h-3.4832c-0.7684-6.8486-1.4953-19.734-20.703-22.619z" style="fill:#003a00;stroke-width:1.7496"/>
@@ -19,47 +26,34 @@ class Herbe extends Vegetal{
 			</g>`
 	}
 
-	
-	
-	pousse(){
-		this.taille += 1; 
+	/** "repere" sert à savoir comment sera transformé le faux 3D en 2D 
+			"ecran" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
+			"reel" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
+		*/
+	$publicVar_monApparence(){
+		return {//les infos envoyées
+			repere:'terrestre',
+			id:this.id,
+			espece:this.espece,
+			x:this.xTerrestre,
+			y:this.yTerrestre,
+			z:this.zTerrestre,
+			dessin:this.illustration,
+			mangeable: this.mangeable,
+		}
 	}
 	
+	pousse(){
+		if(this.taille < 3)
+			this.taille += 1;
+	}
+	
+	estMangeable(){
+		if(this.taille==3)
+			this.mangeable = true;
+		else
+			this.mangeable = false;
+	}
 }
 
-//test
-//==================
-// var n = 1;
-// for(var c = 0; c < nbreColonnes; c++) {
-	// for(var r = 0; r < nbreLigne; r++) {
-		// if(tab2d_prairie[c][r] == "herbe") {
-			// let herbe = new Herbe(n,c,r);
-			// herbe.draw(herbe.x,herbe.y)
-			// tab2d_prairie[c][r] = herbe;
-			// n++;
-		// }
-	// }
-// }
-// for(var c = 0; c < nbreColonnes; c++) {
-	// for(var r = 0; r < nbreLigne; r++) {
-		// console.log(tab2d_prairie[c][r]);
-		// console.log(tab2d_prairie[c][r].x);
-		// console.log(tab2d_prairie[c][r].y);
-	// }
-// }
-
-//================================================================
-//							le cube 
-//================================================================
-
-//Événements de l'herbe
-//----------------------
-var eatMe = SC.evt("je suis commestible");
-
-//le comportement du cube qui a l'herbe
-var progHerbe = SC.par(
-SC.generate(eatMe, SC.my("me"), SC.forever)//La vache vérifie si elle est adulte avant de la manger
-//, SC.actionOn(jeMange, SC.my("eaten"), undefined, SC.forever)
-, SC.generate(drawMe, SC.my("drawer"), SC.forever)//se dessine
-);
 
