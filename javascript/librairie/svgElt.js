@@ -2,34 +2,48 @@
 
 /** Librairie pour simplifier la génération des éléments SVG*/
 var SVG ={
+		xmlns: 'http://www.w3.org/2000/svg',
 
 	// comme innerHTML mais ajoute à la fin au lieu de tout effacer
 	innerSVG: function(elt_parent, string_dessin){
-		var arrayStringDessin = string_dessin.split(' ');
-		arrayStringDessin.splice(1, 0, 'xmlns="http://www.w3.org/2000/svg"');
+		let elt = this.createEltSVG(string_dessin);
+		elt_parent.appendChild(elt);
+		return elt; // pour pouvoir agir sur l’élément une fois placé.
+	},
+	
+	//crée un élément à partir d'un string
+	createEltSVG: function(string_dessin){
+		let arrayStringDessin = string_dessin.split(' ');
+		arrayStringDessin.splice(1, 0, `xmlns="${this.xmlns}"`);
 
-		var newStringDessin = arrayStringDessin.join(' ');
-		var dessinSvg = new DOMParser().parseFromString(
+		let newStringDessin = arrayStringDessin.join(' ');
+		let dessinSvg = new DOMParser().parseFromString(
 			newStringDessin,
 			'application/xml'
 		);
-		var elt = document.importNode(dessinSvg.documentElement, true);
-		elt_parent.appendChild(elt);
-		return elt;
+		return document.importNode(dessinSvg.documentElement, true);
 	},
 	
-	replace(elt_parent, s_nouv, elt_ancien){
-		const newChild = 
+	replace: function(elt_parent, s_nouv, elt_ancien){
+		const newChild = '';
 		const replacedNode = elt_parent.replaceChild(newChild, elt_ancien);
-	}
+	},
 	
-	xmlns: 'http://www.w3.org/2000/svg',
 	
 	vectorElement: function(elt){
 		return document.createElementNS(this.xmlns, elt);
 	},
 
 	/** les balises */
+	//g, defs...
+	balise: function(elt_parent, s_balise, id){
+			let balise = this.vectorElement(s_balise);
+			if(id)
+				balise.id = id;
+			elt_parent.appendChild(balise);
+			return balise;
+	},
+	//balise svg
 	svgElement: function(elt_parent, w, h, id ){
 		let svg = this.vectorElement('svg');
 		if(id)
@@ -51,14 +65,6 @@ var SVG ={
 		return tab_layers;
 	},
 
-	//g, defs...
-	balise: function(elt_parent, s_balise, id){
-			let balise = this.vectorElement(s_balise);
-			if(id)
-				balise.id = id;
-			elt_parent.appendChild(balise);
-			return balise;
-	},
 
 	/** les formes */
 	rect: function(elt_parent, x, y, w, h, fill, stroke){
@@ -89,7 +95,6 @@ var SVG ={
 		elt_def.appendChild(gradiant);
 		return gradiant;
 	},
-
 
 	stop: function(elt_gradiant, id, offset, style){
 		let stop = this.vectorElement('stop');
