@@ -4,22 +4,45 @@
 	
 	En mode broutage dessin broute. Qunand elle a plus faim elle releve la tête
 */
-class Vache extends Animal{
+class Vache extends SCCube{
 	constructor(num, x, y, z){
-		super('vache', num, 'F', x, y, z);
+		super();
+		this.espece = 'vache';
+		this.num = num;
+		this.id = this.espece + "_" + this.num;
+		this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
+		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
+		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
+		this.xTerrestre = x; 
+		this.yTerrestre = y;
+		this.zTerrestre = z; 
 		this.poids = 50000; //grammes (adulte F 500kg, M 900kg)
 		this.taille = 85; // cm (adulte 130 cm )
+		this.age = 0; 
+		this.faim = 0; //n'a pas faim (100 a très faim)
+		this.mange = false;
+		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
+		this.dort = false;
 		this.lait = 0;
 		this.bouse = 0;
 		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
 		this.nbreDePas = 0;
 		this.destination = {};
-		this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
-		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
-		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
 	}
 
-	//objet{idTete}
+	$publicVar_monApparence(){
+		return {//les infos envoyées
+			repere:'terrestre',
+			id:this.id,
+			x:this.xTerrestre,
+			y:this.yTerrestre,
+			z:this.zTerrestre,
+			dessin:this.illustration,
+			changement : this.changement,
+			mange: this.mange
+		}
+	}
+	
 	//Écoute les herbes autour d'elle et trouve la plus proche
 	$on_monApparence(pArray_apparences){
 		let distanceMinimaleActuelle = Infinity;
