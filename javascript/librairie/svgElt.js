@@ -6,13 +6,13 @@ var SVG ={
 
 	// comme innerHTML mais ajoute à la fin au lieu de tout effacer
 	innerSVG: function(elt_parent, string_dessin){
-		let elt = this.createEltSVG(string_dessin);
+		let elt = this.createSvgElt(string_dessin);
 		elt_parent.appendChild(elt);
 		return elt; // pour pouvoir agir sur l’élément une fois placé.
 	},
 	
 	//crée un élément à partir d'un string
-	createEltSVG: function(string_dessin){
+	createSvgElt: function(string_dessin){
 		let arrayStringDessin = string_dessin.split(' ');
 		arrayStringDessin.splice(1, 0, `xmlns="${this.xmlns}"`);
 
