@@ -6,7 +6,6 @@ class Vegetal extends SCCube{
 		this.espece = espece; // herbe, fleur, arbre...
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
-		this.taille = 1; //bébé 3 tailles
 		this.xTerrestre = x; 
 		this.yTerrestre = 0; // sur le sol
 		this.zTerrestre = z; 

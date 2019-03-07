@@ -10,7 +10,9 @@ class Animal extends SCCube{
 		this.sexe = sexe; 
 		this.age = 0; 
 		this.faim = 0; //n'a pas faim (100 a très faim)
+		this.mange = false;
 		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
+		this.dort = false;
 	}
 	
 	// les animaux volants se déplacent dans la zone de jeu, les non volants dans la zone prairie

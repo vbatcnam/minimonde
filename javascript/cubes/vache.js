@@ -49,12 +49,15 @@ class Vache extends Animal{
 			this.xTerrestre += (this.destination.x - this.xTerrestre)/this.nbreDePas;
 			this.zTerrestre += (this.destination.z- this.zTerrestre)/this.nbreDePas;
 		}else{
-			this.broute();
+			if(!this.mange){
+				this.broute();
+			}
 		}
 	}
 
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
 	broute(){
+		this.mange = true;
 		//si vache de profil
 		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
 		this.changement = { oldClass:"teteProfil" , nouveau:teteBroute};
@@ -63,7 +66,6 @@ class Vache extends Animal{
 		//si vache de face
 		//this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		//var translater = document.getElementById("tete");
-		
 		this.faim -= 1;
 		this.taille += 1;
 		this.bouse += 1;
