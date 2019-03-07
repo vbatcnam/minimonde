@@ -7,7 +7,7 @@
 var monde = SC.machine();
 var instant = 25
 //broute à instant * 22
-for(var i = 1; i<=100; i++)
+for(var i = 1; i<=200; i++)
 	setTimeout(monde.react.bind(monde),instant * i);
 
 
