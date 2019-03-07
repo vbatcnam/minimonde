@@ -10,6 +10,7 @@ class Vache extends SCCube{
 		this.espece = 'vache';
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
+		this.teteActuelle = 'teteProfil';
 		this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
 		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
@@ -20,7 +21,8 @@ class Vache extends SCCube{
 		this.taille = 85; // cm (adulte 130 cm )
 		this.age = 0; 
 		this.faim = 0; //n'a pas faim (100 a très faim)
-		this.mange = false;
+		this.eating = false;
+		this.nourritureEnCours = {};
 		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
 		this.dort = false;
 		this.lait = 0;
@@ -45,17 +47,27 @@ class Vache extends SCCube{
 	
 	//Écoute les herbes autour d'elle et trouve la plus proche
 	$on_monApparence(pArray_apparences){
+		//tete en position d'écoute
+//		console.log("J'écoute les herbes : " , this.teteActuelle);
+		if(!this.eating && this.teteActuelle != "teteProfil"){
+			consol("++++++++++++++++++++++++ ");
+			console.log("Je dois changer de tête ! ");
+			this.changement = {oldClass:this.teteActuelle , nouveau:teteProfil};
+			this.teteActuelle ='teteProfil';
+		}
 		let distanceMinimaleActuelle = Infinity;
 		for(let apparence of pArray_apparences){
-			if(apparence.espece == "herbe"){
+			if(apparence.espece == "herbe" && apparence.mangeable){
 				let distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
 				if(distanceCourante < distanceMinimaleActuelle){
 					distanceMinimaleActuelle = distanceCourante;
 					this.destination.x = apparence.x; this.destination.z = apparence.z;
+					this.nourritureEnCours = apparence;
 				}
 			}
 		}
 		this.setNbreDePas();
+		console.log("J'ai trouvé " + this.nourritureEnCours.id + " à manger : " , this.teteActuelle);
 	}
 	
 	setNbreDePas(){
@@ -65,25 +77,63 @@ class Vache extends SCCube{
 	}
 	
 	//anime l'animal, augmente la fatigue et la faim, diminue le poids
-	$actionForever_bouge(){
-		this.changement = undefined;
+	$actionForever_vie(){
+		//vérifie si la tête actuelle est celle par défaut (teteProfil)
+		console.log("Tête actuelle" , this.teteActuelle);
+		if(this.teteActuelle == "teteProfil"){
+			this.changement = undefined;
+		}else{
+			// this.changement = {oldClass:this.teteActuelle, nouveau:teteProfil};
+			// this.teteActuelle = "teteProfil";
+		}
 		//avance d'un pas en direction de l'herbe à manger
-		if(this.nbreDePas > 0){
+		if(this.nbreDePas > 0){ 
 			this.xTerrestre += (this.destination.x - this.xTerrestre)/this.nbreDePas;
 			this.zTerrestre += (this.destination.z- this.zTerrestre)/this.nbreDePas;
+			console.log("J'avance d'un pas vers l'herbe à manger : " , this.teteActuelle);
+
 		}else{
-			if(!this.mange){
-				this.broute();
-			}
+			console.log("===================================")
+			console.log("Je suis sur l'herbe à manger : " , this.teteActuelle);
+			this.broute();
 		}
 	}
 
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
 	broute(){
-		this.mange = true;
-		//si vache de profil
-		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
-		this.changement = { oldClass:"teteProfil" , nouveau:teteBroute};
+		//y-a-t-il encore quelque chose à manger ?
+		console.log("L'herbe  ",this.nourritureEnCours.id);
+		console.log("L'herbe est mangeable ? ",this.nourritureEnCours.mangeable);
+		console.log("ais-je commencé à manger ? " , this.eating);
+		if(this.nourritureEnCours.mangeable){
+			this.eating = true;
+			
+			//Dois-je changer de tête ?
+			if(this.teteActuelle == "teteProfil"){
+				console.log("Je commence à manger")
+				this.changement = {oldClass:'teteProfil', nouveau:teteBroute};
+				this.teteActuelle = "teteBroute";
+			}else{
+				console.log("Je suis en plein repas ! ");
+				this.changement = undefined; //aucun changement de tête
+			}
+			
+			//manger l'herbe
+			this.nourritureEnCours.mangeMoi();
+			console.log("Je broute" , this.teteActuelle);
+			//as-tu fini de manger l'herbe en cours ?
+			this.eating = this.nourritureEnCours.mangeable;
+			
+			//fini de brouter ?
+			if(!this.eating){
+				console.log("j'ai fini de manger !");
+				if(this.teteActuelle == "teteBroute"){
+					console.log("je doit changer : teteProfil");
+					this.changement = {oldClass:'teteBroute', nouveau:teteProfil};
+					this.teteActuelle = "teteProfil";
+				}
+			}
+		}
 		// var animer = document.getElementById("boucheBroute");
 		
 		//si vache de face
@@ -93,7 +143,8 @@ class Vache extends SCCube{
 		this.taille += 1;
 		this.bouse += 1;
 		this.lait += 1;
-}
+	}
+
 
 	//anime la mâchoire, son meuh
 	// $actionForever_meugle(){

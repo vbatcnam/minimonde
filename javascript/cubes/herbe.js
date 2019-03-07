@@ -17,7 +17,7 @@ class Herbe extends SCCube{
 		this.xTerrestre = x; 
 		this.yTerrestre = 0; // sur le sol
 		this.zTerrestre = z; 
-		this.taille = 3; //bébé 1 adulte = 3
+		this.taille = 1;
 		this.mangeable = true;
 		this.illustration =   `
 			<g  id="${this.id}" class="herbe">
@@ -39,20 +39,24 @@ class Herbe extends SCCube{
 			y:this.yTerrestre,
 			z:this.zTerrestre,
 			dessin:this.illustration,
+			taille:this.taille,
 			mangeable: this.mangeable,
+			mangeMoi: this.mangeMoi.bind(this)
 		}
 	}
 	
 	pousse(){
-		if(this.taille < 3)
-			this.taille += 1;
+		if(this.taille < 1)
+			this.taille += 0.01;
+		if(this.taille == 1)
+			this.mangeable = true;
 	}
 	
-	estMangeable(){
-		if(this.taille==3)
-			this.mangeable = true;
-		else
+	mangeMoi(){
+		this.taille -= 0.05;
+		if(this.taille <=  0.01)
 			this.mangeable = false;
+		console.log( "taille de l'herbe ", this.taille);
 	}
 }
 

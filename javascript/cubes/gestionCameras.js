@@ -89,13 +89,15 @@ class Camera extends SCCube{
 				let scale = (scaleObjetsDeLaScene[elementDessin.id]) 
 					? scaleObjetsDeLaScene[elementDessin.id].width 
 					: scaleObjetsDeLaScene[elementDessin.getAttribute('class')].width ;
-				if(info.repere == 'terrestre'){
-					scale = scale / info.z;
-				}
+				if(info.taille)
+					scale *= info.taille
+				if(info.repere == 'terrestre')
+					scale /= info.z;
 				//On le positionne sur l'écran
 				if(info.changement){
 					const oldElt = elementDessin.getElementsByClassName(info.changement.oldClass)[0];
 					const nouveauElt = SVG.createSvgElt(info.changement.nouveau);
+					console.log('$$oldElt : ', oldElt, info.changement.oldClass);
 					elementDessin.replaceChild(nouveauElt, oldElt);
 				}
 				elementDessin.setAttribute(
