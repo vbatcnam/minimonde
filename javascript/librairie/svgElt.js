@@ -24,12 +24,6 @@ var SVG ={
 		return document.importNode(dessinSvg.documentElement, true);
 	},
 	
-	replace: function(elt_parent, s_nouv, elt_ancien){
-		const newChild = '';
-		const replacedNode = elt_parent.replaceChild(newChild, elt_ancien);
-	},
-	
-	
 	vectorElement: function(elt){
 		return document.createElementNS(this.xmlns, elt);
 	},

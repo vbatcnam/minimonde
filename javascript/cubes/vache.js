@@ -56,7 +56,7 @@ class Vache extends Animal{
 	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
 	broute(){
 		//si vache de profil
-		this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
+		// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteBroute} </g>`;
 		this.changement = { oldClass:"teteProfil" , nouveau:teteBroute};
 		// var animer = document.getElementById("boucheBroute");
 		
