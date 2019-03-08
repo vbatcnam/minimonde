@@ -68,16 +68,4 @@ class Soleil extends SCCube{
 	
 	}
 
-/**
-	Est-ce encore utilisé ?.
-*/
-	getEltSVG(){
-		let eltObject = document.getElementById(this.id);
-		console.log("eltObject dans la fonction getEltSVG :");
-		console.log(eltObject);
-		let eltSVG = eltObject.contentDocument;
-		console.log("eltSVG dans la fonction getEltSVG :");
-		console.log(eltSVG);
-		return eltSVG;
-	}
 }
