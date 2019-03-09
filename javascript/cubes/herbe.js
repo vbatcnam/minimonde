@@ -56,7 +56,7 @@ class Herbe extends SCCube{
 		this.taille -= 0.05;
 		if(this.taille <=  0.01)
 			this.mangeable = false;
-		console.log( "taille de l'herbe ", this.taille);
+		//console.log( "taille de l'herbe ", this.taille);
 	}
 }
 
