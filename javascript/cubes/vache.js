@@ -22,7 +22,7 @@ class Vache extends SCCube{
 		this.age = 0; 
 		this.faim = 0; //n'a pas faim (100 a très faim)
 		this.eating = false;
-		this.nourritureVisee = {};
+		this.nourritureVisee = null;
 		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
 		this.dort = false;
 		this.pie = 0;
@@ -57,10 +57,18 @@ class Vache extends SCCube{
 				}
 			}
 		}
+		if(distanceMinimaleActuelle ==Infinity){
+			this.nourritureVisee = null;
+		}
 	}
 	
 	//augmente la fatigue et la faim, diminue le poids
 	$actionForever_deplacement(){
+		//pas de nourriture
+		if(!this.nourritureVisee){
+			this.aTable = false;
+			return;
+		}
 		//calculer le nombre de pas jusqu'à la cible
 		const distance = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, this.nourritureVisee.x, this.nourritureVisee.z);
 		const nbreDePas = Math.round(distance/this.pas);

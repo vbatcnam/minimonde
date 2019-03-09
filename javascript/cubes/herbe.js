@@ -43,10 +43,10 @@ class Herbe extends SCCube{
 		}
 	}
 	
-	pousse(){
-		if(this.taille < 1)
-			this.taille += 0.01;
-	}
+	// pousse(){
+		// if(this.taille < 1)
+			// this.taille += 0.01;
+	// }
 	
 	mangeMoi(){
 		this.taille -= 0.05;
