@@ -57,7 +57,6 @@ class Vache extends SCCube{
 				}
 			}
 		}
-		//console.log("J'ai trouvé " + this.nourritureVisee.id + " à manger : " , this.teteActuelle);
 	}
 	
 	//augmente la fatigue et la faim, diminue le poids
@@ -70,22 +69,16 @@ class Vache extends SCCube{
 		if(nbreDePas > 0){ 
 			this.xTerrestre += (this.nourritureVisee.x - this.xTerrestre)/nbreDePas;
 			this.zTerrestre += (this.nourritureVisee.z- this.zTerrestre)/nbreDePas;
-			//console.log("J'avance d'un pas vers l'herbe à manger : " , this.teteActuelle);
-
-		}else{
-			// console.log("===================================")
-			// console.log("Je suis sur l'herbe à manger : " , this.teteActuelle);
 		}
 		this.aTable = nbreDePas <= 0;
 	}
 
-	//anime la mâchoire, diminue la faim et la fatigue, augmente le poids
+	//diminue la faim et la fatigue, augmente le poids
 	$actionForever_nutrition(){
 	//On ne se nourrit que si on est à table
 		if(this.aTable){
 			//manger l'herbe
 			this.nourritureVisee.mangeMoi();
-			//console.log("Je broute" , this.teteActuelle);
 			this.faim -= 1;
 			this.taille += 1;
 			this.bouse += 1;
