@@ -65,7 +65,7 @@ class Camera extends SCCube{
 			else if(a.repere > b.repere) return 1;
 			else return b.z - a.z;
 		});
-		
+		// console.log(array_infosRecues);
 		for( let info of array_infosRecues){
 			let elementDessin = document.getElementById(info.id);
 			const positionSurEcran = this.traduitPositionPourEcran(info.repere,info.x, info.y, info.z);
@@ -98,7 +98,9 @@ class Camera extends SCCube{
 					const oldElt = elementDessin.getElementsByClassName(info.changement.oldClass)[0];
 					const nouveauElt = SVG.createSvgElt(info.changement.nouveau);
 					//console.log('$$oldElt : ', oldElt, info.changement.oldClass);
-					elementDessin.replaceChild(nouveauElt, oldElt);
+					// elementDessin.replaceChild(nouveauElt, oldElt);
+					elementDessin.removeChild(oldElt);
+					elementDessin.appendChild(nouveauElt);
 				}
 				elementDessin.setAttribute(
 					'transform', 

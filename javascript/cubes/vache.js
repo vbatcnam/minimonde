@@ -76,7 +76,7 @@ class Vache extends SCCube{
 		//avance d'un pas en direction de l'herbe à manger
 		if(nbreDePas > 0){ 
 			this.xTerrestre += (this.nourritureVisee.x - this.xTerrestre)/nbreDePas;
-			this.zTerrestre += (this.nourritureVisee.z- this.zTerrestre)/nbreDePas;
+			this.zTerrestre += (this.nourritureVisee.z - this.zTerrestre)/nbreDePas;
 		}
 		this.aTable = nbreDePas <= 0;
 	}
