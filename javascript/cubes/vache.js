@@ -71,12 +71,16 @@ class Vache extends SCCube{
 		}
 		//calculer le nombre de pas jusqu'à la cible
 		const distance = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, this.nourritureVisee.x, this.nourritureVisee.z);
-		const nbreDePas = Math.round(distance/this.pas);
+		const nbreDePas = distance/this.pas;
 
 		//avance d'un pas en direction de l'herbe à manger
-		if(nbreDePas > 0){ 
+		if(nbreDePas > 1){ //fait 1 pas
 			this.xTerrestre += (this.nourritureVisee.x - this.xTerrestre)/nbreDePas;
 			this.zTerrestre += (this.nourritureVisee.z - this.zTerrestre)/nbreDePas;
+		}
+		else if(nbreDePas <= 1 && nbreDePas > 0){// tu es presque arrivé (<1pas)
+			this.xTerrestre = this.nourritureVisee.x;
+			this.zTerrestre = this.nourritureVisee.z;
 		}
 		this.aTable = nbreDePas <= 0;
 	}
