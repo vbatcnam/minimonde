@@ -98,15 +98,15 @@ class Camera extends SCCube{
 					const oldElt = elementDessin.getElementsByClassName(info.changement.oldClass)[0];
 					const nouveauElt = SVG.createSvgElt(info.changement.nouveau);
 					//console.log('$$oldElt : ', oldElt, info.changement.oldClass);
-					// elementDessin.replaceChild(nouveauElt, oldElt);
-					elementDessin.removeChild(oldElt);
-					elementDessin.appendChild(nouveauElt);
+					elementDessin.replaceChild(nouveauElt, oldElt);
 				}
 				elementDessin.setAttribute(
 					'transform', 
 					`translate(${positionSurEcran.x},${positionSurEcran.y})` +
 					` scale(${scale})`
 				);
+				this.svgElement.removeChild(elementDessin);
+				this.svgElement.appendChild(elementDessin);
 			}
 		}
 	}
