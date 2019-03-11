@@ -47,19 +47,42 @@ class Vache extends SCCube{
 	$on_monApparence(pArray_apparences){
 		//console.log("J'écoute les herbes : " , this.teteActuelle);
 		
-		let distanceMinimaleActuelle = Infinity;
-		for(let apparence of pArray_apparences){
-			if(apparence.espece == "herbe" && apparence.taille > 0.01){
-				let distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
-				if(distanceCourante < distanceMinimaleActuelle){
-					distanceMinimaleActuelle = distanceCourante;
-					this.nourritureVisee = apparence;
-				}
+		/**
+			const herbes = [1, 2, 11, 20], vache = 7;
+			const fonction = (distanceMin, currentValue) => {
+				let diff = Math.abs(vache - currentValue);
+				return Math.min(distanceMin,diff);
+			}
+			console.log(herbes.reduce(fonction, Infinity));*/
+			
+		const trouveHerbeProche = (herbeEtDist, herbeEnCours) => {
+			if(herbeEnCours.espece == "herbe" && herbeEnCours.taille > 0.01){
+				const distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z);
+				const herbePlusProche = (distanceCourante < herbeEtDist.distance) 
+					? herbeEnCours
+					: herbeEtDist.herbe
+				return {
+					herbe: herbePlusProche,
+					distance: Math.min(herbeEtDist.distance, distanceCourante)
+				};
+			}else{
+				return herbeEtDist;
 			}
 		}
-		if(distanceMinimaleActuelle ==Infinity){
-			this.nourritureVisee = null;
-		}
+		const herbeEtDistPlusProche = pArray_apparences.reduce(
+			trouveHerbeProche,
+			{herbe: null, distance: Infinity}
+		);
+		this.nourritureVisee = herbeEtDistPlusProche.herbe;
+		// for(let apparence of pArray_apparences){
+			// if(apparence.espece == "herbe" && apparence.taille > 0.01){
+				// let distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, apparence.x, apparence.z);
+				// if(distanceCourante < distanceMinimaleActuelle){
+					// distanceMinimaleActuelle = distanceCourante;
+					// this.nourritureVisee = apparence;
+				// }
+			// }
+		// }
 	}
 	
 	//augmente la fatigue et la faim, diminue le poids
