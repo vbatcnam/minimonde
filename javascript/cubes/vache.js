@@ -46,25 +46,46 @@ class Vache extends SCCube{
 	//Écoute les herbes autour d'elle et trouve la plus proche
 	$on_monApparence(pArray_apparences){
 		//console.log("J'écoute les herbes : " , this.teteActuelle);
-		
-		const trouveHerbeProche = (herbeEtDist, herbeEnCours) => {
-			if(herbeEnCours.espece == "herbe" && herbeEnCours.taille > 0.01){
-				const distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z);
-				const herbePlusProche = (distanceCourante < herbeEtDist.distance) 
-					? herbeEnCours
-					: herbeEtDist.herbe
-				return {
-					herbe: herbePlusProche,
-					distance: Math.min(herbeEtDist.distance, distanceCourante)
-				};
-			}else{
-				return herbeEtDist;
-			}
-		}
-		const herbeEtDistPlusProche = pArray_apparences.reduce(
-			trouveHerbeProche,
-			{herbe: null, distance: Infinity}
-		);
+		const herbeEtDistPlusProche
+			= pArray_apparences
+				.filter(herbeEnCours =>
+					herbeEnCours.espece == "herbe" && herbeEnCours.taille > 0.01
+				)
+				.map(herbeEnCours => ({
+					herbe: herbeEnCours,
+					distance: Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z)
+				}))
+				.reduce(
+					(herbeEtDistPlusProche, herbeEtDistEnCours) => ({
+						herbe: (herbeEtDistEnCours.distance < herbeEtDistPlusProche.distance)
+							? herbeEtDistEnCours.herbe
+							: herbeEtDistPlusProche.herbe,
+						distance:Math.min(
+							herbeEtDistEnCours.distance,
+							herbeEtDistPlusProche.distance
+						)
+					}),
+					{herbe: null, distance: Infinity}
+				)
+	
+		// const trouveHerbeProche = (herbeEtDist, herbeEnCours) => {
+			// if(herbeEnCours.espece == "herbe" && herbeEnCours.taille > 0.01){
+				// const distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z);
+				// const herbePlusProche = (distanceCourante < herbeEtDist.distance) 
+					// ? herbeEnCours
+					// : herbeEtDist.herbe
+				// return {
+					// herbe: herbePlusProche,
+					// distance: Math.min(herbeEtDist.distance, distanceCourante)
+				// };
+			// }else{
+				// return herbeEtDist;
+			// }
+		// }
+		// const herbeEtDistPlusProche = pArray_apparences.reduce(
+			// trouveHerbeProche,
+			// {herbe: null, distance: Infinity}
+		// );
 		this.nourritureVisee = herbeEtDistPlusProche.herbe;
 	}
 	
