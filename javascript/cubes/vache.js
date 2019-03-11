@@ -56,36 +56,12 @@ class Vache extends SCCube{
 					distance: Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z)
 				}))
 				.reduce(
-					(herbeEtDistPlusProche, herbeEtDistEnCours) => ({
-						herbe: (herbeEtDistEnCours.distance < herbeEtDistPlusProche.distance)
-							? herbeEtDistEnCours.herbe
-							: herbeEtDistPlusProche.herbe,
-						distance:Math.min(
-							herbeEtDistEnCours.distance,
-							herbeEtDistPlusProche.distance
-						)
-					}),
+					(herbeEtDistPlusProche, herbeEtDistEnCours) => 
+						(herbeEtDistEnCours.distance < herbeEtDistPlusProche.distance)
+						? herbeEtDistEnCours : herbeEtDistPlusProche
+					,
 					{herbe: null, distance: Infinity}
 				)
-	
-		// const trouveHerbeProche = (herbeEtDist, herbeEnCours) => {
-			// if(herbeEnCours.espece == "herbe" && herbeEnCours.taille > 0.01){
-				// const distanceCourante = Calcule.getSqDistance2D(this.xTerrestre, this.zTerrestre, herbeEnCours.x, herbeEnCours.z);
-				// const herbePlusProche = (distanceCourante < herbeEtDist.distance) 
-					// ? herbeEnCours
-					// : herbeEtDist.herbe
-				// return {
-					// herbe: herbePlusProche,
-					// distance: Math.min(herbeEtDist.distance, distanceCourante)
-				// };
-			// }else{
-				// return herbeEtDist;
-			// }
-		// }
-		// const herbeEtDistPlusProche = pArray_apparences.reduce(
-			// trouveHerbeProche,
-			// {herbe: null, distance: Infinity}
-		// );
 		this.nourritureVisee = herbeEtDistPlusProche.herbe;
 	}
 	
