@@ -1,7 +1,7 @@
 'use strict';
 
 //On démarre le monde
-var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. 
+var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. (vitesse d’exécution)
 
 /*** POUR TEST */
 // var monde = SC.machine();
@@ -25,17 +25,19 @@ class Horloge extends SCCube{
 		super();
 	}
 	
+	//renommer getTimeMinuteImaginaire
 	getTimeMinute(){
 		const timeIRL_MS = monde.delay * monde.instantNumber; //nbre de MS depuis que le jeu est lancé.
-		const timeJeu_Mn = timeIRL_MS/1000;
-		// const timeJeu_Mn = timeIRL_MS/100;
-		return timeJeu_Mn; // retourne parfois chiffre à virgule
+		const timeImaginaire_Mn = timeIRL_MS/1000; //nbre de secondes depuis que le jeu est lancé.
+		return timeImaginaire_Mn; // retourne parfois chiffre à virgule
 	}
 	
+	//renommer getTimeHeureImaginaire
 	getTimeHeure(){
 		return this.getTimeMinute()/60; // retourne parfois chiffre à virgule
 	}
 	
+	//renommer getNbreJoursImaginaire
 	getNbreJours(){
 		return this.getTimeHeure()/24; // retourne parfois chiffre à virgule
 	}
