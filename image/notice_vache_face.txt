@@ -1,3 +1,0 @@
-Les pattes de la vache doivent effectuer un déplacement vers le haut pour donne une impression qu'elle avance.
-
-idem pour la vache de dos

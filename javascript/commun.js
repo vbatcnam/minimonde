@@ -2,19 +2,18 @@
 
 // les fonctions communes
 //-------------------------------------
-function getRandomInt(max) {
-	return Math.floor(Math.random() * Math.floor(max));
-}
+
+/**
 
 //Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
 //-------------------------------------
 var viewPort = {'w':innerWidth, 'h':innerHeight};
-console.log("Taille du iewPort");
+console.log("Taille du viewPort");
 console.log("largeur : " + viewPort.w + " px, hauteur : " + viewPort.h);
 console.log("========================================================");
 
 // Afficher les infos de l'objet Windows
-console.log("largeur disponible de l'ecran ");
+console.log("Taille disponible de l'ecran ");
 console.log("largeur : " + screen.availWidth + " px, hauteur : " + screen.availHeight);
 console.log("========================================================");
 
@@ -27,9 +26,13 @@ console.log("========================================================");
 
 console.log("navigateur : " + navigator.userAgent);
 console.log("========================================================");
- 
+*/
+
 //les dessins svg
 //-------------------------------------
+/**
+	Dessiner les dessins dans inkscape en évitant de laisser les translate qu'il fabrique par défaut pour ne pas à avoir à utiliser les fonctions ci-dessous.
+*/
 
 //mise à l’échelle pour faciliter les translate
 /**
@@ -55,6 +58,10 @@ function array_getEchelle(elt){
 	};
 }
 
+/**
+	Fonctions non encore utilisées : Vérifier avec Claude si utiles.
+*/
+
 //calculer position des objets sur l'écran
 function calculePosition(zone){
 	// let x = Math.random();
@@ -78,6 +85,9 @@ function setPosition(objet, x,y){
 	objet.y = y;
 }
 
+/**
+	A retirer quand plus utiliser (code retravaillé et nettoyé)
+*/
 //les événements des cubes
 //-------------------------------------
 var drawMe = SC.evt("dessine-moi");//globale car diffusion broadcast (parle à tout le monde) Tous les objets disent cette phrase
