@@ -1,4 +1,11 @@
 'use strict';
+/** 
+	miseEnScene.js
+	Fonctions communes au jeu "minimonde" 
+	Auteur : Véronique Lion
+	Date création : 13/11/2018
+	Copyright : © Véronique Lion 2018
+*/
 
 /**
 	C'est le fichier centrale qui ajoute tous tous les cubes au monde.
@@ -8,7 +15,7 @@
 	- Système ASTRAL de cordonnées :
 		Dans ce système si le X et Y reste le même et que le Z augmente, 
 		on se retrouvera au même endroit sur l'écran :
-			un objet cache un autre.
+			un objet en cache un autre.
 		xAstral va de 0 à 1 de gauche à droite
 		yAstral va de 0 à 2 de haut en bas
 		zAstral va de 
@@ -45,12 +52,6 @@ for(var i=1; i<=10; i++){
 }
 
 /*** POUR LE TEST*/
-// for(var i=1; i<=2; i++){
-	// for(var j=-1; j<=1; j++){
-		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
-	// }
-// }
-
 monde.addActor(new Vache(1, 6,0,5));
 monde.addActor(new Vache(2, 4,0,10));
 monde.addActor(new Vache(3, -2,0,2));

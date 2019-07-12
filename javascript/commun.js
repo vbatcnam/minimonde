@@ -1,18 +1,24 @@
 'use strict';
-
+/** 
+	commun.js
+	Fonctions communes au jeu "minimonde" 
+	Auteur : Véronique Lion
+	Date création : 13/07/2018
+	Copyright : © Véronique Lion 2018
+*/
 // les fonctions communes
 //-------------------------------------
 
 /**
 
-//Le viewPort : Objet qui contient la hauteur et la largeur du viewPort
+//Affiche la taille du viewPort
 //-------------------------------------
 var viewPort = {'w':innerWidth, 'h':innerHeight};
 console.log("Taille du viewPort");
 console.log("largeur : " + viewPort.w + " px, hauteur : " + viewPort.h);
 console.log("========================================================");
 
-// Afficher les infos de l'objet Windows
+// Affiche les infos de l'objet Windows
 console.log("Taille disponible de l'ecran ");
 console.log("largeur : " + screen.availWidth + " px, hauteur : " + screen.availHeight);
 console.log("========================================================");
@@ -28,6 +34,7 @@ console.log("navigateur : " + navigator.userAgent);
 console.log("========================================================");
 */
 
+//-------------------------------------
 //les dessins svg
 //-------------------------------------
 /**

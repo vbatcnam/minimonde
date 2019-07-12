@@ -1,3 +1,13 @@
+'use strict'
+
+/** 
+	calcule.js
+	Bibliothèque mahématique
+	Auteur : Claude Lion
+	Date création : 06/03/2019
+	Copyright : © Claude Lion 2018
+*/
+
 Calcule = {
 	getRandomInt: function(max) {
 		return Math.floor(Math.random() * Math.floor(max));

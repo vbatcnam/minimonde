@@ -1,6 +1,12 @@
 'use strict';
+/** 
+	svgElt.js
+	Librairie pour simplifier la génération des éléments SVG.
+	Auteur : Véronique Lion
+	Date création : 16/11/2018 16h40
+	Copyright : © Véronique Lion 2018
+*/
 
-/** Librairie pour simplifier la génération des éléments SVG*/
 var SVG ={
 		xmlns: 'http://www.w3.org/2000/svg',
 

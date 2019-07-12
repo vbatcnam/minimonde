@@ -1,3 +1,11 @@
+/** 
+	vache.js
+	illustration de la vache dans toutes ses positions 
+	Auteur : Véronique Lion
+	Date création : 03/03/2019 20h15
+	Copyright : © Véronique Lion 2018
+*/
+
 var vacheCorpProfil = `
 	<g class="patteArriereDroite" transform="translate(-358.56 -122.81)">
 		<g transform="matrix(.9942 0 0 .9942 -524.45 -571.08)">
