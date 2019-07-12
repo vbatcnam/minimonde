@@ -1,4 +1,10 @@
 'use strict';
+/** 
+	Horloge.js
+	Auteur : Véronique Lion
+	Date création : 03/03/2019 20h15
+	Copyright : © Véronique Lion 2018
+*/
 
 //On démarre le monde
 var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. (vitesse d’exécution)
