@@ -19,3 +19,9 @@ Ce mini monde est un petit jeu pour montrer les possibilités d'une programmatio
 A la différence d'un programme en asynchrone, ici les objets (au sens des orientés objets) sont réactifs : Ils sont autonomes.
  
 Tout au long du code j'ai inséré des commentaires explicatifs.
+
+
+### Gestions des collisions
+J'ai utilisé l'attraction et la répulsion pour gérer les problèmes de collisions :
+Par exemple, mes vaches sont attirées par l'herbe mais une vache est repoussée par une autre vache trop proche.
+On pourrait comparer cela à un aimant : les herbes sont + les vaches -.
