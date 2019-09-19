@@ -2,7 +2,7 @@
 	vache et taureaux
 	gestation 280 jours
 	
-	En mode broutage dessin broute. Qunand elle a plus faim elle releve la tête
+	En mode broutage dessin broute. Quand elle n'a plus faim, elle relève la tête
 */
 class Vache extends SCCube{
 	constructor(num, x, y, z){
