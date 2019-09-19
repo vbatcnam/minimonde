@@ -29,6 +29,7 @@ class Herbe extends SCCube{
 			"ecran" est pour le ciel : quand z change l'objet ne bouge pas sur l’écran (il se trouve devant ou derrière un autre objet)
 			"reel" est pour la prairie si z est plus grand il sera descendu par rapport à l'écran
 		*/
+	//$publicVar génère un événement 
 	$publicVar_monApparence(){
 		return {//les infos envoyées
 			repere:'terrestre',

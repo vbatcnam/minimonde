@@ -9,14 +9,13 @@
 //On démarre le monde
 var monde = SC.machine(25);//Temps de l'animation et des calculs et pas le temps du monde. (vitesse d’exécution)
 
-/*** POUR TEST */
-// var monde = SC.machine();
-// var instant = 25
-// //broute à instant * 22
-// for(var i = 1; i<=200; i++)
-// for(var i = 1; i<=100; i++)
-	//setTimeout(monde.react.bind(monde),instant * i);
-
+/*** POUR TEST 
+var monde = SC.machine();
+var instant = 25
+//broute à instant * 22
+for(var i = 1; i<=100; i++)
+	setTimeout(monde.react.bind(monde),instant * i);
+*/
 
 /**25 est assez bien pour une fluidité des animations(40 tics/s). De plus c'est chiffre rond 1000 ms/25Ms tombe juste.*/
 
