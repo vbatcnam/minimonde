@@ -98,45 +98,45 @@ const SC_Instruction_State = {
 Object.freeze(SC_Instruction_State);
 
 /*
- * Instruction rÃ©active non dÃ©finie... Permet de purger un code mort.
+ * Instruction réactive non définie... Permet de purger un code mort.
  */
 const VOID_NODE = {
   };
 Object.freeze(VOID_NODE);
 
 /*
- * fonction ne faisant rien permettant de ne pas dÃ©finir un paramÃ¨tre non
- * utilisÃ©.
+ * fonction ne faisant rien permettant de ne pas définir un paramètre non
+ * utilisé.
  */
 function NO_FUN(){}
 
 /*
- * le binding prÃ©sente diffÃ©rents cas de figure :
- * - la constante Ã  la construction (cas le plus simple)
+ * le binding présente différents cas de figure :
+ * - la constante à la construction (cas le plus simple)
  *   ex : SC.repeat(10, ...)
  *                  ^^
- * - l'Ã©valuation Ã  la construction (une fonction Ã©valuÃ©e, retourne la
- *   constante Ã  utiliser)
+ * - l'évaluation à la construction (une fonction évaluée, retourne la
+ *   constante à utiliser)
  *   ex : SC.repeat(fun(), ...)
  *                  ^^^^^
  */
 
 /*
- * SC_CubeBinding : permet de gÃ©rer l'accÃ¨s aux ressources non dÃ©finit Ã 
- * l'Ã©criture d'un programme.
+ * SC_CubeBinding : permet de gérer l'accès aux ressources non définit à
+ * l'écriture d'un programme.
  * type de binding :
- *  - early : Ã  l'Ã©criture du programme (mode standard)
- *  - standard : Ã  l'insertion dans la machine
- *  - late : Ã  la premiÃ¨re activation
- *  - dynamic : Ã  chaque activation
+ *  - early : à l'écriture du programme (mode standard)
+ *  - standard : à l'insertion dans la machine
+ *  - late : à la première activation
+ *  - dynamic : à chaque activation
  */
 function SC_CubeBinding(name){
   if((undefined == name)||(typeof name != "string")||(name == "")){
     throw "invalid binding name "+name;
     }
-  this.name = name; // nom de la ressource Ã  rÃ©cupÃ©rer
-  this.cube = null; // cube cible oÃ¹ trouver la ressource
-  this.args = null; // paramÃ¨tres Ã©ventuels pour trouver la ressource
+  this.name = name; // nom de la ressource à récupérer
+  this.cube = null; // cube cible où trouver la ressource
+  this.args = null; // paramètres éventuels pour trouver la ressource
   }
 SC_CubeBinding.prototype = {
   constructor: SC_CubeBinding
@@ -186,18 +186,18 @@ Object.defineProperty(SC_CubeBinding.prototype, "isBinding"
                           );
 
 /*
- * Methodes utilitaires utilisÃ©es dans l'implantation des SugarCubes.
+ * Methodes utilitaires utilisées dans l'implantation des SugarCubes.
  */
 var _SC = {
 /*
- * Fonction permettant de transformer un paramÃ¨tre Â«bindableÂ» en un
- * SC_CubeBinding permettant une rÃ©solution tardive.
+ * Fonction permettant de transformer un paramètre «bindable» en un
+ * SC_CubeBinding permettant une résolution tardive.
  */
   b_ : function(p){
-    if(typeof p == "string"){ // si on fournit un objet chaÃ®ne de caractÃ¨res 
+    if(typeof p == "string"){ // si on fournit un objet chaîne de caractères 
                               // c'est qu'on veut probablement faire un
                               // lien tardif vers la ressources. On va donc
-                              // encapsuler cette chaÃ®ne dans un
+                              // encapsuler cette chaîne dans un
                               // SC_CubeBinding
       var tmp = new SC_CubeBinding(p);
       return tmp;
@@ -205,8 +205,8 @@ var _SC = {
     return p;
     }
 /*
- * Fonction permettant de transformer un paramÃ¨tre Â«bindableÂ» en un
- * SC_CubeBinding permettant la rÃ©solution tardive d'une fonction.
+ * Fonction permettant de transformer un paramètre «bindable» en un
+ * SC_CubeBinding permettant la résolution tardive d'une fonction.
  */
   , b__ : function(p, args){
       if(typeof p == "string"){
@@ -217,9 +217,9 @@ var _SC = {
       throw "not a valid binding";
       }
 /*
- * Fonction permettant de rÃ©soudre le binding d'un paramÃ¨tre SC_CubeBinding. Si
- * ce binding n'est pas encore dÃ©finit, on retourne le l'objet SC_CubeBinding
- * en fixant l'objet cube sur lequel il porte pour rÃ©aliser une late binding ou
+ * Fonction permettant de résoudre le binding d'un paramètre SC_CubeBinding. Si
+ * ce binding n'est pas encore définit, on retourne le l'objet SC_CubeBinding
+ * en fixant l'objet cube sur lequel il porte pour réaliser une late binding ou
  * un binding dynamique.
  */
   , _b : function(cube){
@@ -233,7 +233,7 @@ var _SC = {
            }.bind(cube);
       }
 /*
- * fonction utilitaire permettant de lier les fonctions passÃ©es selon l'ancien
+ * fonction utilitaire permettant de lier les fonctions passées selon l'ancien
  * style : {t: target, f: filed }
  */
   , bindIt : function(targetAcion){
@@ -248,8 +248,8 @@ var _SC = {
       return targetAcion;
       }
 /*
- * Fonctions utilitaires de vÃ©rification de types. Ne sont pas encore trÃ¨s
- * utilisÃ©es ni trÃ¨s dÃ©veloppÃ©es.
+ * Fonctions utilitaires de vérification de types. Ne sont pas encore très
+ * utilisées ni très développées.
  */
   , isEvent : function(evt){
       if(undefined == evt){
@@ -315,10 +315,10 @@ var _SC = {
       }
   }
 /*
- * Fonstion qui Ã©tend un cube pour implanter quelques fonctions de base :
- *  - ajout d'un comportemnet en parallÃ¨le (les programmes sont Ã©mis sur
- *    l'Ã©vÃ©nements SC_cubeAddBehaviorEvt)
- *  - ajout de cellules au cube grÃ¢ce Ã  l'Ã©mission de 2 type d'Ã©vÃ©nements
+ * Fonstion qui étend un cube pour implanter quelques fonctions de base :
+ *  - ajout d'un comportemnet en parallèle (les programmes sont émis sur
+ *    l'événements SC_cubeAddBehaviorEvt)
+ *  - ajout de cellules au cube grâce à l'émission de 2 type d'événements
  *    (SC_cubeAddCellEvt et SC_cubeCellifyEvt)
  */
 function SC_cubify(){
@@ -438,29 +438,29 @@ function SC_cubify(){
 
 /*******************************************************************************
  * Events
- * Les Ã©vÃ©nements sont des valeurs globales partagÃ©es entre tous les
+ * Les événements sont des valeurs globales partagées entre tous les
  * composants d'un programme.
- * La valeur d'un Ã©vÃ©nement est boolÃ©enne : prÃ©sent ou absent Ã  chaque instant.
- * Pour savoir si un Ã©vÃ©nement est prÃ©sent ou absent, on note dans son Ã©tat le
- * numÃ©ro de l'instant de sa derniÃ¨re gÃ©nÃ©ration. L'Ã©vÃ©nement est prÃ©sent si le
- * numÃ©ro d'instant de sa derniÃ¨re gÃ©nÃ©ration est le numÃ©ro d'instant courant
- * de la machine d'exÃ©cution. Sinon l'Ã©vÃ©nement est absent.
- * Nous sommes dans le modÃ¨le rÃ©actif Ã  la Boussinot ce qui implique qu'un
- * Ã©vÃ©nement ne sera rÃ©putÃ© absent que Ã  la toute fin de l'instant courant
- * (c'est Ã  dire quand plus personne ne peut l'Ã©mettre et que personne ne l'a
- * Ã©mis).
+ * La valeur d'un événement est booléenne : présent ou absent à chaque instant.
+ * Pour savoir si un événement est présent ou absent, on note dans son état le
+ * numéro de l'instant de sa dernière génération. L'événement est présent si le
+ * numéro d'instant de sa dernière génération est le numéro d'instant courant
+ * de la machine d'exécution. Sinon l'événement est absent.
+ * Nous sommes dans le modèle réactif à la Boussinot ce qui implique qu'un
+ * événement ne sera réputé absent que à la toute fin de l'instant courant
+ * (c'est à dire quand plus personne ne peut l'émettre et que personne ne l'a
+ * émis).
  ******************************************************************************/
 
 // *** SC_Event
 function SC_Event(name){
-  this.lein = -1; // numÃ©ro de la l'instant de la derniÃ¨re Ã©mission
-  this.name = name; // nom donnÃ© Ã  l'Ã©vÃ©nement (sert au debug)
-  this.vals = []; // liste des valeurs associÃ©es aux emissions dans un mÃªme
+  this.lein = -1; // numéro de la l'instant de la dernière émission
+  this.name = name; // nom donné à l'événement (sert au debug)
+  this.vals = []; // liste des valeurs associées aux emissions dans un même
                   // instant.
-  this.registeredInst = [];  // gestion des instructions intÃ©ressÃ©es par
-                             // l'Ã©vÃ©nement. file d'attente.
-  this.m = null; // retient la machine d'exÃ©cution rÃ©active utilisÃ©e par
-                 // l'Ã©vÃ©nement.
+  this.registeredInst = [];  // gestion des instructions intéressées par
+                             // l'événement. file d'attente.
+  this.m = null; // retient la machine d'exécution réactive utilisée par
+                 // l'événement.
 }
 SC_Event.prototype = {
   constructor : SC_Event
@@ -468,12 +468,12 @@ SC_Event.prototype = {
       return this.lein == m.instantNumber;
       }
 /*
- * RÃ©veil des instructions sur liste d'attente pour l'Ã©vÃ©nement. Si cela ne
- * suffit pas Ã  dÃ©bloquer l'instruction (qui reste bloquÃ©e sur d'autres
- * Ã©vÃ©nements l'instruction non dÃ©bloquÃ©e est remise dans la liste d'attente
+ * Réveil des instructions sur liste d'attente pour l'événement. Si cela ne
+ * suffit pas à débloquer l'instruction (qui reste bloquée sur d'autres
+ * événements l'instruction non débloquée est remise dans la liste d'attente
  * en utilisant une liste temporaire).
- * flag est propagÃ© jusqu'au awake() d'un Par pour dÃ©cider si la rÃ©exÃ©cution du
- * code est immÃ©diate ou non.
+ * flag est propagé jusqu'au awake() d'un Par pour décider si la réexécution du
+ * code est immédiate ou non.
  */
   , wakeupAll : function(m, flag){
       for(var idx = 0; idx < this.registeredInst.length; idx++){
@@ -481,9 +481,9 @@ SC_Event.prototype = {
         }
       }
 /*
- * GÃ©nÃ©ration de l'Ã©vÃ©nement. Si l'Ã©vÃ©nement n'a pas dÃ©jÃ  Ã©tÃ© gÃ©nÃ©rÃ© dans
- * l'instant, On mÃ©morise l'instant le numÃ©ro de l'instant courrant comme
- * numÃ©ro de la derniÃ¨re Ã©mission. On profite de l'occasion pour vider la liste
+ * Génération de l'événement. Si l'événement n'a pas déjà été généré dans
+ * l'instant, On mémorise l'instant le numéro de l'instant courrant comme
+ * numéro de la dernière émission. On profite de l'occasion pour vider la liste
  * des valeurs.
  */
   , generate : function(m, flag){
@@ -540,12 +540,12 @@ SC_Event.prototype = {
       }
   }
 /*
- * Le Sensor est une variante de l'Ã©vÃ©nement. La prÃ©sence ou l'absence d'un
- * sensor est connue au dÃ©but de l'instant car il ne peut pas Ãªtre gÃ©nÃ©rÃ© en
- * cours d'instant. Il est soit prÃ©sent soit absent. C'est une entrÃ©e du
- * systÃ¨me rÃ©actif. La mÃ©thode generate() n'existe donc pas sur un sensor.
- * Une mÃ©thode systemGen() permet de gÃ©nÃ©rer cet Ã©vÃ©nement dans un contexte
- * extÃ©rieur au programme rÃ©actif (c'est Ã  dire avant l'exÃ©cution de
+ * Le Sensor est une variante de l'événement. La présence ou l'absence d'un
+ * sensor est connue au début de l'instant car il ne peut pas être généré en
+ * cours d'instant. Il est soit présent soit absent. C'est une entrée du
+ * système réactif. La méthode generate() n'existe donc pas sur un sensor.
+ * Une méthode systemGen() permet de générer cet événement dans un contexte
+ * extérieur au programme réactif (c'est à dire avant l'exécution de
  * l'instant).
  */
 // *** SC_Sensor
@@ -582,8 +582,8 @@ SC_Sensor.prototype = {
 }
 
 /*
- * DÃ©finition d'une instruction gÃ©nÃ©rique afin de rÃ©duire la combinatoire de la
- * gestion des Ã©tats d'instructions rÃ©actives.
+ * Définition d'une instruction générique afin de réduire la combinatoire de la
+ * gestion des états d'instructions réactives.
  */
 const SC_OpcodesNames = [
   "NOP"
@@ -2384,13 +2384,13 @@ SC_Instruction.prototype = {
  * Repeat Instruction
  ******************************************************************************/
 /*
- * En cas de bug vÃ©rifier que le jump arrive bien sur une instruction correcte
+ * En cas de bug vérifier que le jump arrive bien sur une instruction correcte
  * (jumpable).
  */
 // *** SC_RelativeJump (relogeable)
 function SC_RelativeJump(jump){
-  this.relativeJump = jump; // index relatif ou sauter dans la sÃ©quence
-  this.seq = null; // pointeur vers la sÃ©quence
+  this.relativeJump = jump; // index relatif ou sauter dans la séquence
+  this.seq = null; // pointeur vers la séquence
   }
 SC_RelativeJump.prototype = {
   constructor : SC_RelativeJump
@@ -2406,7 +2406,7 @@ SC_RelativeJump.prototype = {
       }
 }
 
-// *** If Cond Repeat sinon quitte la boucle un peu Ã  la maniÃ¨re du while...
+// *** If Cond Repeat sinon quitte la boucle un peu à la manière du while...
 function SC_IfRepeatPoint(cond){
   this.condition = cond; // fonction retournant une valeur booleenne
   this.end = 0;
@@ -2419,7 +2419,7 @@ SC_IfRepeatPoint.prototype = {
       return "while "+this.condition+" repeat ";
       }
   /*
-   * masterSeq doit Ãªtre une pile de labels, permettant de dÃ©finir la portÃ©e
+   * masterSeq doit être une pile de labels, permettant de définir la portée
    * d'un exit
    */
   , bindTo : function(engine, parbranch, seq, masterSeq, path, cube){
@@ -3751,7 +3751,7 @@ SC_ParBranch.prototype = {
         }
       }
 /*
- * L'argument flag ici permet de savoir si on place l'Ã©lÃ©ment dans suspended ou
+ * L'argument flag ici permet de savoir si on place l'élément dans suspended ou
  * suspendedChain.
  */
   , awake : function(m, flag){
@@ -3956,7 +3956,7 @@ SC_Par.prototype = {
   };
 
 /**
-  * OpÃ©rateur Parallele a extension dynamique...
+  * Opérateur Parallele a extension dynamique...
   * SC_ParDyn
   */
 function SC_ParDyn(channel, args){
