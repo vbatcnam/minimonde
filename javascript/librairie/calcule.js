@@ -7,8 +7,7 @@
 	Date création : 06/03/2019
 	Copyright : © Claude Lion 2018
 */
-
-Calcule = {
+var Calcule = {
 	getRandomInt: function(max) {
 		return Math.floor(Math.random() * Math.floor(max));
 	},
