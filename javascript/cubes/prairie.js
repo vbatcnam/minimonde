@@ -2,6 +2,7 @@
 
 /**
 	C'est le fond de la prairie (un carré vert) qui sera redimensionné par la camera
+	Ce carré sera animé : il foncera ou s’éclaircira en fonction du jour et de la nuit.
 */
 
 class Prairie extends SCCube{
