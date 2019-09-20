@@ -39,13 +39,15 @@ C'est un morceau de la vitre qui dépend du champ de vision de l'oeil
 Il est déterminé par la zone client du navigateur.
 
 # Coordonnée écran
-On doit délimiter une portion de la vitre infinie en haut et en bas en fonction de la hauteur de l'écran
-Le y=1 de la vitre = 0.7 de hauteur de l'écran (horizon)
+On doit délimiter une portion de la vitre infinie en haut et en bas en fonction de la hauteur de l'écran :
+
+Le y=1 de la vitre est à 0.7 de hauteur de l'écran (horizon).
+
 Il reste 0.3 de hauteur de l'écran :
 - On coupe la vitre en bas en y=O (on ne coupe pas vraiment on dessine une limite)
 - On coupe la vitre en haut en y = 10/7.
-Il faudra adapter cette portion de vitre à notre écran.
-Il faudra faire correspondre la hauteur du viewport à 10/7
+
+Il faudra adapter cette portion de vitre à notre écran, puis il faudra faire correspondre la hauteur du viewport à 10/7
 
 # Caméra
-C'est l’œil de l'observateur : l'observateur n'a qu'un œil central (cyclope)
+C'est l’œil de l'observateur : l'observateur n'a qu'un œil central comme le cyclope.
