@@ -34,7 +34,7 @@ On va calculer sur cette vitre où l'objet est vu.
 les coordonnées seront xVitre et yVitre
 
 
-#champCamera (div)
+# Champ de la camera (div)
 C'est un morceau de la vitre qui dépend du champ de vision de l'oeil
 Il est déterminé par la zone client du navigateur.
 
