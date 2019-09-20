@@ -44,7 +44,8 @@ monde.addActor(new Camera());
 monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
-//les herbes
+
+//Ajout des herbes : il faudra en mettre plus car il faut qu'elle couvre la prairie
 for(var i=1; i<=10; i++){
 	for(var j=-10; j<=10; j++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));

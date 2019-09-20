@@ -6,30 +6,72 @@
 */
 class Vache extends SCCube{
 	constructor(num, x, y, z){
-		super();
+		super(); //Cube
+		
+		//identité
+		//---------
 		this.espece = 'vache';
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
-		this.teteActuelle = 'teteProfil';
-		this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
+		this.fabriqueMalOuFemelle();
+		//this.sexe = 'M';//pour debug
+		
+		//Gérer l'apparence
+		//-----------------
+		this.poids = 50000; //grammes (adulte F 500kg, M 900kg)
+		this.taille = 85; // cm (adulte 130 cm )
+		this.age = 3; 
+		this.changement // Sert à changer l'apparence
+		this.DessineMoi();
 		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
 		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
+		
+		//Se nourrir
+		//-------------
+		this.faim = 0; //n'a pas faim (100 a très faim)
+		this.eating = false; // sert à animer la mâchoire
+		this.aTable = false; // n'est devant aucune nourriture
+		this.nourritureVisee = null;
+		this.mange; 
+		
+		this.bouse = 0;
+		
+		//Gérer l'état de veille
+		//----------------------
+		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
+		this.sleeping = false; //est en train de dormir
+		
+		//Gérer les déplacements
+		//---------------------
 		this.xTerrestre = x; 
 		this.yTerrestre = y;
 		this.zTerrestre = z; 
-		this.poids = 50000; //grammes (adulte F 500kg, M 900kg)
-		this.taille = 85; // cm (adulte 130 cm )
-		this.age = 0; 
-		this.faim = 0; //n'a pas faim (100 a très faim)
-		this.eating = false;
-		this.nourritureVisee = null;
-		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
-		this.dort = false;
-		this.pie = 0;
-		this.bouse = 0;
 		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
 	}
 
+	fabriqueMalOuFemelle()
+	{
+		let r = Calcule.getRandomInt(3);
+		if(r == 2){
+			this.sexe = 'M';
+			}else{
+			this.sexe = 'F';
+			this.pis = 0;
+		}
+	}
+	
+	DessineMoi(){
+		if(this.sexe == 'F'){
+			console.log('vache');
+			this.teteActuelle = 'teteProfil';
+			this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
+			}else{
+				console.log('taureau');
+				this.teteActuelle = 'teteProfil';
+				this.illustration =  `<g id="${this.id}" class="vache"> ${taureauCorpProfil + teteProfil} </g>`;
+		}
+	}
+	
 	$publicVar_monApparence(){
 		return {//les infos envoyées
 			repere:'terrestre',
@@ -39,7 +81,7 @@ class Vache extends SCCube{
 			z:this.zTerrestre,
 			dessin:this.illustration,
 			changement : this.changement,
-			mange: this.mange
+			age: this.age // pour réduire si c'est un jeune veau
 		}
 	}
 	
@@ -65,6 +107,15 @@ class Vache extends SCCube{
 		this.nourritureVisee = herbeEtDistPlusProche.herbe;
 	}
 	
+	/**
+		Il y a plusieurs raisons de déplacement :
+		1) Si elle a faim, la vache part à la recherche de nourriture
+			1-1) Si c'est un adulte, elle se dirige vers l'herbe la plus porche,
+			1-2) Si c'est un jeune veau, il se dirige vers sa mère.
+		2) Quand le soir tombe, la vache appelle le joueur pour être conduite à l'étable, le veau suit sa mère à la trace.
+		
+		Pour l'instant je n'ai programmé que le cas 1.1
+	*/
 	//augmente la fatigue et la faim, diminue le poids
 	$actionForever_deplacement(){
 		//pas de nourriture
@@ -86,9 +137,13 @@ class Vache extends SCCube{
 			this.zTerrestre = this.nourritureVisee.z;
 		}
 		this.aTable = nbreDePas <= 0;
+		//Pour 1 pas
+		this.fatigue += 0.1; 
+		this.faim += 0.1;
+		this.poids -= 0.1
 	}
 
-	//diminue la faim et la fatigue, augmente le poids
+	//diminue la faim et la fatigue, augmente le poids, augmente le lait pour les femelles adultes
 	$actionForever_nutrition(){
 	//On ne se nourrit que si on est à table
 		if(this.aTable){
