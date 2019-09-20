@@ -29,7 +29,7 @@ On dessine sur la vitre ce que voit l'observateur.
 
 Notre image svg principale se trouve dans le div "chamCamera" : C'est le dessin de ce que l'utilisateur est sensé voir... C'est notre principe de 3D.
 
-La vitre infinie se trouve en z=1 (entre la caméra et le paysage).
+La vitre infinie se trouve en z=1 (entre la caméra et le paysage).<br/>
 On va calculer sur cette vitre où l'objet est vu.
 les coordonnées seront xVitre et yVitre
 
