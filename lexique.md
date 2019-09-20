@@ -3,8 +3,8 @@
 - yAstral va de 0 à 2 de haut en bas
 - zAstral va de 0 (la prairie) ++ (derrière la prairie)
 
-Dans ce système si X et Y restent le même et que Z augmente : 
-- on se retrouvera au même endroit sur l'écran :
+Dans ce système si X et Y restent le même et que Z augmente, 
+- on se retrouvera au même endroit sur l'écran,
 - un objet en cache un autre.
 
 # Système TERRESTRE
