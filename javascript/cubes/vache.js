@@ -19,8 +19,8 @@ class Vache extends SCCube{
 		//Gérer l'apparence
 		//-----------------
 		this.poids = 50000; //grammes (adulte F 500kg, M 900kg)
-		this.taille = 85; // cm (adulte 130 cm )
-		this.age = 3; 
+		this.taille = 2; // cm (enfant 1, adulte 2 )
+		this.age = 2; //adulte 2 ans
 		this.changement // Sert à changer l'apparence
 		this.DessineMoi();
 		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
@@ -62,11 +62,11 @@ class Vache extends SCCube{
 	
 	DessineMoi(){
 		if(this.sexe == 'F'){
-			console.log('vache');
+			// console.log('vache');
 			this.teteActuelle = 'teteProfil';
 			this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
 			}else{
-				console.log('taureau');
+				// console.log('taureau');
 				this.teteActuelle = 'teteProfil';
 				this.illustration =  `<g id="${this.id}" class="vache"> ${taureauCorpProfil + teteProfil} </g>`;
 		}
@@ -76,12 +76,15 @@ class Vache extends SCCube{
 		return {//les infos envoyées
 			repere:'terrestre',
 			id:this.id,
+			espece:this.espece,
 			x:this.xTerrestre,
 			y:this.yTerrestre,
 			z:this.zTerrestre,
 			dessin:this.illustration,
 			changement : this.changement,
-			age: this.age // pour réduire si c'est un jeune veau
+			age: this.age, // si c'est un jeune veau
+			taille : this.taille, //pour le mettre à l’échelle à l'écran
+			espece : this.espece,
 		}
 	}
 	
@@ -137,10 +140,6 @@ class Vache extends SCCube{
 			this.zTerrestre = this.nourritureVisee.z;
 		}
 		this.aTable = nbreDePas <= 0;
-		//Pour 1 pas
-		this.fatigue += 0.1; 
-		this.faim += 0.1;
-		this.poids -= 0.1
 	}
 
 	//diminue la faim et la fatigue, augmente le poids, augmente le lait pour les femelles adultes
@@ -149,10 +148,15 @@ class Vache extends SCCube{
 		if(this.aTable){
 			//manger l'herbe
 			this.nourritureVisee.mangeMoi();
-			this.faim -= 1;
-			this.taille += 1;
+			//Pour 1 pas
+			this.fatigue += 0.1; 
+			this.faim += 0.1;
+			this.poids -= 0.1
 			this.bouse += 1;
-			this.pie += 1;
+			if(this.sexe == 'F' && this.age >= 2)
+				this.pie += 1;
+			if(this.age < 2)
+				this.taille += 1;
 		};
 	}
 	

@@ -19,13 +19,13 @@ var scaleObjetsDeLaScene = {
 	soleil:{width: 0.5, height: 0.5},
 	prairie: {width: innerWidth, height: innerHeight - (innerHeight * 0.3)},
 	herbe:{width: 2, height: 2},
-	// fleur{width: 0.5, height: 0.5},//provisoire
-	vache: {width: 1.5, height: 1.5},//provisoire calculer selon l'âge
-	// bouse:{width: 0.5, height: 0.5},//provisoire
-	// ours:{width: 0.5, height: 0.5},//provisoire
-	// abeille:{width: 0.5, height: 0.5},//provisoire
-	// lait:{width: 0.5, height: 0.5},//provisoire
-	// miel:{width: 0.5, height: 0.5}//provisoire
+	// fleur{width: 0.5, height: 0.5},//herbe adulte
+	vache: {width: 1.5, height: 1.5},//vache adulte
+	// bouse:{width: 0.5, height: 0.5},
+	// ours:{width: 0.5, height: 0.5},
+	// abeille:{width: 0.5, height: 0.5},
+	// lait:{width: 0.5, height: 0.5},
+	// miel:{width: 0.5, height: 0.5}
 };
 
 
@@ -65,6 +65,7 @@ class Camera extends SCCube{
 			else if(a.repere > b.repere) return 1;
 			else return b.z - a.z;
 		});
+		// console.log("infosRecues");
 		// console.log(array_infosRecues);
 		for( let info of array_infosRecues){
 			let elementDessin = document.getElementById(info.id);
@@ -89,8 +90,12 @@ class Camera extends SCCube{
 				let scale = (scaleObjetsDeLaScene[elementDessin.id]) 
 					? scaleObjetsDeLaScene[elementDessin.id].width 
 					: scaleObjetsDeLaScene[elementDessin.getAttribute('class')].width ;
-				if(info.taille)
-					scale *= info.taille
+				if(info.taille){
+					scale *= info.taille;
+					// console.log( 'scale : ' + scale);
+					// console.log( 'espece : ' + info.espece);
+					// console.log( 'taille : ' + info.taille);
+				}
 				if(info.repere == 'terrestre')
 					scale /= info.z;
 				//On le positionne sur l'écran

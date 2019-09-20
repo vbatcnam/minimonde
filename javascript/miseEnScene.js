@@ -51,6 +51,11 @@ for(var i=1; i<=10; i++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
+// for(var i=1; i<=2; i++){
+	// for(var j=-2; j<=2; j++){
+		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
+	// }
+// }
 
 /*** POUR LE TEST*/
 monde.addActor(new Vache(1, 6,0,5));

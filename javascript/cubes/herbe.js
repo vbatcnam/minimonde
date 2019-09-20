@@ -50,8 +50,10 @@ class Herbe extends SCCube{
 	// }
 	
 	mangeMoi(){
-		this.taille -= 0.05;
-		//console.log( "taille de l'herbe ", this.taille);
+		// if(this.taille >= 0.05){
+			this.taille -= 0.05;
+			//console.log( "taille de l'herbe ", this.taille);
+		// }
 	}
 }
 
