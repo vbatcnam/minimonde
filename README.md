@@ -18,4 +18,3 @@ Attention cette animation est en cours de création, ce lien rique de ne pas tou
 ### Gestions des collisions
 J'envisage d'utiliser l'attraction et la répulsion pour gérer les problèmes de collisions :
 Par exemple, mes vaches sont attirées par l'herbe mais une vache est repoussée par une autre vache trop proche.
-
