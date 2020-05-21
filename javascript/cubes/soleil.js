@@ -58,7 +58,7 @@ class Soleil extends SCCube{
 	
 	calculeAngleRad()
 	{
-		const nbreTours = horloge.getNbreJours();
+		const nbreTours = horloge.getNbreJoursImaginaire();
 		const portionTour = nbreTours % 1;
 		return portionTour * 2 * Math.PI; //retourne l'angle en radiant
 	}

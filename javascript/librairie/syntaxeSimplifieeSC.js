@@ -2,22 +2,36 @@
 
 /** 
 	SyntaxeSimplifieeSC.js
-	Bibliothèque surcouche facilitation sugarCubes.js 
+	Bibliothèque surcouche facilitation SugarCubes.js
 	Auteur : Claude Lion
 	Date création : 10/10/2018
 	Copyright : © Claude Lion 2018
 */
 
-SC.titreInfoEmise = SC.evt;
+//====================================
+// Gestionnaire d'événements globaux
+//====================================
 
-//Fabrique un événement par char (
+//Fabrique un événement par chaîne de caractères
 const g_AllSCevents = {}
+const g_AllSCsensors = {}
 function SCEVT(ps_nom) {
 	if(g_AllSCevents[ps_nom] === undefined) {
 		g_AllSCevents[ps_nom] = SC.evt(ps_nom)
 	}
 	return g_AllSCevents[ps_nom]
 }
+
+function SCSENSOR(ps_nom) {
+	if(g_AllSCsensors[ps_nom] === undefined) {
+		g_AllSCsensors[ps_nom] = SC.sensor(ps_nom)
+	}
+	return g_AllSCsensors[ps_nom]
+}
+
+//======================================
+// Syntaxe simplifiée version "extends"
+//======================================
 
 function parseInstr(ps_texte, pArrayS_nomInstr){
 	// ps_methExtractionReste = 'reste' | 'nombre'
@@ -46,6 +60,23 @@ class SCCube extends SC.cube().constructor {
 		if(! pArray_args.length) pArray_args = [{}]
 		this.o = this
 		this.evtKillInstance = SC.evt('kill instance')
+		
+		this.a_AllSCevents = {}
+		this.SCEVT = function(ps_nom) {
+			if(this.a_AllSCevents[ps_nom] === undefined) {
+				this.a_AllSCevents[ps_nom] = SC.evt(ps_nom)
+			}
+			return this.a_AllSCevents[ps_nom]
+		}
+		
+		this.a_AllSCsensors = {}
+		this.SCSENSOR = function(ps_nom) {
+			if(this.a_AllSCsensors[ps_nom] === undefined) {
+				this.a_AllSCsensors[ps_nom] = SC.sensor(ps_nom)
+			}
+			return this.a_AllSCsensors[ps_nom]
+		}
+		
 		
 		const lArray_methodes = getPropertyUntilSCCube(this.__proto__)
 		
@@ -157,12 +188,163 @@ class SCCube extends SC.cube().constructor {
 	}
 }
 
-SC.idem = (val, pArray_valEnvoyees)=>val
-SC.count = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+1, 0)
-SC.somme = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+curr, 0)
-SC.min = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>Math.min(acc,curr), Infinity)
+//===========================================
+// Fonctions utilitaires pour createProperty
+//===========================================
 
-SC.reactProperty = function(p_cell, pn_times) {
-	if(undefined === pn_times) pn_times = 1
-	return SC.repeat(pn_times, p_cell)
+const F = {}
+F.idem = (val, pArray_valEnvoyees)=>val
+F.count = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+1, 0)
+F.sum = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc+curr, 0)
+F.product = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>acc*curr, 1)
+F.min = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>Math.min(acc,curr), Infinity)
+F.max = (val, pArray_valEnvoyees)=>(pArray_valEnvoyees || []).reduce((acc, curr)=>Math.max(acc,curr), -Infinity)
+
+//=========================================
+// Syntaxe simplifiée version "fonctions"
+//=========================================
+
+const g_AllProperty = {}
+
+function createCreateurCube(pFunc_createur) {
+	return function(...args) {
+		// création du cube basique
+		//-------------------------
+		const newObj = new pFunc_createur(...args)
+		const newCube = SC.cube(null, null)
+		newCube.o = newCube
+		Object.assign(newCube, newObj)
+		Object.getOwnPropertyNames(newObj.__proto__).forEach(function(property){
+			newCube[property] = newObj.__proto__[property]
+		})
+		
+		// traitement des méthodes actives
+		//--------------------------------
+		let lArray_methodes = Object.getOwnPropertyNames(newObj)
+		lArray_methodes = lArray_methodes.concat(Object.getOwnPropertyNames(newObj.__proto__))
+		
+		const lArray_prog = []
+		for(let indexAttr of lArray_methodes) {
+			// console.log(indexAttr)
+			const attr = newCube[indexAttr]
+			if (indexAttr === 'o') continue
+			if (attr && attr.constructor
+					&& attr.constructor.name.startsWith
+					&& attr.constructor.name.startsWith('SC_')
+					&& indexAttr.startsWith('$_')) {
+				lArray_prog.push(attr)
+			}
+		}
+		newCube.p = SC.par(...lArray_prog)
+		//~ console.log(newCube.p.toString())
+		return newCube
+	}
 }
+
+function createCube(pFunc_createur) {
+	return createCreateurCube(pFunc_createur)()
+}
+
+//=========================================
+// Syntaxes simplifiées communes
+//=========================================
+
+function actionForever(pFunc_method) {
+	return SC.action(pFunc_method, SC.forever)
+}
+
+function and(...pArray) {
+	if (pArray.length === 1) {
+		return pArray[0]
+	}else{
+		return SC.and(...pArray)
+	}
+}
+
+function doUntil(pObj_prog) {
+	const lProg_then = pObj_prog.then || SC.nothing()
+	return SC.kill(
+		pObj_prog.until,
+		pObj_prog.do,
+		lProg_then,
+	)
+}
+
+function repeatUntil(pObj_prog) {
+	return doUntil({
+		do: SC.repeat(SC.forever,
+			pObj_prog.repeat
+		),
+		until: pObj_prog.until,
+		then: pObj_prog.then,
+	})
+}
+
+function actionOnForever(pArrayS_nomEvt, pFunc_action) {
+	// pFunc_action(pArray_evt1,...,pArray_evtN)
+	return SC.actionOn(
+		and(...pArrayS_nomEvt.map(SCEVT)),
+		function(pArray_allEvt, p_machine) {
+			const lArrayArray_evt = pArrayS_nomEvt.map(   ls_nomEvt  =>  pArray_allEvt[SCEVT(ls_nomEvt)]   )
+			pFunc_action(...lArrayArray_evt.concat([p_machine]))
+		},
+		undefined,
+		SC.forever
+	)
+}
+
+SC.actionIfAllEvent = function(pArrayS_nomEvt, pFunc_action, pn_nbreFois) {
+	// pFunc_action(pArray_evt1,...,pArray_evtN)
+	return SC.actionOn(
+		and(...pArrayS_nomEvt.map(SCEVT)),
+		function(pArray_allEvt, p_machine) {
+			const lArrayArray_evt = pArrayS_nomEvt.map(   ls_nomEvt  =>  pArray_allEvt[SCEVT(ls_nomEvt)]   )
+			pFunc_action(...lArrayArray_evt.concat([p_machine]))
+		},
+		undefined,
+		pn_nbreFois
+	)
+}
+
+function createProperty(p_initVal, pArrayS_nomEvtInfluenceurs, pFunc_influence) {
+	// function pFunc_influence(p_val, ...pArray_valEnvoyees)
+	const symb = Symbol()
+	g_AllProperty[symb] = p_initVal;
+	const lCell = SC.cell({
+		target: g_AllProperty,
+		field: symb,
+		sideEffect: (val, evts)=>{
+			const lArray_evts = pArrayS_nomEvtInfluenceurs.map(ps_evt=>evts[SCEVT(ps_evt)])
+			const l_ret = pFunc_influence(val, ...lArray_evts)
+			return l_ret
+		},
+		eventList: pArrayS_nomEvtInfluenceurs.map(SCEVT)
+	})
+	lCell.valeur = ()=>lCell.val()
+	lCell.genre = 'property'
+	return lCell
+}
+
+SC.machine().constructor.prototype.addActor = function(pProgramme) {
+	if(pProgramme.init) pProgramme.init(this)
+	this.addProgram(pProgramme)
+}
+
+SC.repeatForeverButInterrupt = function(scevt, prog) {
+	return SC.kill( scevt, SC.repeatForever(prog) )
+}
+
+SC.repeatAtInterval = function(pn_nbreFois, pn_delay, pProg) {
+	return SC.repeat(pn_nbreFois,
+		SC.waitMs(pn_delay),
+		pProg
+	)
+}
+
+SC.repeatActionAtInterval = function(pn_nbreFois, pn_delay, pFunc) {
+	return SC.repeatAtInterval(pn_nbreFois, pn_delay, SC.action(pFunc))
+}
+
+SC.action_ = (tgt, fun, ...args) => SC.action(SC._(tgt,fun), ...args)
+SC.actionIfAllEvent_ = (pArrayS_nomEvt, tgt, fun, pn_nbreFois) => SC.actionIfAllEvent(pArrayS_nomEvt, SC._(tgt,fun), pn_nbreFois)
+SC.repeatActionAtInterval_ = (pn_nbreFois, pn_delay, tgt, fun) => SC.repeatActionAtInterval(pn_nbreFois, pn_delay, SC._(tgt,fun))

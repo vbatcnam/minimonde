@@ -89,7 +89,8 @@ class Vache extends SCCube{
 	}
 	
 	//Écoute les herbes autour d'elle et trouve la plus proche
-	$on_monApparence(pArray_apparences){
+	//~ $on_monApparence(pArray_apparences){
+	trouveHerbeProche(pArray_apparences){
 		//console.log("J'écoute les herbes : " , this.teteActuelle);
 		const herbeEtDistPlusProche
 			= pArray_apparences
@@ -108,6 +109,7 @@ class Vache extends SCCube{
 					{herbe: null, distance: Infinity}
 				)
 		this.nourritureVisee = herbeEtDistPlusProche.herbe;
+		//~ console.log('nourritureVisee', this.nourritureVisee.id)
 	}
 	
 	/**
@@ -120,10 +122,10 @@ class Vache extends SCCube{
 		Pour l'instant je n'ai programmé que le cas 1.1
 	*/
 	//augmente la fatigue et la faim, diminue le poids
-	$actionForever_deplacement(){
+	//~ $actionForever_deplacement(){
+	deplacement(){
 		//pas de nourriture
 		if(!this.nourritureVisee){
-			this.aTable = false;
 			return;
 		}
 		//calculer le nombre de pas jusqu'à la cible
@@ -139,25 +141,64 @@ class Vache extends SCCube{
 			this.xTerrestre = this.nourritureVisee.x;
 			this.zTerrestre = this.nourritureVisee.z;
 		}
-		this.aTable = nbreDePas <= 0;
+		if (nbreDePas <= 0) monde.generateEvent(this.SCSENSOR('aTable'))
 	}
-
+	
+	comportementInit() {return [
+		SC.action(
+			()=> externalEvent( monde, document.getElementById(this.id), 'click', this.SCSENSOR('click') )
+		),
+	]}
+	
+	comportementHabituel() {return [
+		SC.actionIfAllEvent_(['monApparence'], this, 'trouveHerbeProche'),
+		SC.kill(this.SCSENSOR('aTable'),
+			SC.action_(this, 'deplacement', SC.forever),
+			//~ SC.repeatActionAtInterval_(SC.forever, 500, this, 'deplacement' ),
+		),
+		SC.action_(this, 'baisseTete'),
+		SC.kill(this.SCSENSOR('assietteVide'),
+			SC.repeatForever(
+				SC.kill(this.SCSENSOR('click'),
+					SC.action_(this, 'nutrition', SC.forever),
+					SC.seq(
+						SC.action_(this, 'faisMeuh'),
+						SC.waitMs(5000),
+						SC.action_(this, 'neFaisPlusMeuh'),
+					)
+				),
+			),
+		),
+		SC.action_(this, 'releveTete'),
+	]}
+	
+	$_comportement() {
+		return SC.seq(
+			SC.waitMs(0),
+			...this.comportementInit(),
+			SC.repeatForever(
+				...this.comportementHabituel()
+			)
+		)
+	}
+	
 	//diminue la faim et la fatigue, augmente le poids, augmente le lait pour les femelles adultes
-	$actionForever_nutrition(){
-	//On ne se nourrit que si on est à table
-		if(this.aTable){
-			//manger l'herbe
-			this.nourritureVisee.mangeMoi();
-			//Pour 1 pas
-			this.fatigue += 0.1; 
-			this.faim += 0.1;
-			this.poids -= 0.1
-			this.bouse += 1;
-			if(this.sexe == 'F' && this.age >= 2)
-				this.pie += 1;
-			if(this.age < 2)
-				this.taille += 1;
-		};
+	//~ $actionForever_nutrition(){
+	nutrition(){
+		//manger l'herbe
+		this.nourritureVisee.mangeMoi();
+		if(this.nourritureVisee.getTaille() <= 0.01) {
+			monde.generateEvent(this.SCSENSOR('assietteVide'))
+		}
+		//Pour 1 pas
+		this.fatigue += 0.1; 
+		this.faim += 0.1;
+		this.poids -= 0.1
+		this.bouse += 1;
+		if(this.sexe == 'F' && this.age >= 2)
+			this.pie += 1;
+		if(this.age < 2)
+			this.taille += 1;
 	}
 	
 	//amélioration future ??
@@ -165,23 +206,30 @@ class Vache extends SCCube{
 		// return this.nourritureVisee.taille > 0.5;
 	// }
 	
-	$actionForever_mouvementTete(){
-		if(this.aTable && this.teteActuelle!='teteBroute'){
-			this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
-			this.teteActuelle ='teteBroute';
-			
-			// var animer = document.getElementById("boucheBroute");
-		}else if(!this.aTable && this.teteActuelle=='teteBroute'){
-			this.changement = {oldClass:this.teteActuelle , nouveau:teteProfil};
-			this.teteActuelle ='teteProfil';
-		}else{
-			this.changement = undefined;
-		}
-		//anime la mâchoire, son meuh
-		// $actionForever_meugle(){
-			// this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteMeuh} </g>`;
-			// var animer = document.getElementById("boucheMeuh");
-		// }
+	//~ //anime la mâchoire, son meuh
+	//~ // $actionForever_meugle(){
+		//~ // this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteMeuh} </g>`;
+		//~ // var animer = document.getElementById("boucheMeuh");
+	//~ // }
+
+	baisseTete(){
+		this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
+		this.teteActuelle ='teteBroute';
+	}
+
+	releveTete(){
+		this.changement = {oldClass:this.teteActuelle , nouveau:teteProfil};
+		this.teteActuelle ='teteProfil';
+	}
+
+	faisMeuh(){
+		this.changement = {oldClass:this.teteActuelle , nouveau:teteMeuh};
+		this.teteActuelle ='teteMeuh';
+	}
+
+	neFaisPlusMeuh(){
+		this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
+		this.teteActuelle ='teteBroute';
 	}
 
 	// produit(){

@@ -40,6 +40,7 @@ class Herbe extends SCCube{
 			z:this.zTerrestre,
 			dessin:this.illustration,
 			taille:this.taille,
+			getTaille:this.getTaille.bind(this),
 			mangeMoi: this.mangeMoi.bind(this)
 		}
 	}
@@ -49,11 +50,12 @@ class Herbe extends SCCube{
 			// this.taille += 0.01;
 	// }
 	
+	getTaille(){
+		return this.taille
+	}
+	
 	mangeMoi(){
-		// if(this.taille >= 0.05){
-			this.taille -= 0.05;
-			//console.log( "taille de l'herbe ", this.taille);
-		// }
+		this.taille -= 0.05;
 	}
 }
 

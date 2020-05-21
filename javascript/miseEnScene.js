@@ -61,3 +61,8 @@ for(var i=1; i<=10; i++){
 monde.addActor(new Vache(1, 6,0,5));
 monde.addActor(new Vache(2, 4,0,10));
 monde.addActor(new Vache(3, -2,0,2));
+
+monde.addActor(new Horloge());
+
+//lancer une série de réaction
+reactMultiple(monde);

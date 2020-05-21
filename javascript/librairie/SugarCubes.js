@@ -3,8 +3,8 @@
  * Author : Jean-Ferdy Susini
  * Created : 2/12/2014 9:23 PM
  * version : 5.0 alpha
- * implantation : 0.9.2
- * Copyright 2014-2018.
+ * implantation : 0.9.3
+ * Copyright 2014-2019.
  */
 
 ;
@@ -18,56 +18,75 @@ var SC = (function(){
  */
 
 /*
- * Implementation notice: SugarCubes v5 allows one to build reactive program
- * with reactive instructions. Reactive programs are executed by a reactive
- * execution machine (shortly called reactive machine or machine).
+ * Implementation notice: SugarCubes v5 allows one to build reactive systems.
+ * Reactive systems are programs executed in a dedicated environment. They are
+ * made of reactive programs built using reactive constructions which we call
+ * reactive instructions. Reactive instructions allows one to build tree
+ * structures which implement abstract syntax trees of reactive programs.
+ * Reactive programs are executed by a reactive execution machine (shortly
+ * called reactive machine or machine).
  * The reactive machine split the execution of a whole reactive system into a
- * logical succession of instants of execution during which reactive
- * instructions get activated according to their semantics.
+ * logical succession of steps called "instants of execution" (we also call
+ * this step of execution a reaction as it corresponds to the call of the react
+ * method) during which
+ * reactive instructions get activated according to their semantics.
  * Each instant of execution is decomposed in four successive phases:
- *   - the reactive execution by itself during which reactive instruction are
- *     activated to execute their operational semantics.
- *   - a phase where event values for the current instant are collected across
- *     the whole system
- *   - a phase where atomic operations are performed (ideally to compute new
- *     memory states)
- *   - a phase where the memory state of the system is swapped with the newly
- *     computed one and becomes available for the next instant.
+ *   1. the reactive execution by itself during which reactive instruction are
+ *      activated to execute their operational semantics.
+ *   2. a phase where event values for the current instant are collected across
+ *      the whole reactive system (visiting the whole abstract syntax tree of
+ *      the program).
+ *   3. a phase where atomic operations are performed (ideally to compute new
+ *      memory states)
+ *   4. a phase where the memory state of the system is swapped with the newly
+ *      computed one and becomes available for the next instant.
  */
 
 /*
  * Here we manly focus on the reactive phase (phase 1) of an instant of
  * execution, which is itself decomposed into 2 consecutive steps:
- *   - the activation phase: during which activation of each instruction
+ *   - the activation phase: during which each instruction get activated and
  *     executes its operational semantics. The activation propagates across the
  *     AST of the reactive program. The implementation of this phase is mainly
- *     in the activate() method of instructions.
+ *     done in the activate() method of instruction objects.
  *   - the end of instant phase: during which the reactive machine decides the
- *     end of instant and propagates this information along the whole AST of
- *     the reactive programming in order to make all reactive instructions
- *     which are awaiting for the end of instant to be informed of it. The
- *     implementation of this phase mainly take place in the eoi() method.
+ *     end of the current instant. The reactive machine propagates this
+ *     decision all along the AST of the whole reactive programming in order to
+ *     make all reactive instructions which are awaiting for the end of instant
+ *     to be informed of it. The implementation of this phase mainly take place
+ *     in the eoi() method of instruction objects.
  *
- * A reactive instruction is implemented as an object with a private state
- * which evolves according to time (sequence of reactions). At each instant the
- * reactive instructions can get activated and so can execute its reaction
- * according to its own operational semantics.
- * After each activation, an instruction inform about its progress returning a
+ * A reactive instruction is implemented as an object with a private state.
+ * This state evolves according to time (ie sequence of reactions). At each
+ * instant, the reactive instructions can get activated and so can execute
+ * their reaction according to their own operational semantics.
+ * 
+ * We are now going into further details about the activation() implementation.
+ * After each activation (ie each call to the method activation() of an
+ * instruction), an instruction informs about its progress returning a
  * status flag whose values are :
- *   - SUSP: the instruction has to be reactivated before the end the reactive
- *     phase of an instant.
- *   - WEOI: the instruction has to be reactivated if an event is generated or
- *     when the end of the instant is decided by the reactive machine.
- *   - OEOI: the instruction has to be reactivated only when the end of the
- *     instant is decided by the reactive machine.
- *   - STOP: the instruction has finished its execution for the current
- *     instant. It has to be reactivated at the subsequent instant.
- *   - WAIT: the instruction cannot progress anymore but has not terminated its
- *     execution. It has to be activated only if a particular event occurs (in
- *     the current instant or in subsequent ones).
- *   - HALT: the instruction cannot progress anymore it can only delay its
- *     execution to subsequent instant (it consumes time). It is useless to
- *     activate it but its execution never terminates.
+ *   - SUSP: meaning that the instruction has to be reactivated (the
+ *     activation() method has to be called once again) before the end the
+ *     current instant is decided by the reactive machine (before the any call
+ *     to the method eoi() by the reactive machine).
+ *   - WEOI: meaning that the instruction has to be reactivated if an event is
+ *     generated during the current instant or when the end of the instant is
+ *     decided by the reactive machine.
+ *   - OEOI: meaning that only the eoi() method has to be called on the
+ *     instruction when the end of the instant is decided by the reactive
+ *     machine whatever happens new during the activation phase.
+ *   - STOP: meaning that the instruction has finished its execution for the
+ *     current instant. It has to be reactivated only at the subsequent
+ *     instant.
+ *   - WAIT: meaning that the instruction cannot progress anymore but has not
+ *     terminated its execution. It has to be reactivated only if a particular
+ *     event occurs (in the current instant or in subsequent ones). The eoi()
+ *     method should not be called subsequently on such instructions as it has
+ *     no effect. Those instructions are only interested by presence of events
+ *     and not absence of events.
+ *   - HALT: meaning that the instruction cannot progress anymore. It can only
+ *     delays its execution to subsequent instant (we often say it consumes
+ *     time). It is useless to activate it but its execution never terminates.
  *   - TERM: the instruction has completely terminated its execution. It is
  *     useless to activate it anymore.
  */
@@ -96,13 +115,6 @@ const SC_Instruction_State = {
       }
   };
 Object.freeze(SC_Instruction_State);
-
-/*
- * Instruction réactive non définie... Permet de purger un code mort.
- */
-const VOID_NODE = {
-  };
-Object.freeze(VOID_NODE);
 
 /*
  * fonction ne faisant rien permettant de ne pas définir un paramètre non
@@ -141,18 +153,17 @@ function SC_CubeBinding(name){
 SC_CubeBinding.prototype = {
   constructor: SC_CubeBinding
   , resolve : function(){
-      if(null === this.cube){
+      if(null == this.cube){
         throw "cube is null or undefined !";
         }
       var tgt = this.cube[this.name];
       if(undefined === tgt){
         console.log("target not found");
-        //throw "target not found";
         return this;
         }
       else if("function" == typeof(tgt)){
-        if(null !== this.args){
-          console.log("SC_CubeBinding.resolve(): args added", this.args);
+        if(null != this.args){
+          //console.log("SC_CubeBinding.resolve(): args added", this.args);
           tgt = tgt.bind(this.cube, this.args);
           }
         else{
@@ -186,7 +197,7 @@ Object.defineProperty(SC_CubeBinding.prototype, "isBinding"
                           );
 
 /*
- * Methodes utilitaires utilisées dans l'implantation des SugarCubes.
+ * Méthodes utilitaires utilisées dans l'implantation des SugarCubes.
  */
 var _SC = {
 /*
@@ -196,7 +207,7 @@ var _SC = {
   b_ : function(p){
     if(typeof p == "string"){ // si on fournit un objet chaîne de caractères 
                               // c'est qu'on veut probablement faire un
-                              // lien tardif vers la ressources. On va donc
+                              // lien tardif vers la ressource. On va donc
                               // encapsuler cette chaîne dans un
                               // SC_CubeBinding
       var tmp = new SC_CubeBinding(p);
@@ -226,7 +237,7 @@ var _SC = {
       return function(o){
            if(o instanceof SC_CubeBinding){
              o = o.clone();
-             o.cube = this;
+             o.setCube(this);
              return o.resolve();
              }
            return o;
@@ -321,28 +332,31 @@ var _SC = {
  *  - ajout de cellules au cube grâce à l'émission de 2 type d'événements
  *    (SC_cubeAddCellEvt et SC_cubeCellifyEvt)
  */
-function SC_cubify(){
+function SC_cubify(params){
+  if(undefined == params){
+    params = {};
+    }
   Object.defineProperty(this, "SC_cubeAddBehaviorEvt"
                           , {enumerable:false
-                             , value:SC.evt("addBehaviorEvt")
+                             , value:((undefined != params.addEvent)?params.addEvent:SC.evt("addBehaviorEvt"))
                              , writable: false
                              }
                           );
   Object.defineProperty(this, "SC_cubeKillEvt"
                           , {enumerable:false
-                             , value:SC.evt("killSelf")
+                             , value:((undefined != params.killEvent)?params.killEvent:SC.evt("killSelf"))
                              , writable: false
                              }
                           );
   Object.defineProperty(this, "SC_cubeCellifyEvt"
                           , {enumerable:false
-                             , value:SC.evt("cellifyEvt")
+                             , value:((undefined != params.cellifyEvent)?params.cellifyEvent:SC.evt("cellifyEvt"))
                              , writable: false
                              }
                           );
   Object.defineProperty(this, "SC_cubeAddCellEvt"
                           , {enumerable:false
-                             , value:SC.evt("addCellEvt")
+                             , value:((undefined != params.addCellEvent)?params.addCellEvent:SC.evt("addCellEvt"))
                              , writable: false
                              }
                           );
@@ -756,6 +770,7 @@ SC_Instruction.prototype = {
             return SC_Instruction_State.TERM;
             }
           this.oc = SC_Opcodes.REPEAT_N_TIMES;
+          m.toContinue = true
           return SC_Instruction_State.STOP;
           }
         case SC_Opcodes.IF_REPEAT_INIT:{
@@ -776,6 +791,7 @@ SC_Instruction.prototype = {
             return SC_Instruction_State.TERM;
             }
           this.oc = SC_Opcodes.IF_REPEAT;
+          m.toContinue = true
           return SC_Instruction_State.STOP;
           }
         case SC_Opcodes.ACTION:{
@@ -796,6 +812,7 @@ SC_Instruction.prototype = {
             this.reset(m);
             return SC_Instruction_State.TERM;
             }
+          m.toContinue = true
           return SC_Instruction_State.STOP;
           }
         case SC_Opcodes.ACTION_LATE_FOREVER:
@@ -831,6 +848,7 @@ SC_Instruction.prototype = {
         case SC_Opcodes.PAUSE:{
           //console.log("pause");
           this.oc = SC_Opcodes.PAUSE_DONE;
+          m.toContinue = true
           return SC_Instruction_State.STOP;
           }
         case SC_Opcodes.PAUSE_DONE:{
@@ -848,6 +866,7 @@ SC_Instruction.prototype = {
             return SC_Instruction_State.TERM;
             }
           this.count--;
+          m.toContinue = true
           return SC_Instruction_State.STOP;
           }
         case SC_Opcodes.NOTHING:{
@@ -1509,6 +1528,7 @@ SC_Instruction.prototype = {
         case SC_Opcodes.WHEN_REGISTERED:{
           this.seq.idx += this.elsB;
           this.reset(m);
+          m.toContinue = true
           break;
           }
         case SC_Opcodes.KILL_OEOI:
@@ -1519,6 +1539,7 @@ SC_Instruction.prototype = {
         case SC_Opcodes.KILL_STOP:{
           if(this.c.isPresent(m)){
             this.oc = SC_Opcodes.KILLED;
+            m.toContinue = true
             }
           else{
             this.oc = SC_Opcodes.KILL_SUSP;
@@ -3372,7 +3393,7 @@ function SC_Seq(seqElements){
         }
       }
     else{
-      if(prg === VOID_NODE){
+      if(prg === SC_Nothing){
         continue;
         }
       this.seqElements[targetIDx++] = seqElements[i];
@@ -3394,7 +3415,7 @@ SC_Seq.prototype = {
             }
           }
         else{
-          if(prg === VOID_NODE){
+          if(prg === SC_Nothing){
             continue;
             }
           copy.seqElements[targetIDx++] = prg;
@@ -4488,6 +4509,9 @@ SC_Machine.prototype =
       }
   , react : function(){
       var res = SC_Instruction_State.STOP;
+      //~ var resPhase1 = SC_Instruction_State.STOP;
+      this.toContinue = false
+      //~ this.toUnblock = false
       var tmp = this.pending;
       this.pending=[];
       for(var n in tmp){
@@ -4511,10 +4535,13 @@ SC_Machine.prototype =
       this.parActions = [];
       this.stdOut("\n"+this.instantNumber+" -: ");
       // Phase 1 : pure reactive execution
-      //console.log(this.instantNumber, "--- phase1 ---");
+      console.log(this.instantNumber, "--- phase1 ---");
+      //~ if(this.instantNumber > 10) return
       while(SC_Instruction_State.SUSP == (res = this.prg.activate(this)) /*&& this.moved*/){
         //this.moved = false;
       }
+      //~ resPhase1 = res
+      //~ console.log('Instruction_State phase1', SC_Instruction_State.toString(res))
       //console.log("res = ",res);
       //this.moved = false;
       if((SC_Instruction_State.OEOI == res)||(SC_Instruction_State.WEOI == res)){
@@ -4591,8 +4618,14 @@ SC_Machine.prototype =
         this.traces = [];
       }*/
       if(SC_Instruction_State.TERM == res){
+        //~ this.terminated = true;
         console.log("machine stops");
         }
+      //~ this.somethingNew = (resPhase1 != SC_Instruction_State.TERM) && (resPhase1 != SC_Instruction_State.WAIT)
+      //~ this.somethingNew = (resPhase1 != SC_Instruction_State.TERM) && (resPhase1 != SC_Instruction_State.WAIT) && (resPhase1 != SC_Instruction_State.WEOI)
+      //~ this.somethingNew = this.prg.hasProduction
+      //~ console.log('Instruction_State', SC_Instruction_State.toString(res), SC_Instruction_State.toString(resPhase1))
+      //~ console.log('somethingNew', this.somethingNew)
       return res != SC_Instruction_State.TERM;
       }
   , getIPS : function(){
@@ -4868,7 +4901,7 @@ SC = {
     return SC_Nothing;
     },
   purge: function(prg){
-    return (undefined == prg)?VOID_NODE:prg;
+    return (undefined == prg)?this.nothing():prg;
     },
   nop: function(){
     return SC_Nothing;
