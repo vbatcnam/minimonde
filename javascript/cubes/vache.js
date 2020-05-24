@@ -201,17 +201,6 @@ class Vache extends SCCube{
 			this.taille += 1;
 	}
 	
-	//amélioration future ??
-	// appetissante(nourriture){
-		// return this.nourritureVisee.taille > 0.5;
-	// }
-	
-	//~ //anime la mâchoire, son meuh
-	//~ // $actionForever_meugle(){
-		//~ // this.illustration = `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteMeuh} </g>`;
-		//~ // var animer = document.getElementById("boucheMeuh");
-	//~ // }
-
 	baisseTete(){
 		this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
 		this.teteActuelle ='teteBroute';
@@ -232,6 +221,13 @@ class Vache extends SCCube{
 		this.teteActuelle ='teteBroute';
 	}
 
+	//anime la mâchoire pour manger (A tester)
+	//~ mange(){
+		//~ var animer = document.querySelector(".boucheBroute");
+		 //~ animer.rotate(angle:30)//voir syntaxe exacte
+	
+	//~ }
+	
 	// produit(){
 		// this.lait -= 1;
 	// }
