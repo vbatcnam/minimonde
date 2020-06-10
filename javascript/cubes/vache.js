@@ -26,9 +26,9 @@ class Vache extends SCCube{
 		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
 		this.age = ageEnMois; //adulte 24 mois
 		this.changement // Sert à changer l'apparence
+		this.illustration = {};
 		this.DessineMoi();
-		this.illustration = {} ;
-		
+
 		//Se nourrir
 		//-------------
 		this.faim = 0; //n'a pas faim (100 a très faim)
@@ -80,20 +80,26 @@ class Vache extends SCCube{
 		//veau
 		if(this.age<24){
 			// console.log('veau');
-			typeAnimal = 'veau',
+			typeAnimal = 'veau';
 		}else{//adulte
-			if(this.sexe == 'F'){
-				// console.log('vache');
-				typeAnimal = 'vache',
-			}else{
+			if(this.sexe == 'M'){
 				// console.log('taureau');
-				typeAnimal = 'taureau',
+				typeAnimal = 'adulte';
+			}else{
+				// console.log('vache');
+				typeAnimal = 'adulte';
 			}
 		}
-		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.main;
-		this.illustration. corpActuel =  illustrationBovin[typeAnimal].profil.corp;
-		this.illustration.animal = teteActuelle+corpActuel;
-
+		//illustration
+		console.log(this.illustration);
+		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.profil.main;
+		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corp;
+		if(this.sexe == "F" && this.age >=24){
+			this.illustration.pisActuel =  illustrationBovin[typeAnimal].profil.pis;
+			this.illustration.animal = teteActuelle+corpActuel+pisActuel;
+		}else{
+			this.illustration.animal = teteActuelle+corpActuel;
+		}
 	}
 	
 	$publicVar_monApparence(){

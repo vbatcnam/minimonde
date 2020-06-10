@@ -24,21 +24,21 @@ var illustrationBovin = {
 				broute:'',
 			}
 		},
-		TroisQuart{
+		troisQuart:{
 			corp:'',
 			tete:''
 		},
-		profil{
+		profil:{
 			corp:'',
 			tete:''
 		},
-		dos{
+		dos:{
 			corp:'',
 			tete:''
 		},
 		dort:''
 	},
-	adulte{
+	adulte:{
 		face:{
 			corp:`<g class = "vache_face" transform="translate(65.946 -352.89)">
 				<g class="pie" transform="matrix(.6333 0 0 .6333 -574.63 -200.49)" style="stroke:#e9afaf">
@@ -80,11 +80,11 @@ var illustrationBovin = {
 				broute:``
 			},
 		},
-		TroisQuart{
+		TroisQuart:{
 			corp:{},
 			tete:{},
 		},
-		profil
+		profil:{
 			pis:`<g class="pis" transform="translate(-358.56 -122.81)">
 				<g  transform="matrix(1.379 0 0 1.379 -567.37 -1017.7)" style="stroke:#e9afaf">
 					<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
@@ -128,7 +128,7 @@ var illustrationBovin = {
 				troisQuart:{
 				
 				},
-				profile :{
+				profil :{
 					main:`
 						<g class="teteProfil" transform="translate(-358.56 -122.81)">
 							<g transform="matrix(.9942 0 0 .9942 -552.12 -823.06)">
@@ -206,7 +206,7 @@ var illustrationBovin = {
 				}
 			}
 		},
-		dos{
+		dos:{
 			corp : `<g class="vacheDos" transform="translate(-48.447 -705.14)">
 				<g class="pie" transform="matrix(.80868 0 0 .80868 -599.67 -6.1973)" style="stroke:#e9afaf">
 					<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
@@ -217,7 +217,6 @@ var illustrationBovin = {
 				</g>
 				<path d="m57.448 487.31c3.3466-0.94845 3.3238-5.8475 4.5077-9.3315 1.7398 3.2112 2.9576 4.8387 2.0019 10.349-2.6198 3.9047-5.1472 3.9182-7.6809 4.1929-0.066-2.458-0.1204-4.8975 1.1713-5.2104z" style="fill:#520"/>
 				<path d="m36.523 487.74c-3.3466-0.94845-3.3238-5.8475-4.5078-9.3315-1.7398 3.2112-2.9576 4.8387-2.0018 10.349 2.6198 3.9047 5.1472 3.9182 7.6808 4.1929 0.066-2.458 0.1205-4.8975-1.1712-5.2104z" style="fill:#520"/>
-				${teteDos}
 				<g class="patteArriereGauche" transform="translate(-51.389 -227.16)">
 					<path d="m58.505 838.3c1.8133 20.248 4.5971 52.286 6.0145 54.737 2.0038 3.4658 0 15.007 0 18.473 0 3.4658-6.3936 13.293-6.3936 13.293s13.654 2.8809 17.26 2.8809c3.6068 0 1.9965-6.9243 1.9965-6.9243l-1.5921-12.711 3.6138-13.267-2.426-10.412 3.4465-36.735z" style="fill:#a40;stroke-width:.80868;stroke:#a40"/>
 					<path d="m58.576 923.3c-5.205 1.8087-8.2213 4.2737-8.8831 7.4445 6.6565 1.3279 14.928 0.983 23.613 0.20913l5.5746-4.4306-0.8777-2.9182c-3.0484 0.37977-6.0888 0.5393-9.1514 1.3086 1.3611 2.1301-7.4605-0.22525-10.275-1.6134z" style="fill:#520;stroke-width:.97717px;stroke:#000"/>
@@ -239,7 +238,7 @@ var illustrationBovin = {
 				</g>`,
 				broute:``
 			},
-		dort:
+		dort:``
 		}
 	}
 }
