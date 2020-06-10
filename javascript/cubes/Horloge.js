@@ -53,7 +53,7 @@ class Horloge extends SCCube{
 	}
 	
 	$_steps(){
-		return SC.multiDifferGen(50, 500, SCSENSOR('tick'));
+		return SC.multiDifferGen(SC.forever, 500, SCSENSOR('tick'));
 	}
 }
 

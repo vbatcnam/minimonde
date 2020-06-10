@@ -27,8 +27,7 @@ class Vache extends SCCube{
 		this.age = ageEnMois; //adulte 24 mois
 		this.changement // Sert à changer l'apparence
 		this.DessineMoi();
-		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
-		// this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheDos} </g>`;
+		this.illustration = {} ;
 		
 		//Se nourrir
 		//-------------
@@ -77,14 +76,21 @@ class Vache extends SCCube{
 	}
 	
 	DessineMoi(){
-		if(this.sexe == 'F'){
-			// console.log('vache');
-			this.teteActuelle = 'teteProfil';
-			this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
+		//veau
+		if(this.age<24){
+			// console.log('veau');
+			this.illustration.teteActuelle = 'illustrationBovin.teteProfil';
+			this.illustration. corpActuel =  `<g id="${this.id}" class="vache"> ${veauCorpProfil + teteProfil} </g>`;
+		}else{//adulte
+			if(this.sexe == 'F'){
+				// console.log('vache');
+				this.teteActuelle = 'teteProfil';
+				this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
 			}else{
 				// console.log('taureau');
 				this.teteActuelle = 'teteProfil';
 				this.illustration =  `<g id="${this.id}" class="vache"> ${taureauCorpProfil + teteProfil} </g>`;
+			}
 		}
 	}
 	
