@@ -16,10 +16,27 @@
 */
 var illustrationBovin = {
 	veau:{
-		face:{},
-		TroisQuart{},
-		profil{},
-		dos{}
+		face:{
+			corp:'',
+			tete:{
+				main:'',
+				tete:'',
+				broute:'',
+			}
+		},
+		TroisQuart{
+			corp:'',
+			tete:''
+		},
+		profil{
+			corp:'',
+			tete:''
+		},
+		dos{
+			corp:'',
+			tete:''
+		},
+		dort:''
 	},
 	adulte{
 		face:{
@@ -67,7 +84,15 @@ var illustrationBovin = {
 			corp:{},
 			tete:{},
 		},
-		profil{
+		profil
+			pis:`<g class="pis" transform="translate(-358.56 -122.81)">
+				<g  transform="matrix(1.379 0 0 1.379 -567.37 -1017.7)" style="stroke:#e9afaf">
+					<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
+					<path d="m794.23 786.68-1.7553 3.8702c0.0479 1.4682 1.632 1.7857 2.532 1.184l1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
+					<path d="m824.43 764.71c-3.6326 7.946-1.523 17.579-12.775 23.588-8.4011 4.4866-22.157 1.2201-26.867-2.7657-2.8876-3.8901-5.2026-11.919-7.1119-16.298" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
+					<path d="m809.79 787.25 0.75594 5.2412c-0.54063 1.7444-2.4818 1.5836-3.3261 0.55435l-0.25198-4.6364" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
+					<path d="m797.9 787.65-0.75594 5.2412c0.54063 1.7443 2.4818 1.5836 3.3261 0.55435l0.25198-4.6364" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
+				</g></g>`,
 			corp:{
 				patteArriereDroite : `<g class="patteArriereDroite" transform="translate(-358.56 -122.81)">
 					<g transform="matrix(.9942 0 0 .9942 -524.45 -571.08)">
@@ -78,14 +103,7 @@ var illustrationBovin = {
 						<path class="patteAvantDroite" d="m963.89 656.07 3.5437 13.576s-1.693 1.6756 3.5029 6.2238c1.6292 1.6389 5.2622 7.79 4.7257 11.6-0.5322 4.3031-3.4458 10.001-2.3706 10.349 2.4899 0.7973 11.077 0.375 11.453-1.2011 0.9312-3.0972-2.4175-3.6787-1.8453-5.0258 0.6126-1.2155 2.3754-0.3901 1.7889-2.646-0.3973-2.345-2.7685-2.2738-3.4559-5.2667-0.7547-2.8572-1.1381-8.4844-1.1073-9.5389-0.095-1.0484-0.1147-4.4012-0.6162-6.0456-0.6471-1.4772-3.137-5.2823-3.137-5.2823l-3.1027-24.151c-5.4881-2.6156-11.115-9.758-16.082 4.6258z" style="fill:#803300;stroke-width:.6654;stroke:#803300"/>
 						<path d="m973.83 692.01c-3.1193 1.1158-5.0509 3.1028-5.7798 5.9717 5.0509 2.3527 9.9713 1.5941 14.933 1.8212l1.8194-3.9322c0.4957-2.0311-7.6989-1.9878-10.973-3.8607z" style="fill:#520;stroke-width:.8517px;stroke:#000"/>
 					</g>`,
-				pis : <g class="pis" transform="translate(-358.56 -122.81)">
-					<g  transform="matrix(1.379 0 0 1.379 -567.37 -1017.7)" style="stroke:#e9afaf">
-						<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
-						<path d="m794.23 786.68-1.7553 3.8702c0.0479 1.4682 1.632 1.7857 2.532 1.184l1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
-						<path d="m824.43 764.71c-3.6326 7.946-1.523 17.579-12.775 23.588-8.4011 4.4866-22.157 1.2201-26.867-2.7657-2.8876-3.8901-5.2026-11.919-7.1119-16.298" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
-						<path d="m809.79 787.25 0.75594 5.2412c-0.54063 1.7444-2.4818 1.5836-3.3261 0.55435l-0.25198-4.6364" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
-						<path d="m797.9 787.65-0.75594 5.2412c0.54063 1.7443 2.4818 1.5836 3.3261 0.55435l0.25198-4.6364" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
-					</g></g>`,
+				
 				patteAvantGauche : `<g class="patteAvantGauche" transform="translate(-358.56 -122.81)">
 					<g  transform="matrix(.9942 0 0 .9942 -524.45 -571.08)">
 						<path d="m962.45 648.05c-9.7485 9.9609-4.6328 22.852-6.1481 34.856-6.4398 8.9903-1.1652 21.567-4.2463 28.225 5.1347 7.7111-4.1701 3.9445-8.9747 3.9007-12.354-0.2249 0.4456-11.813-0.5981-18.409 2.6073-13.162-3.9542-26.16-1.7144-39.596-0.2848-6.6957-3.9731-11.018-8.4494-14.861-8.5872-50.471 38.582-35.692 30.131 5.8849z" style="fill:#a40;stroke-width:.86687;stroke:#a40"/>
@@ -220,7 +238,8 @@ var illustrationBovin = {
 					<path d="m109.24 718.18c9.3433 1.4812 0.7474 8.0981 6.3454 6.2207 8.3916-2.9391 10.819-9.9969 8.7028-12.12-1.7327-1.7376-9.8657-0.4976-15.048 5.8989z" style="fill-rule:evenodd;fill:#803300"/>
 				</g>`,
 				broute:``
-			}
+			},
+		dort:
 		}
 	}
 }

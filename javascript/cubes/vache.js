@@ -76,22 +76,24 @@ class Vache extends SCCube{
 	}
 	
 	DessineMoi(){
+		let typeAnimal = '';
 		//veau
 		if(this.age<24){
 			// console.log('veau');
-			this.illustration.teteActuelle = 'illustrationBovin.teteProfil';
-			this.illustration. corpActuel =  `<g id="${this.id}" class="vache"> ${veauCorpProfil + teteProfil} </g>`;
+			typeAnimal = 'veau',
 		}else{//adulte
 			if(this.sexe == 'F'){
 				// console.log('vache');
-				this.teteActuelle = 'teteProfil';
-				this.illustration =  `<g id="${this.id}" class="vache"> ${vacheCorpProfil + teteProfil} </g>`;
+				typeAnimal = 'vache',
 			}else{
 				// console.log('taureau');
-				this.teteActuelle = 'teteProfil';
-				this.illustration =  `<g id="${this.id}" class="vache"> ${taureauCorpProfil + teteProfil} </g>`;
+				typeAnimal = 'taureau',
 			}
 		}
+		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.main;
+		this.illustration. corpActuel =  illustrationBovin[typeAnimal].profil.corp;
+		this.illustration.animal = teteActuelle+corpActuel;
+
 	}
 	
 	$publicVar_monApparence(){
@@ -102,7 +104,7 @@ class Vache extends SCCube{
 			x:this.xTerrestre,
 			y:this.yTerrestre,
 			z:this.zTerrestre,
-			dessin:this.illustration,
+			dessin:this.illustration.animal,
 			changement : this.changement,
 			age: this.age, // si c'est un jeune veau
 			taille : this.taille, //pour le mettre à l’échelle à l'écran
