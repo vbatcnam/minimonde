@@ -8,7 +8,7 @@
 
 */
 class Vache extends SCCube{
-	constructor(num, x, y, z, age, poids){//Ajouter age et poids dans les paramètres pour faire des veaux
+	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){//Ajouter age et poids dans les paramètres pour faire des veaux
 		super(); //Cube
 		
 		//identité
@@ -16,14 +16,15 @@ class Vache extends SCCube{
 		this.espece = 'vache';
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
-		this.fabriqueMalOuFemelle();
-		//this.sexe = 'M';//pour debug
+		this.sexe = sexe;
+		
+		//~ this.fabriqueMalOuFemelle();// pour naissance
 		
 		//Gérer l'apparence
 		//-----------------
-		this.poids = 50000; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte F 500kg, M 900kg)
-		this.taille = 2; // cm (enfant 1, adulte 2 ) ajouter une taille sevré (1, 2,3)
-		this.age = 2; //adulte 2 ans
+		this.poidsEnGramme = poidsKg * 100; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
+		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
+		this.age = ageEnMois; //adulte 24 mois
 		this.changement // Sert à changer l'apparence
 		this.DessineMoi();
 		 // this.illustration =  `	<g id="${this.id}" class="vache"> ${vacheFace} </g>`;
@@ -50,16 +51,28 @@ class Vache extends SCCube{
 		this.yTerrestre = y;
 		this.zTerrestre = z; 
 		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
+		
+		//Gérer la lactation
+		this.fabriquePis();
 	}
 
+	fabriquePis()
+	{
+		if(this.sexe == "F"){
+			this.pis = 0;
+		}
+	}
+	
+	//pour la naissance d'un veau (si femelle)
 	fabriqueMalOuFemelle()
 	{
+		if(this.sexe == "M")
+			return 
 		let r = Calcule.getRandomInt(3);
 		if(r == 2){
-			this.sexe = 'M';
-			}else{
-			this.sexe = 'F';
-			this.pis = 0;
+			return 'M';
+		}else{
+			return 'F';
 		}
 	}
 	

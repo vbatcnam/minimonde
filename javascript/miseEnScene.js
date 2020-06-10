@@ -45,22 +45,23 @@ monde.addActor(new Ciel());
 monde.addActor(new Prairie());
 monde.addActor(new Soleil());
 
-//Ajout des herbes : il faudra en mettre plus car il faut qu'elle couvre la prairie
+//Ajout des herbes :
 for(var i=1; i<=10; i++){
 	for(var j=-10; j<=10; j++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
+//pour débug
 // for(var i=1; i<=2; i++){
 	// for(var j=-2; j<=2; j++){
 		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	// }
 // }
 
-/*** POUR LE TEST*/
-monde.addActor(new Vache(1, 6,0,5));
-monde.addActor(new Vache(2, 4,0,10));
-monde.addActor(new Vache(3, -2,0,2));
+/*** Pour La création du chapitre 1 du jeu : ajout d'une première famille de vaches*/
+monde.addActor(new Vache(1, 6,0,5, 24, 3, 500, "F")); // vache
+monde.addActor(new Vache(2, 4,0,10, 24, 3, 600, "M"))); // taureau
+monde.addActor(new Vache(3, -2,0,2, 1, 1, 40,"F"));//veau
 
 monde.addActor(new Horloge());
 
