@@ -1,11 +1,14 @@
 /**
-	vache et taureaux
-	gestation 280 jours
-	
-	En mode broutage dessin broute. Quand elle n'a plus faim, elle relève la tête
+	vache et taureaux : durée de vie 10 ans.
+	gestation 280 jours : Elles peuvent être fécondées tous les 12 mois.
+	Le veau est sevré à 6 mois il devient adulte à 2 ans
+	* Production de lait : 8.500 litres par vache. Le veau boit 6 litres de lait par jour (3 * 2l).
+	* S'occuper de sa vache : les vaches ont besoin de nourriture, d'eau, d'un abri et d'un espace pour se déplacer en toute liberté. Vous devez lui donner un abri aménagé pour qu'elle puisse y passer la nuit et s'y abriter pendant les intempéries.
+	* En mode broutage dessin broute. Quand elle n'a plus faim, elle relève la tête
+
 */
 class Vache extends SCCube{
-	constructor(num, x, y, z){
+	constructor(num, x, y, z, age, poids){//Ajouter age et poids dans les paramètres pour faire des veaux
 		super(); //Cube
 		
 		//identité
@@ -18,8 +21,8 @@ class Vache extends SCCube{
 		
 		//Gérer l'apparence
 		//-----------------
-		this.poids = 50000; //grammes (adulte F 500kg, M 900kg)
-		this.taille = 2; // cm (enfant 1, adulte 2 )
+		this.poids = 50000; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte F 500kg, M 900kg)
+		this.taille = 2; // cm (enfant 1, adulte 2 ) ajouter une taille sevré (1, 2,3)
 		this.age = 2; //adulte 2 ans
 		this.changement // Sert à changer l'apparence
 		this.DessineMoi();
@@ -182,6 +185,14 @@ class Vache extends SCCube{
 		)
 	}
 	
+	/**
+	Pour être digérée, l’herbe parcourt un voyage de 3 jours entre la bouche de la vache et son système gastro-intestinal. 
+	* La vache mange 100 kg d'herbe par jour.
+	* La vache saisit l’herbe avec sa langue et l’avale rapidement sans la mâcher.
+	*  Puis elle se couche et commence à ruminer. elle boive jusqu’à 180 litres d’eau au rythme de 25 litres par minute! 
+	* Au terme de ce processus de digestion, les éléments nutritifs passent dans le sang et la sécrétion du lait peut commencer dans le pis.
+	* 
+	 * */
 	//diminue la faim et la fatigue, augmente le poids, augmente le lait pour les femelles adultes
 	//~ $actionForever_nutrition(){
 	nutrition(){
