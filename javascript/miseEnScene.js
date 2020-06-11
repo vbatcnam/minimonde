@@ -60,7 +60,7 @@ for(var i=1; i<=10; i++){
 
 /*** Pour La création du chapitre 1 du jeu : ajout d'une première famille de vaches*/
 monde.addActor(new Vache(1, 6,0,5, 24, 3, 500, "F")); // vache
-monde.addActor(new Vache(2, 4,0,10, 24, 3, 600, "M")); // taureau
+//~ monde.addActor(new Vache(2, 4,0,10, 24, 3, 600, "M")); // taureau
 //~ monde.addActor(new Vache(3, -2,0,2, 1, 1, 40,"F"));//veau
 
 monde.addActor(new Horloge());

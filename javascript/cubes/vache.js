@@ -90,16 +90,32 @@ class Vache extends SCCube{
 				typeAnimal = 'adulte';
 			}
 		}
-		//illustration
-		console.log(this.illustration);
+		//construction de l'illustration
+		//==============================
+		let debutGroupeVache = `<g  id="${this.id}" class="vache">`;
+		let finGroupeVache = "</g>";
+		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corps 
+									+ illustrationBovin[typeAnimal].profil.pattesDebout;
 		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.profil.main;
-		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corp;
+		
+		this.illustration.animal = debutGroupeVache + 
+									this.illustration.corpActuel +
+									this.illustration.teteActuelle;
+		
+		//on rajoute les pis si c'est une vache adulte
 		if(this.sexe == "F" && this.age >=24){
 			this.illustration.pisActuel =  illustrationBovin[typeAnimal].profil.pis;
-			this.illustration.animal = teteActuelle+corpActuel+pisActuel;
-		}else{
-			this.illustration.animal = teteActuelle+corpActuel;
+			this.illustration.animal += this.illustration.pisActuel;
 		}
+		
+		//on ferme le groupeVache
+		this.illustration.animal += finGroupeVache;
+
+		
+		//~ console.log(this.illustration.teteActuelle);
+		//~ console.log(this.illustration.corpActuel);
+		console.log(this.illustration.animal);
+
 	}
 	
 	$publicVar_monApparence(){

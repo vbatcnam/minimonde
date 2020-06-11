@@ -87,6 +87,7 @@ class Camera extends SCCube{
 			//if provisoire car tout ce qui ont envoyé "monApparence" n'est pas encore dessiné : Du coup ça bug "elementDessin is undefined"
 			if(elementDessin){
 				//On redimensionne le dessin
+				console.log( elementDessin.getAttribute('class'));
 				let scale = (scaleObjetsDeLaScene[elementDessin.id]) 
 					? scaleObjetsDeLaScene[elementDessin.id].width 
 					: scaleObjetsDeLaScene[elementDessin.getAttribute('class')].width ;
