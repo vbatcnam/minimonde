@@ -94,13 +94,20 @@ class Vache extends SCCube{
 		//==============================
 		let debutGroupeVache = `<g  id="${this.id}" class="vache">`;
 		let finGroupeVache = "</g>";
-		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corps 
-									+ illustrationBovin[typeAnimal].profil.pattesDebout;
-		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.profil.main;
 		
-		this.illustration.animal = debutGroupeVache + 
-									this.illustration.corpActuel +
-									this.illustration.teteActuelle;
+		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corps;
+		this.illustration.queueActuel =  illustrationBovin[typeAnimal].profil.queue.debout;
+		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.profil.main;
+		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].profil.pattesDebout.patteAvantFront;
+		
+		//assemblage dans l'ordre d'affichage axe Z 
+		this.illustration.animal = debutGroupeVache+ 
+									this.illustration.patteArriereBack+
+									this.illustration.patteAvantBack+
+									this.illustration.queueActuel;
 		
 		//on rajoute les pis si c'est une vache adulte
 		if(this.sexe == "F" && this.age >=24){
@@ -108,13 +115,19 @@ class Vache extends SCCube{
 			this.illustration.animal += this.illustration.pisActuel;
 		}
 		
+		//On ajoute le reste
+		this.illustration.animal += this.illustration.corpActuel +
+									this.illustration.patteArriereFront +
+									this.illustration.patteAvantFront +
+									this.illustration.teteActuelle;
+		
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
 
 		
 		//~ console.log(this.illustration.teteActuelle);
 		//~ console.log(this.illustration.corpActuel);
-		console.log(this.illustration.animal);
+		//~ console.log(this.illustration.animal);
 
 	}
 	
