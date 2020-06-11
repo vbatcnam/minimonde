@@ -124,6 +124,10 @@ class Vache extends SCCube{
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
 
+		//On enregiste la configurationactuelle 
+		this.teteActuelle = 'teteProfil';
+		this.corpsActuel = 'corpsProfil';
+		//...
 		
 		//~ console.log(this.illustration.teteActuelle);
 		//~ console.log(this.illustration.corpActuel);
@@ -269,22 +273,22 @@ class Vache extends SCCube{
 	}
 	
 	baisseTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:teteProfil};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.main};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:teteMeuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:teteBroute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
