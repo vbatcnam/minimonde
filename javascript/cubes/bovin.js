@@ -30,6 +30,7 @@ class Bovin extends SCCube{
 
 		//création de l'id
 		this.id = this.espece + "_" + this.num;
+		
 		//Gérer l'apparence
 		//-----------------
 		this.poidsEnGramme = poidsKg * 1000; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
