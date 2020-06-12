@@ -8,7 +8,7 @@
 
 */
 class Vache extends SCCube{
-	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){//Ajouter age et poids dans les paramètres pour faire des veaux
+	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){
 		super(); //Cube
 		
 		//identité
@@ -18,15 +18,17 @@ class Vache extends SCCube{
 		this.id = this.espece + "_" + this.num;
 		this.sexe = sexe;
 		
-		//~ this.fabriqueMalOuFemelle();// pour naissance
-		
 		//Gérer l'apparence
 		//-----------------
 		this.poidsEnGramme = poidsKg * 100; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
 		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
 		this.age = ageEnMois; //adulte 24 mois
-		this.changement // Sert à changer l'apparence
 		this.illustration = {};
+		
+		/**Sert à changer l'apparence par exemple : 
+		 * 	{oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute}*/
+		this.changement;
+		
 		this.DessineMoi();
 
 		//Se nourrir
@@ -38,19 +40,22 @@ class Vache extends SCCube{
 		this.mange; 
 		
 		this.bouse = 0;
-		
+
 		//Gérer l'état de veille
 		//----------------------
 		this.fatigue = 0; //n'est pas fatigué (100 est épuisé)
 		this.sleeping = false; //est en train de dormir
-		
+
 		//Gérer les déplacements
 		//---------------------
 		this.xTerrestre = x; 
 		this.yTerrestre = y;
 		this.zTerrestre = z; 
 		this.pas = 0.5; // 0.5 pixel/25 milisecondes 
-		
+
+		//Gérer la géstation
+		//~ this.fabriqueMalOuFemelle();// pour naissance
+
 		//Gérer la lactation
 		this.fabriquePis();
 	}
@@ -76,7 +81,7 @@ class Vache extends SCCube{
 	}
 	
 	DessineMoi(){
-		let typeAnimal = '';
+		let typeAnimal = '';// veau ou adulte 
 		//veau
 		if(this.age<24){
 			// console.log('veau');
@@ -90,14 +95,15 @@ class Vache extends SCCube{
 				typeAnimal = 'adulte';
 			}
 		}
+
 		//construction de l'illustration
 		//==============================
 		let debutGroupeVache = `<g  id="${this.id}" class="vache">`;
 		let finGroupeVache = "</g>";
 		
-		this.illustration.corpActuel =  illustrationBovin[typeAnimal].profil.corps;
-		this.illustration.queueActuel =  illustrationBovin[typeAnimal].profil.queue.debout;
-		this.illustration.teteActuelle = illustrationBovin[typeAnimal].profil.tete.profil.main;
+		this.illustration.corps =  illustrationBovin[typeAnimal].profil.corps;
+		this.illustration.queue =  illustrationBovin[typeAnimal].profil.queue.debout;
+		this.illustration.tete = illustrationBovin[typeAnimal].profil.tete.profil.main;
 		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereBack;
 		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereFront;
 		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteAvantBack;
@@ -107,52 +113,44 @@ class Vache extends SCCube{
 		this.illustration.animal = debutGroupeVache+ 
 									this.illustration.patteArriereBack+
 									this.illustration.patteAvantBack+
-									this.illustration.queueActuel;
+									this.illustration.queue;
 		
 		//on rajoute les pis si c'est une vache adulte
 		if(this.sexe == "F" && this.age >=24){
-			this.illustration.pisActuel =  illustrationBovin[typeAnimal].profil.pis;
-			this.illustration.animal += this.illustration.pisActuel;
+			this.illustration.pis =  illustrationBovin[typeAnimal].profil.pis;
+			this.illustration.animal += this.illustration.pis;
 		}
 		
 		//On ajoute le reste
-		this.illustration.animal += this.illustration.corpActuel +
+		this.illustration.animal += this.illustration.corps +
 									this.illustration.patteArriereFront +
 									this.illustration.patteAvantFront +
-									this.illustration.teteActuelle;
+									this.illustration.tete;
 		
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
 
-		//On enregiste la configurationactuelle 
+		//On enregiste la configurationactuelle (à suprimer ) : aller chercher className dans illustration
 		this.teteActuelle = 'teteProfil';
-		this.corpsActuel = 'corpsProfil';
-		//...
-		
-		//~ console.log(this.illustration.teteActuelle);
-		//~ console.log(this.illustration.corpActuel);
-		//~ console.log(this.illustration.animal);
-
 	}
 	
 	$publicVar_monApparence(){
 		return {//les infos envoyées
-			repere:'terrestre',
-			id:this.id,
-			espece:this.espece,
-			x:this.xTerrestre,
-			y:this.yTerrestre,
-			z:this.zTerrestre,
-			dessin:this.illustration.animal,
-			changement : this.changement,
-			age: this.age, // si c'est un jeune veau
-			taille : this.taille, //pour le mettre à l’échelle à l'écran
-			espece : this.espece,
+			repere: 'terrestre',
+			espece: this.espece,
+			id: this.id,
+			age: this.age,
+			taille: this.taille, //pour le mettre à l’échelle à l'écran
+			x: this.xTerrestre, 
+			y: this.yTerrestre,
+			z: this.zTerrestre, 
+			dessin: this.illustration.animal,
+			changement: this.changement,
+			//ne serait-il pas mieux de transmettre this.illustration qui contient tous les morceaux de l'animal ?
 		}
 	}
 	
 	//Écoute les herbes autour d'elle et trouve la plus proche
-	//~ $on_monApparence(pArray_apparences){
 	trouveHerbeProche(pArray_apparences){
 		//console.log("J'écoute les herbes : " , this.teteActuelle);
 		const herbeEtDistPlusProche
@@ -185,7 +183,6 @@ class Vache extends SCCube{
 		Pour l'instant je n'ai programmé que le cas 1.1
 	*/
 	//augmente la fatigue et la faim, diminue le poids
-	//~ $actionForever_deplacement(){
 	deplacement(){
 		//pas de nourriture
 		if(!this.nourritureVisee){
@@ -217,7 +214,6 @@ class Vache extends SCCube{
 		SC.actionIfAllEvent_(['monApparence'], this, 'trouveHerbeProche'),
 		SC.kill(this.SCSENSOR('aTable'),
 			SC.action_(this, 'deplacement', SC.forever),
-			//~ SC.repeatActionAtInterval_(SC.forever, 500, this, 'deplacement' ),
 		),
 		SC.action_(this, 'baisseTete'),
 		SC.kill(this.SCSENSOR('assietteVide'),
@@ -254,7 +250,6 @@ class Vache extends SCCube{
 	* 
 	 * */
 	//diminue la faim et la fatigue, augmente le poids, augmente le lait pour les femelles adultes
-	//~ $actionForever_nutrition(){
 	nutrition(){
 		//manger l'herbe
 		this.nourritureVisee.mangeMoi();
@@ -272,23 +267,24 @@ class Vache extends SCCube{
 			this.taille += 1;
 	}
 	
-	baisseTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
+	// Ne serait-il pas mieux à la place de this.teteActuelle d'utiliser this.illustration.changement ?
+	baisseTete(){ 
+		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.main};
+		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.main};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.meuh};
+		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
+		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 

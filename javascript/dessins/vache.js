@@ -40,7 +40,7 @@ var illustrationBovin = {
 	},
 	adulte:{
 		face:{
-			corps:`<g class = "vache_face" transform="translate(65.946 -352.89)">
+			corps:`<g class = "corpsFace" transform="translate(65.946 -352.89)">
 					<g class="pie" transform="matrix(.6333 0 0 .6333 -574.63 -200.49)" style="stroke:#e9afaf">
 						<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
 						<path d="m794.23 786.68-1.7553 3.8702c0.0479 1.4682 1.632 1.7857 2.532 1.184l1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
@@ -86,14 +86,14 @@ var illustrationBovin = {
 			tete:{},
 		},
 		profil:{
-			pis:`<g class="pie" style="stroke:#e9afaf" transform="matrix(1.379 0 0 1.379 -925.93 -1140.5)">
+			pis:`<g class="pis" style="stroke:#e9afaf" transform="matrix(1.379 0 0 1.379 -925.93 -1140.5)">
 				<path style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8" d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184"/>
 				<path d="m794.23 786.68-1.7553 3.8702c0.0479 1.4682 1.632 1.7857 2.532 1.184l1.2202-3.5184" style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8"/>
 				<path d="m824.43 764.71c-3.6326 7.946-1.523 17.579-12.775 23.588-8.4011 4.4866-22.157 1.2201-26.867-2.7657-2.8876-3.8901-5.2026-11.919-7.1119-16.298" style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8"/>
 				<path d="m809.79 787.25 0.75594 5.2412c-0.54063 1.7444-2.4818 1.5836-3.3261 0.55435l-0.25198-4.6364" style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8"/>
 				<path style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8" d="m797.9 787.65-0.75594 5.2412c0.54063 1.7443 2.4818 1.5836 3.3261 0.55435l0.25198-4.6364"/>
 			</g>`,
-			corps:`<g class="corps" transform="matrix(.99420 0 0 .99420 -883.01 -693.89)">
+			corps:`<g class="corpsProfil" transform="matrix(.99420 0 0 .99420 -883.01 -693.89)">
 				<path style="stroke:#a40;stroke-width:.86687;fill:#a40" d="m1073.8 626.66c-9.9105-0.8204-19.321 5.3883-27.874 9.7567-13.147 4.6568-26.409 3.9372-40.199 2.3879-15.034-1.256-31.119 1.1116-43.781 9.6452l-30.002-6.5122c-6.2388-5.5872-14.085-10.243-15.946-19.228-2.8217-13.557-22.03-18.185-27.096-30.838 4.6861-34.25 1.885-39.188 18.255-62.924 19.704 6.5736 43.971 0.8219 64.129 3.7963 15.004 1.9552 29.881 5.0995 45.107 4.1923 16.413 0.2128 33.05 1.3313 49.042-3.1591 18.698-2.3332 38.449-8.3562 56.918-1.9652 15.651 5.1471 16.893 22.535 15.224 36.318-1.4304 16.376-4.3164 33.785-14.791 47.022z"/>
 				<path style="fill:#deaa87" d="m1125.3 604.13c3.8532-15.952 9.8704-31.98 8.1618-48.66-2.003-25.302-25.183-9.103-49.9-23.745-5.65 2.498-11.142 10.798-9.1789 17.057-9.1563 13.465-24.618 16.985-7.7138 30.13 20.041-7.1949 35.238-8.8139 23.361 17.639 13.624 13.471 22.378-19.128 35.27 7.5794"/>
 				<path d="m999.08 560.01c3.8533 15.952 9.8704 31.98 8.1619 48.66-2.003 25.302-25.183 9.103-49.9 23.745-5.6501-2.498-11.142-10.798-9.179-17.056-9.1563-13.466-24.618-16.985-7.7138-30.13 20.041 7.1949 35.238 8.814 23.361-17.639 13.624-13.471 22.378 19.128 35.269-7.5794" style="fill:#deaa87"/>
