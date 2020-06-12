@@ -104,8 +104,8 @@ class Camera extends SCCube{
 				if(info.changement){
 					const oldElt = elementDessin.getElementsByClassName(info.changement.oldClass)[0];
 					const nouveauElt = SVG.createSvgElt(info.changement.nouveau);
-					console.log('anienne tête : ', oldElt);
-					console.log('nouvelle tête : ', info.changement.nouveau);
+					//~ console.log('anienne tête : ', oldElt);
+					//~ console.log('nouvelle tête : ', info.changement.nouveau);
 					//console.log('$$oldElt : ', info.changement.nouveau);
 					if(oldElt && nouveauElt) {
 						elementDessin.replaceChild(nouveauElt, oldElt);

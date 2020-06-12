@@ -281,25 +281,25 @@ class Bovin extends SCCube{
 	}
 	
 	baisseTete(){ 
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
-		console.log("changement : ", this.changement);
-		console.log("tete : ", this.teteActuelle);
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.broute};
+		//~ console.log("changement : ", this.changement);
+		//~ console.log("tete : ", this.teteActuelle);
 		this.teteActuelle ='teteBroute';
 		//il faudra voir si ma vache est de face, de profil ou de dos pour mettre la bonne tête qui broute)
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.main};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.main};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.meuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
