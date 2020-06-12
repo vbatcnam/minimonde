@@ -18,16 +18,21 @@ class Bovin extends SCCube{
 	//le numero pourrait être calculé par la classe et ne plus être entré en parmetre
 	//var totalBovin = 0; //une fonction calcule le nombre de bovins
 	
-	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){
+	constructor(x, y, z, ageEnMois, taille, poidsKg, sexe ){
 		super(); //Cube
 		
 		//identité
 		//---------
 		this.espece = 'bovin';
-		this.num = num; // (totalBovin +1) 
-		this.id = this.espece + "_" + this.num;
 		this.sexe = sexe;
 		
+		//création du numero
+		this.constructor.total = this.constructor.total || 0
+		this.constructor.total += 1
+		this.num = this.constructor.total
+
+		//création de l'id
+		this.id = this.espece + "_" + this.num;
 		//Gérer l'apparence
 		//-----------------
 		this.poidsEnGramme = poidsKg * 1000; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
