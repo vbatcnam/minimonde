@@ -7,13 +7,13 @@
 	* En mode broutage dessin broute. Quand elle n'a plus faim, elle relève la tête
 
 */
-class Vache extends SCCube{
+class Bovin extends SCCube{
 	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){
 		super(); //Cube
 		
 		//identité
 		//---------
-		this.espece = 'vache';
+		this.espece = 'bovin';
 		this.num = num;
 		this.id = this.espece + "_" + this.num;
 		this.sexe = sexe;

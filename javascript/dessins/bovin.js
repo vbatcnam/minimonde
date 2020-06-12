@@ -1,19 +1,13 @@
 /** 
-	vache.js
-	illustration de la vache dans toutes ses positions 
+	bovin.js
+	illustration du bovin dans toutes ses positions 
 	Auteur : Véronique Lion
 	Date création : 03/03/2019 20h15
 	Copyright : © Véronique Lion 2018
 */
 //============================================================================
-//						Vache de profile
+//						Bovin
 //============================================================================
-/*
- * A implémenter dans le futur et à tester 
- * Voir avec Claude si c'est une bonne idée
- * En effet, pour les vaches et les taureaux je répète la même chose exceptés les pis
- * ----------------------------------------------------------------------------------
-*/
 var illustrationBovin = {
 	veau:{
 		face:{
