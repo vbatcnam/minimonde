@@ -27,7 +27,7 @@ class Bovin extends SCCube{
 		
 		//Gérer l'apparence
 		//-----------------
-		this.poidsEnGramme = poidsKg * 100; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
+		this.poidsEnGramme = poidsKg * 1000; //grammes (naissance : 40kg, 2-3 mois : 180Kg, 6 mois: 400kg, adulte de 500kg, à 900kg)
 		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
 		this.age = ageEnMois; //adulte 24 mois
 		this.illustration = {};
@@ -49,7 +49,7 @@ class Bovin extends SCCube{
 		this.nourritureVisee = null;
 		this.mange; 
 		
-		this.bouse = 0;
+		this.jaugeDechets = 0;// quand elle est pleine, le bovin fait une bouse
 
 		//Gérer l'état de veille
 		//----------------------
@@ -72,7 +72,7 @@ class Bovin extends SCCube{
 
 	createPis(){
 		if(this.sexe == "F"){
-			this.pis = 0;
+			this.jaugePis = 0;//quand elle est pleine, la vache fait meuh. 
 		}
 	}
 	
@@ -267,9 +267,9 @@ class Bovin extends SCCube{
 		this.fatigue += 0.1; 
 		this.faim += 0.1;
 		this.poids -= 0.1
-		this.bouse += 1;
+		this.jaugeBouse += 1;
 		if(this.sexe == 'F' && this.age >= 2)
-			this.pie += 1;
+			this.jaugePie += 1;
 		if(this.age < 2)
 			this.taille += 1;
 	}
@@ -305,16 +305,14 @@ class Bovin extends SCCube{
 	
 	//~ }
 	
-	// produit(){
-		// this.lait -= 1;
+	// traireManuelement(){
+		// this.jaugePis -= 1;
 	// }
 	
 	// elimine(){
-		// this.bouse -= 1;
+		// this.jaugeBouse =0;
 	// }
-	// produit(quoi){
-		// this[quoi] -= 1;
-	// }
+
 
 }
 
