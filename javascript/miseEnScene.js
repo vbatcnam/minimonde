@@ -51,12 +51,6 @@ for(var i=1; i<=10; i++){
 		monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
 	}
 }
-//pour débug
-// for(var i=1; i<=2; i++){
-	// for(var j=-2; j<=2; j++){
-		// monde.addActor(new Herbe(i+','+j,j+Math.random(),i+Math.random()));
-	// }
-// }
 
 /*** Pour La création du chapitre 1 du jeu : ajout d'une première famille de vaches*/
 monde.addActor(new Vache(1, 6,0,5, 24, 3, 500, "F")); // vache
