@@ -112,10 +112,10 @@ class Bovin extends SCCube{
 		this.illustration.corps =  illustrationBovin[typeAnimal].vueProfil.corps;
 		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue.debout;
 		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil;
-		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereBack;
-		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereFront;
-		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteAvantBack;
-		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteAvantFront;
+		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].vueProfil.patte.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].vueProfil.patte.patteAvantFront;
 		
 		//assemblage dans l'ordre d'affichage axe Z 
 		this.illustration.animal = debutGroupeVache+ 
