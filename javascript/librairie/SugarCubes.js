@@ -4508,9 +4508,9 @@ SC_Machine.prototype =
         }
       }
   , react : function(){ //J'y ai touché provisoirement !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pour debug
-		this.compteur = this.compteur || 0;
-		this.compteur +=1;
-		if(this.compteur > 30){return;}
+		//~ this.compteur = this.compteur || 0;
+		//~ this.compteur +=1;
+		//~ if(this.compteur > 30){return;}
       var res = SC_Instruction_State.STOP;
       //~ var resPhase1 = SC_Instruction_State.STOP;
       this.toContinue = false

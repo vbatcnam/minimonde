@@ -289,17 +289,17 @@ class Bovin extends SCCube{
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.main};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.meuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
