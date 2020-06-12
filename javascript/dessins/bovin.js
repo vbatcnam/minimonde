@@ -31,7 +31,7 @@ var illustrationBovin = {
 			tete:''
 		},
 		//allongé (soit il dort, soit il digère)
-		lying:''
+		vueLying:''
 	},
 	adulte:{
 		vueFace:{
@@ -211,7 +211,7 @@ var illustrationBovin = {
 				broute:``
 			},
 		//allongé (soit il dort, soit il digère)
-		lying:''
+		vueLying:''
 		}
 	}
 }

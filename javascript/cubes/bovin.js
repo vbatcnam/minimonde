@@ -109,13 +109,13 @@ class Bovin extends SCCube{
 		let debutGroupeVache = `<g  id="${this.id}" class="vache">`;
 		let finGroupeVache = "</g>";
 		
-		this.illustration.corps =  illustrationBovin[typeAnimal].profil.corps;
-		this.illustration.queue =  illustrationBovin[typeAnimal].profil.queue.debout;
-		this.illustration.tete = illustrationBovin[typeAnimal].profil.tete.profil.main;
-		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereBack;
-		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].profil.pattesDebout.patteArriereFront;
-		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].profil.pattesDebout.patteAvantBack;
-		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].profil.pattesDebout.patteAvantFront;
+		this.illustration.corps =  illustrationBovin[typeAnimal].vueProfil.corps;
+		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue.debout;
+		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil.main;
+		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteAvantFront;
 		
 		//assemblage dans l'ordre d'affichage axe Z 
 		this.illustration.animal = debutGroupeVache+ 
@@ -125,7 +125,7 @@ class Bovin extends SCCube{
 		
 		//on rajoute les pis si c'est une vache adulte
 		if(this.sexe == "F" && this.age >=24){
-			this.illustration.pis =  illustrationBovin[typeAnimal].profil.pis;
+			this.illustration.pis =  illustrationBovin[typeAnimal].vueProfil.pis;
 			this.illustration.animal += this.illustration.pis;
 		}
 		
