@@ -15,13 +15,16 @@
 
 */
 class Bovin extends SCCube{
+	//le numero pourrait être calculé par la classe et ne plus être entré en parmetre
+	//var totalBovin = 0; //une fonction calcule le nombre de bovins
+	
 	constructor(num, x, y, z, ageEnMois, taille, poidsKg, sexe ){
 		super(); //Cube
 		
 		//identité
 		//---------
 		this.espece = 'bovin';
-		this.num = num;
+		this.num = num; // (totalBovin +1) 
 		this.id = this.espece + "_" + this.num;
 		this.sexe = sexe;
 		
