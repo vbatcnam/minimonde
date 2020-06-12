@@ -110,7 +110,7 @@ class Bovin extends SCCube{
 		let finGroupeVache = "</g>";
 		
 		this.illustration.corps =  illustrationBovin[typeAnimal].vueProfil.corps;
-		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue.debout;
+		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue;
 		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil;
 		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereBack;
 		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereFront;
