@@ -26,13 +26,16 @@ class Vache extends SCCube{
 		this.illustration = {};
 		
 		/**Sert à changer l'apparence par exemple : 
-		 * 	{oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute}*/
-		this.changement;
+		 * 	{
+		 * 		oldClass: sert à aller chercher l'élément contenant la classe du dessin actuel, 
+		 * 		nouveau: sert à mettre la classe du nouvel élément SVG
+		 * }*/
+		this.changement = {oldClass:'', nouveau:''};
 		
-		this.DessineMoi();
+		this.createIllustrationInitiale();
 
 		//Se nourrir
-		//-------------
+		//-----------
 		this.faim = 0; //n'a pas faim (100 a très faim)
 		this.eating = false; // sert à animer la mâchoire
 		this.aTable = false; // n'est devant aucune nourriture
@@ -57,19 +60,17 @@ class Vache extends SCCube{
 		//~ this.fabriqueMalOuFemelle();// pour naissance
 
 		//Gérer la lactation
-		this.fabriquePis();
+		this.createPis();
 	}
 
-	fabriquePis()
-	{
+	createPis(){
 		if(this.sexe == "F"){
 			this.pis = 0;
 		}
 	}
 	
 	//pour la naissance d'un veau (si femelle)
-	fabriqueMalOuFemelle()
-	{
+	decideMalOuFemelle(){
 		if(this.sexe == "M")
 			return 
 		let r = Calcule.getRandomInt(3);
@@ -80,7 +81,7 @@ class Vache extends SCCube{
 		}
 	}
 	
-	DessineMoi(){
+	createIllustrationInitiale(){
 		let typeAnimal = '';// veau ou adulte 
 		//veau
 		if(this.age<24){
@@ -145,8 +146,7 @@ class Vache extends SCCube{
 			y: this.yTerrestre,
 			z: this.zTerrestre, 
 			dessin: this.illustration.animal,
-			changement: this.changement,
-			//ne serait-il pas mieux de transmettre this.illustration qui contient tous les morceaux de l'animal ?
+			changement: this.changement
 		}
 	}
 	
@@ -267,24 +267,27 @@ class Vache extends SCCube{
 			this.taille += 1;
 	}
 	
-	// Ne serait-il pas mieux à la place de this.teteActuelle d'utiliser this.illustration.changement ?
+	// Pourquoi ne pas écraser simplement la variable this.illustration.tete par la nouvelle tête ?
 	baisseTete(){ 
-		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
 		this.teteActuelle ='teteBroute';
+		//pourquoi ne pas faire simplement :
+		//this.illustration.tete = illustrationBovin.adulte.profil.tete.broute;
+		//il faudra voir si ma vache est de face, de profil ou de dos pour mettre la bonne tête qui broute)
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.main};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.main};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.meuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.illustration.tete , nouveau:illustrationBovin.adulte.profil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.profil.broute};
 		this.teteActuelle ='teteBroute';
 	}
 

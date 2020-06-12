@@ -40,13 +40,14 @@ class Camera extends SCCube{
 		this.defsElement = SVG.balise(this.svgElement, 'defs');
 		this.largeur = innerWidth;
 		this.hauteur = innerHeight;
-		/**
-		"infoJeu" recevra des messages au joueur 
-			vous avez gagné, 
-			attention vos vaches sont malheureuses,
-			la boite à outil du joueur, 
-			menu 
-			....
+		
+	/**
+	"infoJeu" recevra des messages au joueur 
+		vous avez gagné, 
+		attention vos vaches sont malheureuses,
+		la boite à outil du joueur, 
+		menu 
+		....
 	*/
 		this.infoJeu = 'div' //div ou autre à créer
 	}

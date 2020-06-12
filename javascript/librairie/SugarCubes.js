@@ -4507,7 +4507,10 @@ SC_Machine.prototype =
           }
         }
       }
-  , react : function(){
+  , react : function(){ //J'y ai touché provisoirement !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		this.compteur = this.compteur || 0;
+		this.compteur +=1;
+		if(this.compteur > 5){return;}
       var res = SC_Instruction_State.STOP;
       //~ var resPhase1 = SC_Instruction_State.STOP;
       this.toContinue = false
