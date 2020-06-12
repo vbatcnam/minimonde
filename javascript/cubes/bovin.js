@@ -111,7 +111,7 @@ class Bovin extends SCCube{
 		
 		this.illustration.corps =  illustrationBovin[typeAnimal].vueProfil.corps;
 		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue.debout;
-		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil.main;
+		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil;
 		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereBack;
 		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteArriereFront;
 		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].vueProfil.pattesDebout.patteAvantBack;
