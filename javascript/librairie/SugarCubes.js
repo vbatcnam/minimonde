@@ -4538,7 +4538,7 @@ SC_Machine.prototype =
       this.parActions = [];
       this.stdOut("\n"+this.instantNumber+" -: ");
       // Phase 1 : pure reactive execution
-      console.log(this.instantNumber, "--- phase1 ---");
+      //~ console.log(this.instantNumber, "--- phase1 ---");
       //~ if(this.instantNumber > 10) return
       while(SC_Instruction_State.SUSP == (res = this.prg.activate(this)) /*&& this.moved*/){
         //this.moved = false;
