@@ -43,8 +43,8 @@ class Bovin extends SCCube{
 		 * 		oldClass: sert à aller chercher l'élément contenant la classe du dessin actuel, 
 		 * 		nouveau: sert à mettre la classe du nouvel élément SVG
 		 * }*/
-		this.changement = {oldClass:'', nouveau:''};
-		
+		//~ this.changement = {oldClass:'', nouveau:''}; //retiré car génére erreur d’analyse XML : mal formé
+
 		this.createIllustrationInitiale();
 
 		//Se nourrir
@@ -144,7 +144,7 @@ class Bovin extends SCCube{
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
 
-		//On enregiste la configurationactuelle (à suprimer ) : aller chercher className dans illustration
+		//On enregiste la configurationactuelle
 		this.teteActuelle = 'teteProfil';
 	}
 	
@@ -280,12 +280,11 @@ class Bovin extends SCCube{
 			this.taille += 1;
 	}
 	
-	// Pourquoi ne pas écraser simplement la variable this.illustration.tete par la nouvelle tête ?
 	baisseTete(){ 
 		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.profil.tete.broute};
+		console.log("changement : ", this.changement);
+		console.log("tete : ", this.teteActuelle);
 		this.teteActuelle ='teteBroute';
-		//pourquoi ne pas faire simplement :
-		//this.illustration.tete = illustrationBovin.adulte.profil.tete.broute;
 		//il faudra voir si ma vache est de face, de profil ou de dos pour mettre la bonne tête qui broute)
 	}
 
