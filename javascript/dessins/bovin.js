@@ -10,7 +10,7 @@
 //============================================================================
 var illustrationBovin = {
 	veau:{
-		face:{
+		vueFace:{
 			corps:'',
 			tete:{
 				main:'',
@@ -18,22 +18,23 @@ var illustrationBovin = {
 				broute:'',
 			}
 		},
-		troisQuart:{
+		vueTroisQuart:{
 			corps:'',
 			tete:''
 		},
-		profil:{
+		vueProfil:{
 			corps:'',
 			tete:''
 		},
-		dos:{
+		vueDos:{
 			corps:'',
 			tete:''
 		},
-		dort:''
+		//allongé (soit il dort, soit il digère)
+		down:''
 	},
 	adulte:{
-		face:{
+		vueFace:{
 			corps:`<g class = "corpsFace" transform="translate(65.946 -352.89)">
 					<g class="pie" transform="matrix(.6333 0 0 .6333 -574.63 -200.49)" style="stroke:#e9afaf">
 						<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
@@ -75,11 +76,11 @@ var illustrationBovin = {
 				meuh:``
 			},
 		},
-		TroisQuart:{
+		vueTroisQuart:{
 			corps:{},
 			tete:{},
 		},
-		profil:{
+		vueProfil:{
 			pis:`<g class="pis" style="stroke:#e9afaf" transform="matrix(1.379 0 0 1.379 -925.93 -1140.5)">
 				<path style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8" d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184"/>
 				<path d="m794.23 786.68-1.7553 3.8702c0.0479 1.4682 1.632 1.7857 2.532 1.184l1.2202-3.5184" style="stroke-linejoin:round;paint-order:markers fill stroke;stroke:#e9afaf;stroke-width:1.1;fill:#e3beb8"/>
@@ -177,7 +178,7 @@ var illustrationBovin = {
 				</g>`
 			}
 		},
-		dos:{
+		vueDos:{
 			corps : `<g class="vacheDos" transform="translate(-48.447 -705.14)">
 				<g class="pie" transform="matrix(.80868 0 0 .80868 -599.67 -6.1973)" style="stroke:#e9afaf">
 					<path d="m803.72 786.94 1.7553 3.8702c-0.0479 1.4682-1.632 1.7857-2.532 1.184l-1.2202-3.5184" style="fill:#e3beb8;paint-order:markers fill stroke;stroke-linejoin:round;stroke-width:1.1;stroke:#e9afaf"/>
@@ -209,7 +210,8 @@ var illustrationBovin = {
 					</g>`,
 				broute:``
 			},
-		dort:``
+		//allongé (soit il dort, soit il digère)
+		down:''
 		}
 	}
 }
