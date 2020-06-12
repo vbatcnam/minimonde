@@ -1,3 +1,10 @@
+'use strict';
+/** 
+	Auteur : Véronique Lion
+	Date création : 13/11/2018
+	Copyright : © Véronique Lion 2018
+*/
+
 /**
 	vache et taureaux : durée de vie 10 ans.
 	gestation 280 jours : Elles peuvent être fécondées tous les 12 mois.
