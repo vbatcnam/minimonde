@@ -146,6 +146,32 @@ class Bovin extends SCCube{
 
 		//On enregiste la configurationactuelle
 		this.teteActuelle = 'teteProfil';
+		
+		this.retirerCornes(this.illustration.tete);
+	}
+	
+	retirerCornes(tete){
+		/**
+		 * <path class="cornes" d="m902.51 767.87c-5.7399-1.6267-5.7007-10.029-7.7315-16.005-2.9839 5.5076-5.0726 8.2991-3.4333 17.75 4.4932 6.6972 8.8281 6.7203 13.174 7.1915 0.1138-4.2158 0.2064-8.3999-2.0089-8.9365z" style="fill:#520"/>
+		 * */
+		let regex = /<path class="cornes" .*\/>/;
+		let res = tete.match(regex); //qui contient par <path class="cornes" 
+		//~ console.log(res);
+		let aModifier = res[0];
+		regex = /style=".*"/;
+		let resStyle = aModifier.match(regex);
+		let style = resStyle[0];
+		//~ console.log(style);
+		let tab = style.split('"');
+		console.log(tab);
+		/* reste rechercher style=".." 
+		 * et à ajouter ;opacity:0
+		 * ---------
+		 * n'importe quel caractère : .
+		 * 0 ou plusieurs : *
+		 * commence par : ^
+		 * fini par : $
+		*/
 	}
 	
 	$publicVar_monApparence(){
