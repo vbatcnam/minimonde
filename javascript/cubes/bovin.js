@@ -95,18 +95,17 @@ class Bovin extends SCCube{
 	}
 	
 	createIllustrationInitiale(){
-		let typeAnimal = '';// veau ou adulte 
-		//veau
+		let typeAnimal = '';
 		if(this.age<24){
 			// console.log('veau');
 			typeAnimal = 'veau';
 		}else{//adulte
 			if(this.sexe == 'M'){
 				// console.log('taureau');
-				typeAnimal = 'adulte';
+				typeAnimal = 'taureau';
 			}else{
 				// console.log('vache');
-				typeAnimal = 'adulte';
+				typeAnimal = 'vache';
 			}
 		}
 
@@ -115,13 +114,14 @@ class Bovin extends SCCube{
 		let debutGroupeVache = `<g  id="${this.id}" class="vache">`;
 		let finGroupeVache = "</g>";
 		
-		this.illustration.corps =  illustrationBovin[typeAnimal].vueProfil.corps;
-		this.illustration.queue =  illustrationBovin[typeAnimal].vueProfil.queue;
-		this.illustration.tete = illustrationBovin[typeAnimal].vueProfil.tete.profil;
-		this.illustration.patteArriereBack = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereBack;
-		this.illustration.patteArriereFront = illustrationBovin[typeAnimal].vueProfil.patte.patteArriereFront;
-		this.illustration.patteAvantBack = illustrationBovin[typeAnimal].vueProfil.patte.patteAvantBack;
-		this.illustration.patteAvantFront = illustrationBovin[typeAnimal].vueProfil.patte.patteAvantFront;
+		//parties comunes aux bovins:
+		this.illustration.corps =  illustrationBovin.vueProfil.corps;
+		this.illustration.queue =  illustrationBovin.vueProfil.queue;
+		this.illustration.tete = illustrationBovin.vueProfil.tete.profil;
+		this.illustration.patteArriereBack = illustrationBovin.vueProfil.patte.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin.vueProfil.patte.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin.vueProfil.patte.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin.vueProfil.patte.patteAvantFront;
 		
 		//assemblage dans l'ordre d'affichage axe Z 
 		this.illustration.animal = debutGroupeVache+ 
@@ -130,8 +130,8 @@ class Bovin extends SCCube{
 									this.illustration.queue;
 		
 		//on rajoute les pis si c'est une vache adulte
-		if(this.sexe == "F" && this.age >=24){
-			this.illustration.pis =  illustrationBovin[typeAnimal].vueProfil.pis;
+		if(typeAnimal=="vache"){
+			this.illustration.pis =  illustrationBovin.vueProfil.pis;
 			this.illustration.animal += this.illustration.pis;
 		}
 		
@@ -140,7 +140,7 @@ class Bovin extends SCCube{
 									this.illustration.patteArriereFront +
 									this.illustration.patteAvantFront +
 									this.illustration.tete;
-		
+
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
 
@@ -281,7 +281,7 @@ class Bovin extends SCCube{
 	}
 	
 	baisseTete(){ 
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute};
 		//~ console.log("changement : ", this.changement);
 		//~ console.log("tete : ", this.teteActuelle);
 		this.teteActuelle ='teteBroute';
@@ -289,17 +289,17 @@ class Bovin extends SCCube{
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.profil};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.profil};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.meuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.meuh};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.adulte.vueProfil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute};
 		this.teteActuelle ='teteBroute';
 	}
 
