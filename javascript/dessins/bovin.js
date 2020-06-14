@@ -171,8 +171,6 @@ var illustrationBovin = {
 				<path d="m1102 700.48c-3.8919 1.3921-6.3018 3.8711-7.2112 7.4504 6.3017 2.9353 12.44 1.9889 18.631 2.2722 4.2511-0.9224 1.9373-2.6172 1.0467-4.1446 0.6185-2.5339-8.3822-3.2414-12.466-5.578z" style="stroke:#000;stroke-width:1.0626px;fill:#520"/>
 			</g>`
 		},
-		/**Amélioration possible : extraire la corne pour qu'elle n'apparaisse que si c'est un adulte.
-		 * L'oreille devra apparaître devant la corne*/
 		tete:{
 			profil:`<g class="teteProfil" transform="matrix(.99420 0 0 .99420 -917.31 -949.61)">
 						<path class="cornes" d="m902.51 767.87c-5.7399-1.6267-5.7007-10.029-7.7315-16.005-2.9839 5.5076-5.0726 8.2991-3.4333 17.75 4.4932 6.6972 8.8281 6.7203 13.174 7.1915 0.1138-4.2158 0.2064-8.3999-2.0089-8.9365z" style="fill:#520"/>
