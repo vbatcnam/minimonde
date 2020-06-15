@@ -22,7 +22,6 @@ class Bovin extends SCCube{
 		//---------
 		this.espece = 'bovin';
 		this.sexe = sexe;
-		
 		//création du numero
 		this.constructor.total = this.constructor.total || 0
 		this.constructor.total += 1
@@ -95,17 +94,16 @@ class Bovin extends SCCube{
 	}
 	
 	createIllustrationInitiale(){
-		let typeAnimal = '';
 		if(this.age<24){
 			// console.log('veau');
-			typeAnimal = 'veau';
+			this.typeAnimal = 'veau';
 		}else{//adulte
 			if(this.sexe == 'M'){
 				// console.log('taureau');
-				typeAnimal = 'taureau';
+				this.typeAnimal = 'taureau';
 			}else{
 				// console.log('vache');
-				typeAnimal = 'vache';
+				this.typeAnimal = 'vache';
 			}
 		}
 
@@ -117,7 +115,8 @@ class Bovin extends SCCube{
 		//parties comunes aux bovins:
 		this.illustration.corps =  illustrationBovin.vueProfil.corps;
 		this.illustration.queue =  illustrationBovin.vueProfil.queue;
-		this.illustration.tete = illustrationBovin.vueProfil.tete.profil;
+		this.illustration.tete = illustrationBovin.vueProfil.tete.profil(this.typeAnimal);
+		//~ console.log(this.illustration.tete);
 		this.illustration.patteArriereBack = illustrationBovin.vueProfil.patte.patteArriereBack;
 		this.illustration.patteArriereFront = illustrationBovin.vueProfil.patte.patteArriereFront;
 		this.illustration.patteAvantBack = illustrationBovin.vueProfil.patte.patteAvantBack;
@@ -130,7 +129,7 @@ class Bovin extends SCCube{
 									this.illustration.queue;
 		
 		//on rajoute les pis si c'est une vache adulte
-		if(typeAnimal=="vache"){
+		if(this.typeAnimal=="vache"){
 			this.illustration.pis =  illustrationBovin.vueProfil.pis;
 			this.illustration.animal += this.illustration.pis;
 		}
@@ -143,35 +142,11 @@ class Bovin extends SCCube{
 
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
+		//~ console.log(this.illustration.animal)
 
 		//On enregiste la configurationactuelle
 		this.teteActuelle = 'teteProfil';
 		
-		this.retirerCornes(this.illustration.tete);
-	}
-	
-	retirerCornes(tete){
-		/**
-		 * <path class="cornes" d="m902.51 767.87c-5.7399-1.6267-5.7007-10.029-7.7315-16.005-2.9839 5.5076-5.0726 8.2991-3.4333 17.75 4.4932 6.6972 8.8281 6.7203 13.174 7.1915 0.1138-4.2158 0.2064-8.3999-2.0089-8.9365z" style="fill:#520"/>
-		 * */
-		let regex = /<path class="cornes" .*\/>/;
-		let res = tete.match(regex); //qui contient par <path class="cornes" 
-		//~ console.log(res);
-		let aModifier = res[0];
-		regex = /style=".*"/;
-		let resStyle = aModifier.match(regex);
-		let style = resStyle[0];
-		//~ console.log(style);
-		let tab = style.split('"');
-		console.log(tab);
-		/* reste rechercher style=".." 
-		 * et à ajouter ;opacity:0
-		 * ---------
-		 * n'importe quel caractère : .
-		 * 0 ou plusieurs : *
-		 * commence par : ^
-		 * fini par : $
-		*/
 	}
 	
 	$publicVar_monApparence(){
@@ -307,7 +282,7 @@ class Bovin extends SCCube{
 	}
 	
 	baisseTete(){ 
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute(this.typeAnimal)};
 		//~ console.log("changement : ", this.changement);
 		//~ console.log("tete : ", this.teteActuelle);
 		this.teteActuelle ='teteBroute';
@@ -315,17 +290,17 @@ class Bovin extends SCCube{
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.profil};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.profil(this.typeAnimal)};
 		this.teteActuelle ='teteProfil';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.meuh};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.meuh(this.typeAnimal)};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute(this.typeAnimal)};
 		this.teteActuelle ='teteBroute';
 	}
 
