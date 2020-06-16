@@ -107,12 +107,12 @@ class Bovin extends SCCube{
 		//parties comunes aux bovins:
 		this.illustration.corps =  illustrationBovin.vueProfil.corps;
 		this.illustration.queue =  illustrationBovin.vueProfil.queue;
-		this.illustration.tete = illustrationBovin.vueProfil.tete.profil(this.typeAnimal);
+		this.illustration.tete = illustrationBovin.vueProfil.tete.leveTete(this.typeAnimal);
 		//~ console.log(this.illustration.tete);
-		this.illustration.patteArriereBack = illustrationBovin.vueProfil.patte.patteArriereBack;
-		this.illustration.patteArriereFront = illustrationBovin.vueProfil.patte.patteArriereFront;
-		this.illustration.patteAvantBack = illustrationBovin.vueProfil.patte.patteAvantBack;
-		this.illustration.patteAvantFront = illustrationBovin.vueProfil.patte.patteAvantFront;
+		this.illustration.patteArriereBack = illustrationBovin.vueProfil.pattes.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin.vueProfil.pattes.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin.vueProfil.pattes.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin.vueProfil.pattes.patteAvantFront;
 		
 		//assemblage dans l'ordre d'affichage axe Z 
 		this.illustration.animal = debutGroupeVache+ 
@@ -137,10 +137,11 @@ class Bovin extends SCCube{
 		//~ console.log(this.illustration.animal)
 
 		//On enregiste la configurationactuelle
-		this.teteActuelle = 'teteProfil';
-		
+		this.teteActuelle = 'leveTete';
+		this.vueActuelle = 'vueProfil';
 	}
 	
+	//construction
 	$publicVar_monApparence(){
 		return {//les infos envoyées
 			repere: 'terrestre',
@@ -278,35 +279,52 @@ class Bovin extends SCCube{
 	 * 		this.changements.nouveau: sert à mettre la classe du nouvel élément SVG
 	 */
 	baisseTete(){ 
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute(this.typeAnimal)};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin[this.vueActuelle].tete.broute(this.typeAnimal)};
 		//~ console.log("changement : ", this.changement);
 		//~ console.log("tete : ", this.teteActuelle);
 		this.teteActuelle ='teteBroute';
-		//il faudra voir si ma vache est de face, de profil ou de dos pour mettre la bonne tête qui broute)
 	}
 
 	releveTete(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.profil(this.typeAnimal)};
-		this.teteActuelle ='teteProfil';
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin[this.vueActuelle].tete.leveTete(this.typeAnimal)};
+		this.teteActuelle ='leveTete';
 	}
 
 	faisMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.meuh(this.typeAnimal)};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin[this.vueActuelle].tete.meuh(this.typeAnimal)};
 		this.teteActuelle ='teteMeuh';
 	}
 
 	neFaisPlusMeuh(){
-		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute(this.typeAnimal)};
+		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin[this.vueActuelle].tete.broute(this.typeAnimal)};
 		this.teteActuelle ='teteBroute';
 	}
 
-	montreToiDeProfil(){}
+//Afficher les vues
+	montreToiDeProfil(){
+		this.changement = {oldClass:this.illustration.animal , nouveau:illustrationBovin.vueProfil.tete.profil(this.typeAnimal)};
+		this.vueActuelle="vueProfil";
+	}
 	
-	montreToiDeFace(){}
+	montreToiDeFace(){
+		this.changement = {oldClass:this.illustration.animal , nouveau:illustrationBovin.vueFace.tete.profil(this.typeAnimal)};
+		this.vueActuelle="vueFace";
+	}
 	
-	montreToiDeDos(){}
+	montreToiDeDos(){
+		this.changement = {oldClass:this.illustration.animal , nouveau:illustrationBovin.vueDos.tete.profil(this.typeAnimal)};
+		this.vueActuelle="vueDos";
+	}
 	
-	montreToiDe3quart(){}
+	montreToiDe3quart(){
+		this.changement = {oldClass:this.illustration.animal , nouveau:illustrationBovin.vueTroisQuart.tete.profil(this.typeAnimal)};
+		this.vueActuelle="vueTroisQuart";
+	}
+	
+	montreToiLying(){
+		this.changement = {oldClass:this.illustration.animal ,nouveau:illustrationBovin.vueLying.tete.profil(this.typeAnimal)};
+		this.vueActuelle="vueLying";
+	}
 	
 	//anime la mâchoire pour manger (A tester)
 	//~ mange(){
