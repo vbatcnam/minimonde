@@ -36,14 +36,6 @@ class Bovin extends SCCube{
 		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
 		this.age = ageEnMois; //adulte 24 mois
 		this.illustration = {};
-		
-		/**Sert à changer l'apparence par exemple : 
-		 * 	{
-		 * 		oldClass: sert à aller chercher l'élément contenant la classe du dessin actuel, 
-		 * 		nouveau: sert à mettre la classe du nouvel élément SVG
-		 * }*/
-		//~ this.changement = {oldClass:'', nouveau:''}; //retiré car génére erreur d’analyse XML : mal formé
-
 		this.createIllustrationInitiale();
 
 		//Se nourrir
@@ -281,6 +273,10 @@ class Bovin extends SCCube{
 			this.taille += 1;
 	}
 	
+	/**this.changements sert à changer l'apparence par exemple : 
+	 * 		this.changements.oldClass: sert à aller chercher l'élément contenant la classe du dessin actuel, 
+	 * 		this.changements.nouveau: sert à mettre la classe du nouvel élément SVG
+	 */
 	baisseTete(){ 
 		this.changement = {oldClass:this.teteActuelle , nouveau:illustrationBovin.vueProfil.tete.broute(this.typeAnimal)};
 		//~ console.log("changement : ", this.changement);
@@ -304,6 +300,14 @@ class Bovin extends SCCube{
 		this.teteActuelle ='teteBroute';
 	}
 
+	montreToiDeProfil(){}
+	
+	montreToiDeFace(){}
+	
+	montreToiDeDos(){}
+	
+	montreToiDe3quart(){}
+	
 	//anime la mâchoire pour manger (A tester)
 	//~ mange(){
 		//~ var animer = document.querySelector(".boucheBroute");
