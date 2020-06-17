@@ -36,7 +36,10 @@ class Bovin extends SCCube{
 		this.taille = taille; // (bébé 1, jeune 2, adulte 3)
 		this.age = ageEnMois; //adulte 24 mois
 		this.illustration = {};
-		this.createIllustrationInitiale();
+		this.createIllustrationInitiale("vueProfil");
+		//~ this.createIllustrationInitiale("vueFace");
+		//~ this.createIllustrationInitiale("vueDos");
+		//~ this.createIllustrationInitiale("vueTroisQuart");
 
 		//Se nourrir
 		//-----------
@@ -85,7 +88,8 @@ class Bovin extends SCCube{
 		}
 	}
 	
-	createIllustrationInitiale(){
+	createIllustrationInitiale(vue){
+		this.vueActuelle = vue;
 		if(this.age<24){
 			// console.log('veau');
 			this.typeAnimal = 'veau';
@@ -105,20 +109,20 @@ class Bovin extends SCCube{
 		let finGroupeVache = "</g>";
 		
 		//parties comunes aux bovins:
-		this.illustration.corps =  illustrationBovin.vueProfil.corps;
-		this.illustration.queue =  illustrationBovin.vueProfil.queue;
-		this.illustration.tete = illustrationBovin.vueProfil.tete.leveTete(this.typeAnimal);
+		this.illustration.corps =  illustrationBovin[vue].corps;
+		this.illustration.queue =  illustrationBovin[vue].queue;
+		this.illustration.tete = illustrationBovin[vue].tete.leveTete(this.typeAnimal);
 		//~ console.log(this.illustration.tete);
-		this.illustration.patteArriereBack = illustrationBovin.vueProfil.pattes.patteArriereBack;
-		this.illustration.patteArriereFront = illustrationBovin.vueProfil.pattes.patteArriereFront;
-		this.illustration.patteAvantBack = illustrationBovin.vueProfil.pattes.patteAvantBack;
-		this.illustration.patteAvantFront = illustrationBovin.vueProfil.pattes.patteAvantFront;
+		this.illustration.patteArriereBack = illustrationBovin[vue].pattes.patteArriereBack;
+		this.illustration.patteArriereFront = illustrationBovin[vue].pattes.patteArriereFront;
+		this.illustration.patteAvantBack = illustrationBovin[vue].pattes.patteAvantBack;
+		this.illustration.patteAvantFront = illustrationBovin[vue].pattes.patteAvantFront;
 		
 		//assemblage dans l'ordre d'affichage axe Z 
-		this.illustration.animal = debutGroupeVache+ 
-									this.illustration.patteArriereBack+
-									this.illustration.patteAvantBack+
-									this.illustration.queue;
+		this.illustration.animal = debutGroupeVache 
+			+ this.illustration.patteArriereBack
+			+ this.illustration.patteAvantBack
+			+ this.illustration.queue;
 		
 		//on rajoute les pis si c'est une vache adulte
 		if(this.typeAnimal=="vache"){
@@ -127,10 +131,10 @@ class Bovin extends SCCube{
 		}
 		
 		//On ajoute le reste
-		this.illustration.animal += this.illustration.corps +
-									this.illustration.patteArriereFront +
-									this.illustration.patteAvantFront +
-									this.illustration.tete;
+			this.illustration.animal += this.illustration.patteArriereFront
+				+ this.illustration.patteAvantFront
+				+ this.illustration.corps
+				+ this.illustration.tete;
 
 		//on ferme le groupeVache
 		this.illustration.animal += finGroupeVache;
@@ -138,7 +142,6 @@ class Bovin extends SCCube{
 
 		//On enregiste la configurationactuelle
 		this.teteActuelle = 'leveTete';
-		this.vueActuelle = 'vueProfil';
 	}
 	
 	//construction
