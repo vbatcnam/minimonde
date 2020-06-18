@@ -54,9 +54,9 @@ for(var i=1; i<=10; i++){
 //~ monde.addActor(new Herbe(1+','+0,0+Math.random(),7+Math.random()));
 
 /*** Pour La création du chapitre 1 du jeu : ajout d'une première famille de vaches*/
-monde.addActor(new Bovin(6,0,5, 24, 3, 500, "F")); // vache
-//~ monde.addActor(new Bovin(4,0,10, 24, 3, 600, "M")); // taureau
-//~ monde.addActor(new Bovin(-2,0,2, 1, 1, 40,"F"));//veau
+monde.addActor(new Bovin(6,0,5, 24, 3, 500, "F")); // vache (de dos : queue trop haute)
+//~ monde.addActor(new Bovin(4,0,10, 24, 3, 600, "M")); // taureau (bug d'affichage des cornes de face et de dos + queue trop haute)
+//~ monde.addActor(new Bovin(-2,0,2, 1, 1, 40,"F"));//veau (bug d'affichage)
 
 monde.addActor(new Horloge());
 
